@@ -2,17 +2,30 @@
 
 Jellydroid macht aus einem Android-TV-Gerät einen Fernseher ohne Werbung, dessen Startbildschirm sich um die eigene Mediathek und das eigene Zuhause dreht. Es besteht aus einem eigenen Launcher und einem Installer, der das Gerät per ADB im Heimnetz einrichtet. Root ist nicht nötig.
 
+![Entdecken](docs/bilder/entdecken.jpg)
+
 ## Was anders ist als bei Android TV
 
 Android TV zeigt ab Werk gesponserte Reihen, Empfehlungen von Streaminganbietern und vorinstallierte Apps des Herstellers. Jellydroid entfernt diese Apps, filtert Werbung über Privates DNS und ersetzt den Startbildschirm. Übrig bleiben die eigenen Favoriten, die eigene Mediathek und die Apps, die man wirklich nutzt.
 
 Jellyfin ist fest in den Startbildschirm eingebaut. Weiterschauen, Beliebtes und Genres kommen direkt aus der eigenen Mediathek, mit Auflösung und Tonformat im Detail-Fenster. Abgespielt wird mit einem Klick in [Plezy](https://github.com/edde746/plezy). Serien lassen sich als gesehen markieren oder ausblenden.
 
+![Startseite mit Weiterschauen und Favoriten](docs/bilder/startseite.jpg)
+
 Was noch fehlt, wird direkt im Launcher über Seerr angefragt. Trends und Neuerscheinungen stehen neben der Mediathek, ein Klick auf „Anfragen“ reicht. Eine zweite App oder der Umweg übers Handy entfallen.
+
+![Anfrage über Seerr](docs/bilder/anfragen.jpg)
 
 Eine Taste auf der Fernbedienung öffnet die Sidebar, ein Schnellmenü, das über jeder App aufgeht. Dort liegen Uhrzeit, WLAN, Eingangsquelle, AirPlay, die Launcher-Einstellungen und Home Assistant. Man muss also nicht erst zurück zum Startbildschirm, um das Licht zu dimmen oder die Quelle zu wechseln.
 
+![Sidebar](docs/bilder/sidebar.jpg)
+
 Home Assistant ist tief eingebunden. Licht, Schalter und Szenen werden pro Raum angezeigt, die Heizung lässt sich direkt mit den Pfeiltasten regeln. Die Anmeldung läuft per QR-Code vom Handy. Klingelt eine smarte Türklingel, erscheint am Fernseher ein Hinweis, egal welche App gerade läuft. Ist ein smarter Türsummer eingebunden, öffnet man die Tür von dort aus mit der Fernbedienung.
+
+<p>
+  <img src="docs/bilder/homeassistant.jpg" width="49%" alt="Home Assistant in der Sidebar">
+  <img src="docs/bilder/klingel.jpg" width="49%" alt="Hinweis der Türklingel">
+</p>
 
 Dazu kommt AirPlay: iPhone, iPad und Mac spiegeln ihren Bildschirm samt Ton auf den Fernseher, ohne Zusatzgerät.
 
@@ -20,12 +33,15 @@ Der Installer führt durch alles: Verbindung, Sicherung, Apps entfernen, Launche
 
 Entwickelt und getestet wurde Jellydroid auf einem Philips-Fernseher mit Android TV 11. Launcher und Installer sind nicht an einen Hersteller gebunden. Welche vorinstallierten Apps sich entfernen lassen, unterscheidet sich je nach Gerät.
 
+Die Bilder sind ein Nachbau der Oberfläche aus dem Launcher-Code mit Platzhaltern statt echter Filme. Quelle und Skripte liegen in [`docs/vorschau/`](docs/vorschau/).
+
 ## Inhalt
 
 | Ordner | Inhalt |
 |---|---|
 | `installer/` | Geführter Installer für Windows und Linux. Der einfachste Einstieg. |
 | `launcher/` | Quellcode des Launchers, Kotlin mit Jetpack Compose for TV. |
+| `docs/` | Screenshots und der HTML-Nachbau der Oberfläche, aus dem sie entstehen. |
 | `skripte/` | Einzelne PowerShell-Skripte für ADB: Apps entfernen und zurückholen, DNS, Animationen. |
 
 ## Vorbereitung am Fernseher

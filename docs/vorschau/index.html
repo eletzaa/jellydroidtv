@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jellydroid Vorschau</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<!--
+  Nachbau der Launcher-Oberflaeche (Stand V1.9) fuer README-Screenshots.
+  Masse, Farben und Schriften stammen aus launcher/app/src/main/java/de/elias/launcher (ui/, sidebar/).
+  1 px hier = 1 dp am Fernseher (960 x 540 dp). Bilder in bilder/ sind generiert (docs/vorschau/bilder-erzeugen.py).
+  Screenshots: node docs/vorschau/screenshots.js
+-->
+<style>
+@font-face{font-family:Disp;font-weight:500;src:url(schrift/inter_display_medium.ttf),url(../../launcher/app/src/main/res/font/inter_display_medium.ttf)}
+@font-face{font-family:Disp;font-weight:600;src:url(schrift/inter_display_semibold.ttf),url(../../launcher/app/src/main/res/font/inter_display_semibold.ttf)}
+@font-face{font-family:Disp;font-weight:700;src:url(schrift/inter_display_bold.ttf),url(../../launcher/app/src/main/res/font/inter_display_bold.ttf)}
+@font-face{font-family:Txt;font-weight:400;src:url(schrift/inter_text_regular.ttf),url(../../launcher/app/src/main/res/font/inter_text_regular.ttf)}
+@font-face{font-family:Txt;font-weight:500;src:url(schrift/inter_text_medium.ttf),url(../../launcher/app/src/main/res/font/inter_text_medium.ttf)}
+@font-face{font-family:Txt;font-weight:600;src:url(schrift/inter_text_semibold.ttf),url(../../launcher/app/src/main/res/font/inter_text_semibold.ttf)}
+@font-face{font-family:Mdi;src:url(schrift/mdi_icons.ttf),url(../../launcher/app/src/main/res/font/mdi_icons.ttf)}
+
+:root{--page:#f3f4f6;--card:#ffffff;--ink:#14171c;--dim:#5b6270;--line:#e2e5ea}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--page:#0b0e14;--card:#151922;--ink:#eef1f6;--dim:#9aa3b2;--line:#252b36}}
+:root[data-theme="dark"]{--page:#0b0e14;--card:#151922;--ink:#eef1f6;--dim:#9aa3b2;--line:#252b36}
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--page);color:var(--ink);font-family:Txt,system-ui,sans-serif}
+.page{max-width:1120px;margin:0 auto;padding-block:40px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.page h1{font-family:Disp;font-weight:700;font-size:32px;letter-spacing:-.02em}
+.page>p{color:var(--dim);margin:6px 0 32px;font-size:15px}
+figure{margin:0 0 40px}
+figcaption{font-family:Disp;font-weight:600;font-size:15px;margin:12px 2px 0}
+figcaption span{display:block;font-family:Txt;font-weight:400;color:var(--dim);font-size:13px;margin-top:2px}
+.frame{width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;position:relative;background:#000;box-shadow:0 0 0 1px var(--line)}
+.frame>.tv{position:absolute;left:0;top:0;transform-origin:0 0}
+body.shot{background:#000}
+body.shot .page{max-width:none;padding:0}
+.page h1{text-wrap:balance}
+body.shot .page>h1,body.shot .page>p,body.shot figcaption{display:none}
+body.shot figure{margin:0}
+body.shot .frame{width:960px;height:540px;aspect-ratio:auto;border-radius:0;box-shadow:none}
+
+/* ---------- Fernseher ---------- */
+.tv{width:960px;height:540px;overflow:hidden;position:relative;color:#fff;font-family:Txt;
+  background:#0D151D;-webkit-font-smoothing:antialiased}
+.glow{position:absolute;inset:0;background:
+  linear-gradient(rgba(0,0,0,.25),rgba(0,0,0,.25)),
+  radial-gradient(403px circle at 38px 324px,rgba(210,200,184,.70) 0,rgba(120,140,146,.40) 161px,rgba(74,100,112,.10) 302px,transparent 403px),
+  linear-gradient(90deg,#3A464C 0,#2A3C46 35%,#1A2A35 65%,#0D151D 100%)}
+.backdrop{position:absolute;inset:0}
+.backdrop img{width:100%;height:100%;object-fit:cover;display:block}
+.backdrop::before,.backdrop::after{content:"";position:absolute;inset:0}
+.backdrop::before{background:linear-gradient(90deg,rgba(11,14,22,.95) 0,rgba(11,14,22,.6) 45%,rgba(11,14,22,.13) 100%)}
+.backdrop::after{background:linear-gradient(180deg,rgba(11,14,22,.53) 0,rgba(11,14,22,0) 30%,rgba(11,14,22,.8) 62%,#0B0E16 100%)}
+.film{position:absolute;inset:0}
+.film img{width:100%;height:100%;object-fit:cover;display:block}
+.col{position:absolute;inset:0;padding-top:24px;display:flex;flex-direction:column}
+
+.bar{display:flex;justify-content:space-between;align-items:center;margin:0 40px 0 48px}
+.glass{border-radius:999px;background:linear-gradient(rgba(255,255,255,.10),rgba(255,255,255,.10)),rgba(28,31,38,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.tabs{display:flex;padding:5px 6px;position:relative}
+.tab{height:34px;padding:0 16px;display:flex;align-items:center;border-radius:999px;font-family:Disp;font-weight:500;font-size:15px;color:rgba(255,255,255,.78);position:relative}
+.tab.on{font-weight:600;color:#fff;background:linear-gradient(rgba(255,255,255,.145),rgba(255,255,255,.145)),rgba(28,31,38,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+.sys{display:flex;align-items:center;padding:5px 6px 5px 14px}
+.clock{font-family:Disp;font-weight:500;font-size:15px}
+.sdot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.55);margin:0 6px 0 8px}
+.cbtn{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.cbtn svg{width:16px;height:16px}
+.ava{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.22);display:flex;align-items:center;justify-content:center;font-family:Disp;font-weight:500;font-size:15px}
+
+.hero{margin-top:22px;height:212px;padding:0 40px 0 48px;display:flex;flex-direction:column;flex:none}
+.hero.compact{height:136px}
+.hero.gone{margin-top:26px;height:0;overflow:hidden}
+.hero .txt{flex:1;min-height:0}
+.eyebrow{font-family:Txt;font-weight:600;font-size:11px;letter-spacing:.12em;color:rgba(255,255,255,.85);margin-bottom:6px}
+.headline{font-family:Disp;font-weight:700;font-size:40px;letter-spacing:-.028em;line-height:42px;max-width:620px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.meta{display:flex;align-items:center;gap:10px;margin-top:6px;font-size:13px;line-height:19px}
+.meta .s{color:rgba(255,255,255,.8)}
+.meta .f{color:rgba(255,255,255,.6)}
+.badge{display:flex;align-items:center}
+.badge b{border-radius:4px;padding:1px 5px;font-family:Disp;font-weight:700;font-size:10px;line-height:13px}
+.badge i{font-style:normal;font-weight:600;font-size:13px;white-space:pre}
+.techs{display:flex;gap:6px}
+.techs span{border-radius:5px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.45);padding:1px 6px;font-family:Disp;font-weight:600;font-size:11px;color:rgba(255,255,255,.9)}
+.body{font-size:13px;line-height:19px;color:rgba(255,255,255,.78)}
+.overview{margin-top:8px;max-width:480px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.btnrow{display:flex;align-items:center;margin-top:12px;margin-bottom:14px}
+.pills{display:flex;gap:10px}
+.pill{border-radius:999px;padding:9px 20px;font-family:Disp;font-weight:500;font-size:15px;line-height:18px;background:rgba(255,255,255,.10);box-shadow:inset 0 0 0 1px rgba(255,255,255,.25);white-space:pre}
+.pill.p{background:rgba(255,255,255,.22)}
+.pill.fx{background:#fff;color:#0D1220;box-shadow:none;transform:scale(1.06)}
+.dots{margin-left:auto;display:flex;gap:6px;align-items:center;padding:8px 10px}
+.dots i{width:6px;height:6px;border-radius:3px;background:rgba(255,255,255,.45)}
+.dots i.a{width:28px;background:linear-gradient(90deg,#fff var(--p),rgba(255,255,255,.28) var(--p))}
+
+.rows{flex:1;min-height:0;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent)}
+.rows.fadeTop{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent),linear-gradient(180deg,transparent,#000 24px);-webkit-mask-composite:source-in;mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent),linear-gradient(180deg,transparent,#000 24px);mask-composite:intersect}
+.fadeR{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 96px),transparent)}
+.rtitle{padding:6px 0 0 48px;display:flex;align-items:center;font-family:Disp;font-weight:600;font-size:14px;color:rgba(255,255,255,.92);line-height:18px}
+.rtitle small{font-family:Txt;font-weight:400;font-size:10px;color:rgba(255,255,255,.55);white-space:pre}
+.lane{display:flex;gap:12px;padding:12px 0 16px 48px;overflow:visible}
+.mt{flex:none}
+.mt .img{width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;background:#1E2330;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.mt .img img{width:100%;height:100%;object-fit:cover;display:block}
+.mt .img::after{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.mt.fx .img{transform:scale(1.08);box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.mt.fx .img::after{box-shadow:inset 0 0 0 2px rgba(255,255,255,.9)}
+.mt .t{margin-top:7px;font-family:Disp;font-weight:600;font-size:12px;line-height:15px;color:rgba(255,255,255,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mt.fx .t{color:#fff}
+.mt .u{font-size:11px;line-height:14px;color:rgba(255,255,255,.55);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.prog{position:absolute;left:10px;right:10px;bottom:10px;height:4px;border-radius:2px;background:rgba(255,255,255,.35);overflow:hidden}
+.prog i{display:block;height:100%;background:#fff}
+
+.applane{display:flex;gap:11px;padding:12px 0 30px 48px}
+.at{flex:none;width:124px;height:69.75px;border-radius:12px;position:relative;overflow:hidden;background:linear-gradient(135deg,#2A3042,#4A5470);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.at::before{content:"";position:absolute;inset:0;background:linear-gradient(131deg,rgba(255,255,255,.22),transparent 75px)}
+.at::after{content:"";position:absolute;inset:0;border-radius:12px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.14)}
+.at.fx{transform:scale(1.1);box-shadow:0 8px 24px rgba(0,0,0,.6);z-index:2;overflow:visible}
+.at.fx::after{box-shadow:inset 0 0 0 2px rgba(255,255,255,.9)}
+.at .ic{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:Disp;font-weight:700;font-size:15px;color:#fff}
+.at .l{font-family:Disp;font-weight:600;font-size:12px;padding:2px 6px;white-space:nowrap}
+.at.add{background:rgba(255,255,255,.08);font-family:Disp;font-weight:700;font-size:30px}
+.at.add::before{display:none}
+.at.add::after{box-shadow:inset 0 0 0 1px rgba(255,255,255,.22)}
+
+/* Detail */
+.scrim{position:absolute;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center}
+.dlg{width:800px;border-radius:26px;background:rgba(22,26,36,.94);position:relative;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(255,255,255,.18)}
+.dlg .pic{position:absolute;left:0;right:0;top:0;height:220px}
+.dlg .pic img{width:100%;height:100%;object-fit:cover;display:block}
+.dlg .pic::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(22,26,36,0),rgba(22,26,36,.94))}
+.dlg .in{position:relative;padding:150px 32px 26px}
+.dlg h2{font-family:Disp;font-weight:700;font-size:32px;letter-spacing:-.028em;line-height:36px}
+.dlg .meta{margin-top:8px}
+.dlg .ov{margin-top:12px}
+.dlg .cast{margin-top:10px;font-size:12px;color:rgba(255,255,255,.6)}
+.dlg .pills{margin-top:18px}
+.xbtn{position:absolute;top:16px;right:16px;width:38px;height:38px;border-radius:50%;background:rgba(0,0,0,.4);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center}
+.xbtn svg{width:16px;height:16px}
+
+/* Sidebar */
+.shade{position:absolute;inset:0;background:linear-gradient(90deg,transparent 30%,rgba(0,0,0,.45))}
+.side{position:absolute;right:15px;top:15px;bottom:15px;width:298px;border-radius:21px;background:rgba(22,26,38,.94);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);padding:21px 18px;display:flex;flex-direction:column;gap:14px;color:#F4F6FB}
+.d{font-family:Disp}
+.dim{color:rgba(255,255,255,.62)}
+.shead{display:flex;align-items:flex-start;padding-bottom:6px}
+.shead .when{flex:1}
+.date{font-family:Disp;font-weight:500;font-size:13px;color:rgba(255,255,255,.62);line-height:16px}
+.big{font-family:Disp;font-weight:700;font-size:25px;letter-spacing:-.03em;line-height:30px}
+.gear{display:flex;flex-direction:column;align-items:center;gap:5px}
+.gear .b{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center}
+.gear .b svg{width:20px;height:20px}
+.gear small{font-size:10.5px;color:rgba(255,255,255,.62)}
+.sava{width:33px;height:33px;border-radius:50%;background:#7A5AF5;margin:4px 0 0 10px}
+.qgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.qt{border-radius:17px;background:rgba(120,170,220,.16);min-height:77px;padding:13px;display:flex;flex-direction:column;gap:8px;position:relative}
+.qt.on{background:rgba(122,167,255,.32)}
+.qt.off{background:rgba(255,255,255,.07)}
+.qt svg{width:21px;height:21px}
+.qt .n{font-family:Disp;font-weight:600;font-size:13.5px;line-height:17px}
+.qt .s{font-size:10.5px;line-height:13px;color:rgba(255,255,255,.62)}
+.fx2{transform:scale(1.05);box-shadow:inset 0 0 0 2px #fff;z-index:2}
+.room{display:flex;align-items:center;gap:10px}
+.rb{width:31px;height:31px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;flex:none}
+.rb svg{width:16px;height:16px}
+.rname{border-radius:10px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);padding:3px 10px;font-family:Disp;font-weight:700;font-size:19px;letter-spacing:-.02em;line-height:23px}
+.chev{width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;margin-left:-3px}
+.chev svg{width:13px;height:13px}
+.chips{display:flex;gap:6px}
+.chip{border-radius:999px;padding:5px 12px;background:rgba(255,255,255,.07);font-family:Disp;font-weight:500;font-size:11px;line-height:13px}
+.chip.sel{background:#fff;color:#0D1220}
+.scenes{display:flex;gap:6px}
+.scene{flex:1;border-radius:11px;background:rgba(255,255,255,.07);padding:10px 6px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.scene .m{font-family:Mdi;font-size:18px;line-height:18px}
+.scene .n{font-family:Disp;font-weight:600;font-size:11.5px;line-height:14px}
+.heat{border-radius:13px;background:rgba(255,140,90,.14);padding:11px 13px 12px;display:flex;flex-direction:column;gap:9px}
+.heat .top{display:flex;align-items:center}
+.heat .top svg{width:23px;height:23px;margin-right:9px}
+.heat .tv2{font-family:Disp;font-weight:700;font-size:19px;letter-spacing:-.03em;line-height:23px}
+.heat .hd{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.62);margin:0 1px 0 8px}
+.heat .st{font-weight:500;font-size:11px;color:rgba(255,255,255,.62);margin-left:6px}
+.heat .ist{margin-left:auto;font-size:10.5px;color:rgba(255,255,255,.62)}
+.track{position:relative;height:21px;margin:6px 0}
+.track .all,.track .act{position:absolute;top:5.5px;height:10px;border-radius:5px;background:linear-gradient(90deg,#6AA8FF 0,#FFD08A 55%,#FF7A4A 100%);background-size:262px 10px}
+.track .all{left:0;right:0;opacity:.32}
+.track .idot{position:absolute;top:4.3px;width:12.4px;height:12.4px;margin-left:-6.2px;border-radius:50%;background:rgba(255,255,255,.85);box-shadow:0 0 0 1.7px #2A2F3D}
+.track .knob{position:absolute;top:0;width:21px;height:21px;margin-left:-10.5px;border-radius:50%;background:#fff;box-shadow:0 2px 2px rgba(0,0,0,.4)}
+.devs{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dev{border-radius:13px;background:rgba(255,255,255,.07);min-height:71px;padding:11px;display:flex;flex-direction:column;gap:3px;position:relative}
+.dev.on{background:rgba(255,214,140,.18)}
+.dev svg{width:20px;height:20px;margin-bottom:4px}
+.dev .n{font-family:Disp;font-weight:600;font-size:12.5px;line-height:15px}
+.dev .s{font-size:10.5px;line-height:13px;color:rgba(255,255,255,.62)}
+.dev .tr{margin-top:4px;height:3px;border-radius:2px;background:rgba(255,255,255,.12);overflow:hidden}
+.dev .tr i{display:block;height:100%;background:#FFD08A}
+
+/* Klingel */
+.bell{position:absolute;top:19px;right:19px;width:260px;border-radius:19px;background:rgba(22,26,38,.95);box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);padding:15px;display:flex;flex-direction:column;gap:12px;color:#F4F6FB}
+.bell .h{display:flex;align-items:center;gap:12px}
+.bell .ic{width:35px;height:35px;border-radius:50%;background:rgba(255,208,138,.2);display:flex;align-items:center;justify-content:center}
+.bell .ic svg{width:19px;height:19px;transform:rotate(10deg)}
+.bell .t{font-family:Disp;font-weight:700;font-size:15px;line-height:18px}
+.bell .nm{font-size:11px;color:rgba(255,255,255,.62)}
+.bell .bs{display:flex;gap:8px}
+.bell .bb{flex:1;border-radius:999px;padding:9px 0;text-align:center;font-family:Disp;font-weight:600;font-size:12px;line-height:15px;background:rgba(255,255,255,.07)}
+.bell .bb.fx{background:#fff;color:#0D1220}
+.bell .pg{height:2.5px;border-radius:2px;background:rgba(255,255,255,.12)}
+.bell .pg i{display:block;height:100%;width:64%;background:rgba(255,255,255,.62);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="page">
+  <h1>Jellydroid</h1>
+  <p>Nachbau der Oberfläche nach dem Launcher-Code, Stand V1.9. Bilder und Titel sind Platzhalter.</p>
+  <div id="screens"></div>
+</div>
+
+<script>
+const IMG = n => `bilder/${n}.jpg`;
+const W = "#fff";
+
+/* Symbole aus ui/Icons.kt, 24er-Raster */
+const sv = (inner, sw = 1.9, c = W) =>
+  `<svg viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${inner}</svg>`;
+const ICON = {
+  sidebar: c => sv(`<rect x="3" y="4" width="18" height="16" rx="3"/><path d="M14.5 4V20"/>`, 1.9, c),
+  house: c => sv(`<path d="M3 11 12 3.5 21 11"/><path d="M5.5 9.5V20H18.5V9.5"/><path d="M10 20V14H14V20"/>`, 1.9, c),
+  wifi: c => {
+    const a = r => `M${12 - .7071 * r} ${19 - .7071 * r}A${r} ${r} 0 0 1 ${12 + .7071 * r} ${19 - .7071 * r}`;
+    return sv(`<path d="${a(4.5)}"/><path d="${a(9)}"/><path d="${a(13.5)}"/><circle cx="12" cy="19" r="1.3" fill="${c}" stroke="none"/>`, 1.9, c);
+  },
+  airplay: c => sv(`<path d="M6 17H4L3 16V5L4 4H20L21 5V16L20 17H18"/><path d="M12 14 17 20H7Z"/>`, 1.8, c),
+  source: c => sv(`<rect x="1.92" y="3.36" width="20.16" height="13.44" rx="2.16"/><path d="M12 16.8V20.64"/><path d="M7.68 21.12H16.32"/><path d="M10.56 7.68 13.92 10.08 10.56 12.48"/>`, 2.16, c),
+  gear: c => {
+    let s = `<circle cx="12" cy="12" r="6.48"/><circle cx="12" cy="12" r="2.4"/>`;
+    for (let i = 0; i < 8; i++) {
+      const a = i * Math.PI / 4, ci = Math.cos(a), si = Math.sin(a);
+      s += `<path d="M${12 + ci * 7.68} ${12 + si * 7.68}L${12 + ci * 11.04} ${12 + si * 11.04}" stroke-width="3.36"/>`;
+    }
+    return sv(s, 2.4, c);
+  },
+  back: c => sv(`<path d="M14.5 6 8.5 12 14.5 18"/>`, 2.2, c),
+  chevron: c => sv(`<path d="M6.5 9.5 12 15 17.5 9.5"/>`, 2.4, c),
+  bulb: c => sv(`<path d="M9 18H15"/><path d="M10 21.5H14"/><circle cx="12" cy="9" r="6.2"/><path d="M9.3 14.5V18"/><path d="M14.7 14.5V18"/>`, 1.8, c),
+  plug: c => sv(`<path d="M9 2V8"/><path d="M15 2V8"/><path d="M6 8H18V11L16.5 15 12 17 7.5 15 6 11Z"/><path d="M12 17V22"/>`, 1.8, c),
+  thermo: c => sv(`<path d="M10 14.5V5L11 3.2 12 3 13 3.2 14 5V14.5"/><circle cx="12" cy="17.5" r="3.6"/><path d="M12 9V15"/>`, 1.8, c),
+  bell: c => sv(`<path d="M6 16V10L7.5 6 12 4 16.5 6 18 10V16L20 18H4Z"/><path d="M10 21H14"/>`, 2, c),
+  close: c => sv(`<path d="M6.5 6.5 17.5 17.5"/><path d="M17.5 6.5 6.5 17.5"/>`, 2.4, c),
+};
+
+/* Platzhalter-Katalog */
+const M = {
+  gipfel:   { t: "Gipfelsturm", img: "berge", sub: "2025 · 118 Min. · Abenteuer", fsk: "FSK 12", r: "7,8", crit: 91, ov: "Eine Bergführerin will ihre Seilschaft vor dem Wintereinbruch über den Grat bringen. Doch das Wetter dreht schneller als gedacht, und der einzige Abstieg führt durch die Nordwand." },
+  nord:     { t: "Nordlicht", img: "polarlicht", sub: "S2 · F4 · Die lange Nacht", prog: .62, r: "8,4", ov: "Auf einer Forschungsstation am Polarkreis fällt der Funk aus. Während draußen das Polarlicht tanzt, wächst drinnen das Misstrauen." },
+  stadt:    { t: "Die Stadt der Lichter", img: "stadt", sub: "S1 · F7 · Nachtschicht", prog: .35 },
+  meer:     { t: "Weites Meer", img: "meer", sub: "2024 · 96 Min. · Drama", prog: .8 },
+  fels:     { t: "Roter Fels", img: "canyon", sub: "2023 · 104 Min. · Western" },
+  orbit:    { t: "Orbit", img: "weltall", sub: "2026 · Science-Fiction", r: "7,4", seerr: true, ov: "Sechs Monate allein auf einer Raumstation, dann empfängt die Astronautin Lea Varga ein Signal, das es nicht geben dürfte. Die Bodenstation glaubt ihr nicht, und der Sauerstoff reicht nur noch für 40 Tage.", cast: ["Mara Kessler", "Jonas Albrecht", "Ida Nowak", "Paul Brenner"] },
+  sand:     { t: "Sandsturm", img: "wueste", sub: "2025 · 121 Min. · Thriller" },
+  wald:     { t: "Nebelwald", img: "wald", sub: "2022 · 99 Min. · Mystery" },
+  herbst:   { t: "Letzter Sommer", img: "herbst", sub: "2024 · 92 Min. · Komödie" },
+  neon:     { t: "Neonfahrt", img: "neon", sub: "2026 · 110 Min. · Action" },
+  see:      { t: "Stille Wasser", img: "see", sub: "S3 · F1 · Rückkehr", prog: .15 },
+  schnee:   { t: "Weißes Schweigen", img: "schnee", sub: "2023 · 101 Min. · Krimi" },
+};
+
+/* ---------- Bausteine ---------- */
+function topBar(sel) {
+  const tabs = ["Startseite", "Entdecken", "Apps"].map((t, i) => `<div class="tab${i === sel ? " on" : ""}">${t}</div>`).join("");
+  return `<div class="bar">
+    <div class="tabs glass">${tabs}</div>
+    <div class="sys glass"><span class="clock">20:15</span><span class="sdot"></span>
+      <div class="cbtn"><div class="ava">•</div></div>
+      <div class="cbtn">${ICON.sidebar(W)}</div>
+      <div class="cbtn">${ICON.house(W)}</div>
+    </div></div>`;
+}
+const badge = (l, v, bg, fg) => `<span class="badge"><b style="background:${bg};color:${fg}">${l}</b><i> ${v}</i></span>`;
+function metaLine(m, tech = []) {
+  let s = "";
+  if (m.r) s += badge(m.seerr ? "TMDB" : "IMDb", m.r, "#F5C518", "#000");
+  if (m.crit) s += badge(m.crit >= 60 ? "🍅" : "🤢", `${m.crit} %`, "rgba(255,255,255,.2)", "#fff");
+  const sub = m.sub && !m.sub.startsWith("S") ? m.sub : null;
+  if (sub) s += `<span class="s">${sub}</span>`;
+  if (tech.length) { if (sub) s += `<span class="f">·</span>`; s += `<span class="techs">${tech.map(t => `<span>${t}</span>`).join("")}</span>`; }
+  if (m.fsk) s += `<span class="f">${m.fsk}</span>`;
+  return `<div class="meta">${s}</div>`;
+}
+const pill = (t, kind = "", fx = false) => `<div class="pill ${kind}${fx ? " fx" : ""}">${t}</div>`;
+function hero(m, eyebrow, buttons, stage = 0, prog = .4) {
+  const cls = stage === 1 ? " compact" : stage === 2 ? " gone" : "";
+  const dots = Array.from({ length: 6 }, (_, i) => i === 0 ? `<i class="a" style="--p:${prog * 100}%"></i>` : "<i></i>").join("");
+  const txt = stage === 0
+    ? `<div class="eyebrow">${eyebrow.toUpperCase()}</div><div class="headline">${m.t}</div>${metaLine(m)}<div class="body overview">${m.ov || ""}</div>`
+    : `<div class="headline">${m.t}</div><div class="body" style="margin-top:6px;color:rgba(255,255,255,.6)">${m.sub || ""}</div>`;
+  return `<div class="hero${cls}"><div class="txt">${txt}</div>
+    <div class="btnrow"><div class="pills">${buttons}</div><div class="dots">${dots}</div></div></div>`;
+}
+function mediaTile(m, w, fx = false) {
+  return `<div class="mt${fx ? " fx" : ""}" style="width:${w}px"><div class="img"><img src="${IMG(m.img)}" alt="">${m.prog ? `<div class="prog"><i style="width:${m.prog * 100}%"></i></div>` : ""}</div>
+    <div class="t">${m.t}</div><div class="u">${m.sub || ""}</div></div>`;
+}
+function mediaRow(title, source, items, w, focusIndex = -1) {
+  return `<div class="rtitle">${title}<small>  ${source}</small></div>
+    <div class="lane">${items.map((m, i) => mediaTile(m, w, i === focusIndex)).join("")}</div>`;
+}
+const backdrop = img => `<div class="glow"></div><div class="backdrop"><img src="${IMG(img)}" alt=""></div>`;
+
+/* ---------- Ansichten ---------- */
+function discover({ dialog = "" } = {}) {
+  const m = M.gipfel;
+  return `${backdrop(m.img)}<div class="col">${topBar(1)}
+    ${hero(m, "Beliebt", pill("▶  Abspielen", "p", !dialog) + pill("Details"))}
+    <div class="rows">
+      ${mediaRow("Beliebt", "Gerade gefragt", [M.gipfel, M.orbit, M.sand, M.neon, M.wald, M.herbst], 200)}
+      ${mediaRow("Deine Anfragen", "Seerr", [M.fels, M.schnee, M.see, M.meer, M.stadt], 200)}
+    </div></div>${dialog}`;
+}
+
+function start() {
+  const apps = [
+    ["Plezy", "P", "linear-gradient(135deg,#F2A93B,#E0702A)"],
+    ["Jellyfin", "J", "linear-gradient(135deg,#AA5CC3,#00A4DC)"],
+    ["SmartTube", "▶", "linear-gradient(135deg,#E94545,#B32626)"],
+    ["Musik", "♪", "linear-gradient(135deg,#3BC48A,#1E8C66)"],
+    ["Mediathek", "M", "linear-gradient(135deg,#4F7BE8,#2E4FB0)"],
+    ["VLC", "V", "linear-gradient(135deg,#FF9A2E,#E46A00)"],
+  ];
+  const tiles = apps.map(([n, l, g], i) => `<div class="at${i === 0 ? " fx" : ""}"><div class="ic" style="background:${g}">${l}</div><div class="l">${n}</div></div>`).join("")
+    + `<div class="at add">+</div>`;
+  return `${backdrop(M.nord.img)}<div class="col">${topBar(0)}
+    ${hero(M.nord, "Weiterschauen", "", 2)}
+    <div style="flex:1;min-height:0">
+      <div class="fadeR">${mediaRow("Weiterschauen", "Jellyfin", [M.nord, M.stadt, M.meer, M.see], 264)}</div>
+      <div style="height:6px"></div>
+      <div class="rtitle">Favoriten<small>  Apps</small></div>
+      <div style="height:10px"></div>
+      <div class="applane fadeR">${tiles}</div>
+    </div></div>`;
+}
+
+function detailDialog() {
+  const m = M.orbit;
+  return `<div class="scrim"><div class="dlg">
+    <div class="pic"><img src="${IMG(m.img)}" alt=""></div>
+    <div class="in">
+      <h2>${m.t}</h2>
+      ${metaLine(m)}
+      <div class="body ov">${m.ov}</div>
+      <div class="cast">Mit ${m.cast.join(", ")}</div>
+      <div class="pills">${pill("＋  Anfragen", "p", true)}${pill("Trailer ansehen")}${pill("Interessiert mich nicht")}</div>
+    </div>
+    <div class="xbtn">${ICON.close(W)}</div>
+  </div></div>`;
+}
+
+function sidebarMain() {
+  const q = (n, s, icon, cls = "", fx = false) =>
+    `<div class="qt ${cls}${fx ? " fx2" : ""}">${icon}<div><div class="n">${n}</div><div class="s">${s}</div></div></div>`;
+  return `<div class="shade"></div><div class="side">
+    <div class="shead"><div class="when"><div class="date">So., 22. Nov.</div><div class="big">20:15</div></div>
+      <div style="display:flex;align-items:flex-start"><div class="gear"><div class="b">${ICON.gear("#F4F6FB")}</div><small>Einstellungen</small></div><div class="sava"></div></div></div>
+    <div class="qgrid">
+      ${q("Home Assistant", "Wohnzimmer · 3 an", ICON.house("#F4F6FB"), "", true)}
+      ${q("WLAN", "Heimnetz", ICON.wifi("#F4F6FB"))}
+      ${q("Quelle", "Eingang wählen", ICON.source("#F4F6FB"))}
+      ${q("AirPlay", "An", ICON.airplay("#F4F6FB"), "on")}
+    </div></div>`;
+}
+
+function sidebarHa() {
+  const scene = (g, n) => `<div class="scene"><span class="m">${g}</span><span class="n">${n}</span></div>`;
+  const dev = (n, on, pct, plug, fx) => {
+    const ic = (plug ? ICON.plug : ICON.bulb)(on ? "#FFD08A" : "rgba(255,255,255,.62)");
+    const st = !on ? "Aus" : pct != null ? `An · ${pct} %` : "An";
+    const tr = pct !== undefined ? `<div class="tr">${on ? `<i style="width:${pct}%"></i>` : ""}</div>` : "";
+    return `<div class="dev${on ? " on" : ""}${fx ? " fx2" : ""}">${ic}<div class="n">${n}</div><div class="s">${st}</div>${tr}</div>`;
+  };
+  const min = 7, max = 30, target = 21.5, ist = 20, w = 262 - 26;
+  const pT = (target - min) / (max - min), pI = (ist - min) / (max - min);
+  return `<div class="shade"></div><div class="side">
+    <div class="room"><div class="rb">${ICON.back("#F4F6FB")}</div>
+      <div style="display:flex;align-items:center;gap:7px"><div class="rname">Wohnzimmer</div><div class="chev">${ICON.chevron("#F4F6FB")}</div></div></div>
+    <div class="chips"><div class="chip sel">Alle</div><div class="chip">Licht</div><div class="chip">Schalter</div></div>
+    <div class="scenes">${scene("\u{F0FCE}", "Kino")}${scene("\u{F04B9}", "Abend")}${scene("\u{F0594}", "Nacht")}</div>
+    <div class="heat"><div class="top">${ICON.thermo("#FF9A6A")}<span class="tv2">21,5 °C</span><span class="hd"></span><span class="st">Heizen</span><span class="ist">Ist 20,0 °C</span></div>
+      <div class="track"><div class="all"></div><div class="act" style="left:${pI * 100}%;width:${(pT - pI) * 100}%;background-position:-${pI * w}px 0"></div>
+        <div class="idot" style="left:${pI * 100}%"></div><div class="knob" style="left:${pT * 100}%"></div></div></div>
+    <div class="devs">
+      ${dev("Deckenlicht", true, 60, false, true)}
+      ${dev("Stehlampe", true, 35)}
+      ${dev("LED-Leiste", false, 0)}
+      ${dev("Soundbar", true, null, true)}
+    </div></div>`;
+}
+
+function film(img) { return `<div class="film"><img src="${IMG(img)}" alt=""></div>`; }
+
+function doorbell() {
+  return `${film("see")}<div class="bell">
+    <div class="h"><div class="ic">${ICON.bell("#FFD08A")}</div><div><div class="t">Es klingelt</div><div class="nm">Haustür</div></div></div>
+    <div class="bs"><div class="bb fx">Tür öffnen</div><div class="bb">Schließen</div></div>
+    <div class="pg"><i></i></div></div>`;
+}
+
+const SCREENS = [
+  ["entdecken", "Entdecken", "Mediathek und Trends aus Jellyfin und Seerr, Wiedergabe in Plezy.", () => discover()],
+  ["startseite", "Startseite", "Weiterschauen und Favoriten.", () => start()],
+  ["anfragen", "Anfragen über Seerr", "Fehlt ein Titel, reicht ein Klick auf „Anfragen“.", () => discover({ dialog: detailDialog() })],
+  ["sidebar", "Sidebar", "Öffnet per Taste über jeder App.", () => discover() + sidebarMain()],
+  ["homeassistant", "Home Assistant", "Szenen, Heizung und Licht im gewählten Raum.", () => film("stadt") + sidebarHa()],
+  ["klingel", "Türklingel", "Hinweis beim Klingeln, mit Türsummer direkt öffnen.", () => doorbell()],
+];
+
+const shot = new URLSearchParams(location.search).get("shot");
+if (shot) document.body.classList.add("shot");
+document.getElementById("screens").innerHTML = SCREENS
+  .filter(([id]) => !shot || id === shot)
+  .map(([id, title, sub, f]) => `<figure id="${id}"><div class="frame"><div class="tv">${f()}</div></div><figcaption>${title}<span>${sub}</span></figcaption></figure>`)
+  .join("");
+
+function fit() {
+  if (shot) return;
+  document.querySelectorAll(".frame").forEach(fr => { fr.firstElementChild.style.transform = `scale(${fr.clientWidth / 960})`; });
+}
+addEventListener("resize", fit); fit();
+</script>
+</body>
+</html>
