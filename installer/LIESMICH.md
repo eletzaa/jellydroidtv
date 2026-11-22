@@ -56,4 +56,4 @@ die Felder der gewählten Funktionen, alles andere bleibt im Launcher, wie es is
 Installer-Seite (Windows: `$Pages['<seite>']`, Linux: `step_<seite>`) und ihre setup.json-Felder in
 `Add-FunktionSetup` bzw. `setup_cfg`/`setup_block`. Ohne Seite (`-`) wird sie nur als neu angezeigt.
 
-Alte APKs liegen in `launcher/ausgabe/archiv/`. Der Installer schaut dort nicht hinein und nimmt immer die höchste Version.
+Alte APKs liegen in `launcher/ausgabe/archiv/` (öffentlich ab V1.9). Der Installer schaut dort nicht hinein und nimmt immer die höchste Version.

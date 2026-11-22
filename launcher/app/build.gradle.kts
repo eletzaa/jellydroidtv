@@ -19,15 +19,30 @@ android {
         versionName = "1.9"
     }
 
-    // Fester Schlüssel im Projekt (launcher/signing/debug.keystore, nur im privaten Repo), damit jedes
-    // Gerät/Konto dieselbe Signatur baut und "adb install -r" über die installierte Version geht.
-    val tvKey = rootProject.file("signing/debug.keystore")
+    // Signaturschlüssel liegt NICHT im Repo (öffentlich). Reihenfolge:
+    // 1. Umgebungsvariable JELLYDROID_KEYSTORE_B64 (Keystore als Base64, z. B. Cloud-Umgebung oder GitHub-Secret)
+    // 2. Umgebungsvariable JELLYDROID_KEYSTORE (Pfad zur Datei)
+    // 3. launcher/signing/debug.keystore (lokal, per .gitignore ausgeschlossen)
+    // Ohne Schlüssel wird mit dem lokalen Debug-Schlüssel signiert; die APK geht dann nicht per
+    // "adb install -r" über die installierte Version.
+    val tvKey: File? = run {
+        val b64 = System.getenv("JELLYDROID_KEYSTORE_B64")?.trim()
+        val path = System.getenv("JELLYDROID_KEYSTORE")?.trim()
+        when {
+            !b64.isNullOrEmpty() -> layout.buildDirectory.file("signing/tv.keystore").get().asFile.also {
+                it.parentFile.mkdirs()
+                it.writeBytes(java.util.Base64.getMimeDecoder().decode(b64))
+            }
+            !path.isNullOrEmpty() -> file(path)
+            else -> rootProject.file("signing/debug.keystore")
+        }.takeIf { it.exists() }
+    }
     signingConfigs {
-        if (tvKey.exists()) create("tv") {
+        if (tvKey != null) create("tv") {
             storeFile = tvKey
-            storePassword = "android"
-            keyAlias = "androiddebugkey"
-            keyPassword = "android"
+            storePassword = System.getenv("JELLYDROID_KEYSTORE_PASSWORD") ?: "android"
+            keyAlias = System.getenv("JELLYDROID_KEY_ALIAS") ?: "androiddebugkey"
+            keyPassword = System.getenv("JELLYDROID_KEY_PASSWORD") ?: "android"
         }
     }
 

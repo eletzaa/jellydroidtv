@@ -1,499 +1,499 @@
 {
   "airplay/build.gradle.kts": {
-    "mtime": 1795362760.449923,
-    "seen": 1795363156.2965224,
+    "mtime": 1795363943.4861467,
+    "seen": 1795364087.8765187,
     "ast_hash": "0f499844839673adcea228c56e52d67e",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_dnssd_shim.c": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.296529,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.876528,
     "ast_hash": "f32cb43bc7f65282bab843f4505f9816",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_dnssd_shim.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965322,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765323,
     "ast_hash": "2304efd776c052d1a536b6a94f213373",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_raop_callbacks.c": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965333,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765337,
     "ast_hash": "55ddc771a61654db7936dc5174d916d1",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_raop_callbacks.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965343,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.876536,
     "ast_hash": "019b97fc1653d5db4063e68051d0282e",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_decoder.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965353,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765373,
     "ast_hash": "170dd3526eaf3c9c10d551c70b8d3765",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_engine.cpp": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965367,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.876539,
     "ast_hash": "81452fabccb8f1cd2e8ef4f93395462d",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_engine.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965374,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765402,
     "ast_hash": "68409b92e7da0f98be33d8a8dc4746f1",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_output.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.296538,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765414,
     "ast_hash": "f84c0a6b8641379206b0b459ac701470",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_time.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.296539,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765428,
     "ast_hash": "90b4e9cff9aafcb9f98af1c282cdce9d",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/log_sink.h": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.29654,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765442,
     "ast_hash": "d6453576e6ab2b73a12251f68ab95cca",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/native_bridge.cpp": {
-    "mtime": 1795362760.4500825,
-    "seen": 1795363156.2965407,
+    "mtime": 1795363943.4863238,
+    "seen": 1795364087.8765452,
     "ast_hash": "b387c72a612e0ede0055b9e866f7ec04",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/timeline_buffer.h": {
-    "mtime": 1795362760.459025,
-    "seen": 1795363156.2965417,
+    "mtime": 1795363943.4938848,
+    "seen": 1795364087.8765469,
     "ast_hash": "2770ac9cc81d42e83b70c53e0b5b5d57",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AirPlay.kt": {
-    "mtime": 1795362760.4598343,
-    "seen": 1795363156.2965426,
+    "mtime": 1795363943.494961,
+    "seen": 1795364087.876548,
     "ast_hash": "539cf6f86a465dfe06cbec6a42a15393",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AirPlayActivity.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965436,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765495,
     "ast_hash": "1ad4d666a5d87ea564c66589e62b6e12",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AirPlayService.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965443,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765507,
     "ast_hash": "eaa67c951792ff0349f78a03fd6c7aec",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AirPlayState.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.296545,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765519,
     "ast_hash": "228273feddf8533f3bb0e596c49fc115",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AudioConfig.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965457,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765533,
     "ast_hash": "123f06afbe89b68ec78b22d772d5a408",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/AudioRenderer.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965465,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765545,
     "ast_hash": "d49db95b46abc619ecd6f055be80c9aa",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/DecoderSelector.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965474,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765557,
     "ast_hash": "91f4c20280328de5ff704b1e976a36b5",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/EglCore.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965481,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.876557,
     "ast_hash": "84598c68d9c7c02465cc0a0d736b9fba",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/NativeBridge.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965488,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.876558,
     "ast_hash": "24df843d839d2ba90ae7c68df59a7bd4",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/NsdServiceManager.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965493,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765597,
     "ast_hash": "354dfdc57c10eb5dafbc11dc251d5cf5",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/RaopCallbackHandler.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965505,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765612,
     "ast_hash": "9b0b541ff27f0b59a19edaf11a8ff809",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/VideoPipeline.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965512,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765626,
     "ast_hash": "d0d8e2baf0be2ffdb8c55b3c8e283c62",
     "semantic_hash": ""
   },
   "airplay/src/main/java/de/elias/launcher/airplay/VideoRenderer.kt": {
-    "mtime": 1795362760.459869,
-    "seen": 1795363156.2965524,
+    "mtime": 1795363943.4949982,
+    "seen": 1795364087.8765643,
     "ast_hash": "32dc6606d7b23c1cfe22654e29236fe6",
     "semantic_hash": ""
   },
   "app/build.gradle.kts": {
-    "mtime": 1795362876.2337449,
-    "seen": 1795363156.2965534,
-    "ast_hash": "9d7a8d663e3ce93cb03be124aef6964e",
+    "mtime": 1795364073.2163603,
+    "seen": 1795364087.8765657,
+    "ast_hash": "7f78f9bc6d74c67c14499b5c1d5b5361",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/BootReceiver.kt": {
-    "mtime": 1795362760.4610715,
-    "seen": 1795363156.2965543,
+    "mtime": 1795363943.496152,
+    "seen": 1795364087.876567,
     "ast_hash": "e8b2176ba37981ece7859782348b3da2",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/HomeButtonService.kt": {
-    "mtime": 1795362760.4610991,
-    "seen": 1795363156.296555,
+    "mtime": 1795363943.496181,
+    "seen": 1795364087.876568,
     "ast_hash": "af0c049b9dd37b6e856f1123ae1f7da4",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/MainActivity.kt": {
-    "mtime": 1795362760.4610991,
-    "seen": 1795363156.296558,
+    "mtime": 1795363943.496181,
+    "seen": 1795364087.8765707,
     "ast_hash": "49a9e94a8ada095e2223149546ee07bb",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ServiceKeeper.kt": {
-    "mtime": 1795362760.4610991,
-    "seen": 1795363156.2965586,
+    "mtime": 1795363943.496181,
+    "seen": 1795364087.8765717,
     "ast_hash": "5afba3cd3d220c8ab5ba0ee8ca8c6245",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/AppRepository.kt": {
-    "mtime": 1795362760.4610991,
-    "seen": 1795363156.2965593,
+    "mtime": 1795363943.496181,
+    "seen": 1795364087.8765726,
     "ast_hash": "d99fff24c2194678a30139d865a122a4",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/LauncherConfig.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.2965603,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.876574,
     "ast_hash": "292471182929e2772360f9bb692d5ff9",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/Services.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.2965612,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765752,
     "ast_hash": "8b6f0443b11851ada0d97b9fcd6ebfa1",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/SetupImport.kt": {
-    "mtime": 1795362866.3638575,
-    "seen": 1795363156.296562,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765764,
     "ast_hash": "35e7b1c08dd80d537be16ea8c8b3d34c",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/Sun.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.296563,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765779,
     "ast_hash": "c181f9483af48557021c41a45abca4f8",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/SystemActions.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.2965636,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765793,
     "ast_hash": "3d87f08fb8d5f506ea673ada4e9fe994",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/glass/Backdrop.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.296566,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765829,
     "ast_hash": "d037a126a6098f8f14c76cdfce3f608c",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/glass/GlassModifier.kt": {
-    "mtime": 1795362760.461434,
-    "seen": 1795363156.2965667,
+    "mtime": 1795363943.4965363,
+    "seen": 1795364087.8765845,
     "ast_hash": "91668280955e490a08f97a0227f26320",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/glass/GlassRenderer.kt": {
-    "mtime": 1795362760.461434,
-    "seen": 1795363156.2965674,
+    "mtime": 1795363943.4965363,
+    "seen": 1795364087.876586,
     "ast_hash": "1df959ceced5b4fb2592ec5a778ac018",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/glass/GlassState.kt": {
-    "mtime": 1795362760.461434,
-    "seen": 1795363156.2965689,
+    "mtime": 1795363943.4965363,
+    "seen": 1795364087.8765876,
     "ast_hash": "41ddaeab0b8a91a04a0860912c7a4f27",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/JellyfinClient.kt": {
-    "mtime": 1795362760.46155,
-    "seen": 1795363156.2965739,
+    "mtime": 1795363943.4966555,
+    "seen": 1795364087.8765962,
     "ast_hash": "44c1214f969a277f1242dfbee15d253c",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/JellyfinState.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.296575,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8765972,
     "ast_hash": "bdfd33c056056d1cae6c31412a62d616",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/MediaActions.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.2965767,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8765998,
     "ast_hash": "8a140132f3af571fe94c72064a828301",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/RemoteImage.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.2965775,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8766007,
     "ast_hash": "77dd177a350c19f86bf233815b23e96b",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/SeerrClient.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.2965784,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8766026,
     "ast_hash": "d79a1de0dfa29349be9a1c50b30da66e",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/SeerrState.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.2965791,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8766036,
     "ast_hash": "041fe2ae7acb9d3d64e6f37415ec4a14",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/AppMenu.kt": {
-    "mtime": 1795362760.4622645,
-    "seen": 1795363156.296584,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766108,
     "ast_hash": "f679ad725e6fd6c13c72a3f37ec03e9a",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Avatar.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965846,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.876612,
     "ast_hash": "81ced799ab2957c7bbfa39cddad3e010",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/ConfigScreen.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965856,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.876613,
     "ast_hash": "2a57823e382740d7e42df7d3bd6b57a3",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Discover.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965865,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.876614,
     "ast_hash": "2164dc5413fcf119b8322fcb1b3d4a87",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Icons.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965872,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766155,
     "ast_hash": "a83f9f664ff114cb1a9ccb1a7a0c1c20",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/LauncherApp.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965887,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766167,
     "ast_hash": "f36381d2c399712854b37449481bcf67",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/LongPress.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965894,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.876618,
     "ast_hash": "1ad2f1a1628a2925e6d728a1fc7be7bc",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Palette.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.29659,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766196,
     "ast_hash": "8b97a529f16f72ccd0d1016405fda859",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Screens.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.296591,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766205,
     "ast_hash": "a3f05ff62609272377cda5e6d04d3208",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Theme.kt": {
-    "mtime": 1795362837.1254935,
-    "seen": 1795363156.2965915,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766215,
     "ast_hash": "c0d70382a769d53320b050a4d39311bb",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/Tiles.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965925,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766227,
     "ast_hash": "83a8bdafb288017f28e29f9b97972340",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/TopBar.kt": {
-    "mtime": 1795362760.4623396,
-    "seen": 1795363156.2965932,
+    "mtime": 1795363943.4973397,
+    "seen": 1795364087.8766239,
     "ast_hash": "39c2c6670db11ae4de6ce00a7dcd9afd",
     "semantic_hash": ""
   },
   "bauen.ps1": {
-    "mtime": 1795362761.2830248,
-    "seen": 1795363156.296594,
-    "ast_hash": "21d00d0d2881f1a9a5679f3ae7e29276",
+    "mtime": 1795364073.2173014,
+    "seen": 1795364087.876625,
+    "ast_hash": "81e847172469fafca41ea8a561cf4be4",
     "semantic_hash": ""
   },
   "build.gradle.kts": {
-    "mtime": 1795362761.2830248,
-    "seen": 1795363156.2965946,
+    "mtime": 1795363943.9418848,
+    "seen": 1795364087.8766267,
     "ast_hash": "3ea1aef6d73b8c2a437cfbee497edb2a",
     "semantic_hash": ""
   },
   "gradlew": {
-    "mtime": 1795362761.287522,
-    "seen": 1795363156.2965956,
+    "mtime": 1795363943.945063,
+    "seen": 1795364087.876628,
     "ast_hash": "794669d78aef1dd5c7d889ef618b311a",
     "semantic_hash": ""
   },
   "launcher-installieren.ps1": {
-    "mtime": 1795362761.2950249,
-    "seen": 1795363156.2965968,
+    "mtime": 1795363943.9498847,
+    "seen": 1795364087.8766294,
     "ast_hash": "221e42d6cfb638f420e00d766ea30743",
     "semantic_hash": ""
   },
   "launcher-rueckgaengig.ps1": {
-    "mtime": 1795362761.2950249,
-    "seen": 1795363156.2965975,
+    "mtime": 1795363943.9498847,
+    "seen": 1795364087.87663,
     "ast_hash": "363f49cee85bac42998679078c0fb079",
     "semantic_hash": ""
   },
   "settings.gradle.kts": {
-    "mtime": 1795362761.2950249,
-    "seen": 1795363156.2965982,
+    "mtime": 1795363943.9498847,
+    "seen": 1795364087.876631,
     "ast_hash": "d6e8fb2c14c835bf6aa201a9ec50c2fe",
     "semantic_hash": ""
   },
   "airplay/LIESMICH.md": {
-    "mtime": 1795362760.44986,
-    "seen": 1795363156.2965999,
-    "ast_hash": "9e3789c160fd6e8fbd417c6599ff885a",
+    "mtime": 1795364081.0411992,
+    "seen": 1795364087.8766336,
+    "ast_hash": "6ed89eb50198d2b471da701c95be4236",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/CMakeLists.txt": {
-    "mtime": 1795362760.4500482,
-    "seen": 1795363156.2966008,
+    "mtime": 1795363943.4862947,
+    "seen": 1795364087.8766348,
     "ast_hash": "6684ac07eb0fae768811c6ee3a572ac9",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/data/WifiInfo.kt": {
-    "mtime": 1795362760.4612672,
-    "seen": 1795363156.2965653,
+    "mtime": 1795363943.496337,
+    "seen": 1795364087.8765817,
     "ast_hash": "71f4a0fac6edb15c15891e1a777b12e5",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/home/HaPrefs.kt": {
-    "mtime": 1795362760.461434,
-    "seen": 1795363156.2965696,
+    "mtime": 1795363943.4965363,
+    "seen": 1795364087.8765893,
     "ast_hash": "13e0771201084d0d937d7ec98dec2556",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/home/HaSetupServer.kt": {
-    "mtime": 1795362760.46155,
-    "seen": 1795363156.2965703,
+    "mtime": 1795363943.4966555,
+    "seen": 1795364087.8765905,
     "ast_hash": "3318fd7cfb32a18920bc5e66b052e4fc",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/home/HomeAssistant.kt": {
-    "mtime": 1795362760.46155,
-    "seen": 1795363156.2965715,
+    "mtime": 1795363943.4966555,
+    "seen": 1795364087.8765922,
     "ast_hash": "51248e105900bf21d3593b6509881957",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/home/Qr.kt": {
-    "mtime": 1795362760.46155,
-    "seen": 1795363156.2965732,
+    "mtime": 1795363943.4966555,
+    "seen": 1795364087.8765948,
     "ast_hash": "7191e059a9b8250e41ec0a12c3c7ba60",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/sidebar/Doorbell.kt": {
-    "mtime": 1795362837.1256986,
-    "seen": 1795363156.2965798,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.876605,
     "ast_hash": "eb3dc12a9f054a896eecd753b7c29cf4",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/sidebar/Overlay.kt": {
-    "mtime": 1795362760.4622645,
-    "seen": 1795363156.2965806,
+    "mtime": 1795363943.4972553,
+    "seen": 1795364087.8766062,
     "ast_hash": "47061e64a488c32da219af151b29b2d9",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/sidebar/Sidebar.kt": {
-    "mtime": 1795362837.1261919,
-    "seen": 1795363156.2965817,
+    "mtime": 1795363943.4972553,
+    "seen": 1795364087.8766077,
     "ast_hash": "e2a3d9eeb3cbc09098dae04fe90bd6e0",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/JellydroidApp.kt": {
-    "mtime": 1795362866.3641515,
-    "seen": 1795363156.2965562,
+    "mtime": 1795363943.496181,
+    "seen": 1795364087.8765695,
     "ast_hash": "36984be1c36abbb96a5d630dd9f39a52",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/home/MdiIcons.kt": {
-    "mtime": 1795362760.46155,
-    "seen": 1795363156.2965722,
+    "mtime": 1795363943.4966555,
+    "seen": 1795364087.8765934,
     "ast_hash": "085a26c166156d16b7d3e1b298129601",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/jellyfin/LocalMarks.kt": {
-    "mtime": 1795362760.4619029,
-    "seen": 1795363156.296576,
+    "mtime": 1795363943.4969044,
+    "seen": 1795364087.8765986,
     "ast_hash": "0b0263f6bd665565fc31aad504097fd6",
     "semantic_hash": ""
   },
   "CODE-KARTE.md": {
-    "mtime": 1795362997.0190332,
-    "seen": 1795363156.2965991,
-    "ast_hash": "18bddce1ce3be754b2fbd623cea0f344",
+    "mtime": 1795364073.2174993,
+    "seen": 1795364087.8766322,
+    "ast_hash": "cfa956baa303b84b89ebd026edcce2a2",
     "semantic_hash": ""
   },
   "app/src/main/assets/mdi-LICENSE.txt": {
-    "mtime": 1795362760.460397,
-    "seen": 1795363156.2966032,
+    "mtime": 1795363943.495412,
+    "seen": 1795364087.8766377,
     "ast_hash": "7f104afa30591ec383c5140124c88aef",
     "semantic_hash": ""
   },
   "app/src/main/assets/mdi.txt": {
-    "mtime": 1795362760.460417,
-    "seen": 1795363156.296604,
+    "mtime": 1795363943.495412,
+    "seen": 1795364087.8766387,
     "ast_hash": "a051ddb9ec3750fd3ca74a03f40913b9",
     "semantic_hash": ""
   },
   "app/src/main/java/de/elias/launcher/ui/AppFonts.kt": {
-    "mtime": 1795362876.2301564,
-    "seen": 1795363156.296583,
+    "mtime": 1795363943.4972553,
+    "seen": 1795364087.8766098,
     "ast_hash": "a34f248739386b6de737faabb37b3042",
     "semantic_hash": ""
   },
   "app/src/main/assets/lizenzen/inter-OFL.txt": {
-    "mtime": 1795362830.4880922,
-    "seen": 1795363156.2966018,
+    "mtime": 1795363943.495412,
+    "seen": 1795364087.8766365,
     "ast_hash": "082d8cc7db39783f598b7eda8c911f9d",
     "semantic_hash": ""
   }

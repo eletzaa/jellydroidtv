@@ -58,8 +58,8 @@ if (-not (Test-Path "$b\sdk\platforms\android-34") -or -not (Test-Path "$b\sdk\b
 }
 # SDK-Pfad für Gradle (local.properties ist rechnerspezifisch und wird nicht veröffentlicht)
 Set-Content (Join-Path $PSScriptRoot "local.properties") ("sdk.dir=" + ("$b\sdk" -replace '\\', '\\' -replace ':', '\:')) -Encoding ascii
-if (-not (Test-Path (Join-Path $PSScriptRoot "signing\debug.keystore"))) {
-    Write-Warning "signing\debug.keystore fehlt: die APK bekommt eine neue Signatur und lässt sich nicht über die installierte Version spielen."
+if (-not $env:JELLYDROID_KEYSTORE_B64 -and -not $env:JELLYDROID_KEYSTORE -and -not (Test-Path (Join-Path $PSScriptRoot "signing\debug.keystore"))) {
+    Write-Warning "Kein Signaturschlüssel (launcher\signing\debug.keystore oder JELLYDROID_KEYSTORE): die APK bekommt eine neue Signatur und lässt sich nicht über die installierte Version spielen."
 }
 
 # ---- Bauen ----

@@ -39,5 +39,5 @@ Paket `de.elias.launcher`, Kotlin + Compose for TV. Stand V1.9.
 - `src/main/cpp/`: JNI-Brücke (`native_bridge.cpp`, `android_dnssd_shim.c`), `third_party/` = UxPlay, libplist, llhttp (fremder Code, für Graphify ausgeschlossen)
 
 ## Bauen
-Version in `app/build.gradle.kts` (versionName/versionCode). Signatur `signing/debug.keystore`. Release ohne Lint:
+Version in `app/build.gradle.kts` (versionName/versionCode). Signatur: Schlüssel nicht im Repo, siehe BAUEN.md › Signatur (`JELLYDROID_KEYSTORE_B64` oder lokal `signing/debug.keystore`). Release ohne Lint:
 `assembleRelease -x lintVitalAnalyzeRelease -x lintVitalRelease -x lintVitalReportRelease`

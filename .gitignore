@@ -23,10 +23,10 @@ Jellydroid.zip
 
 # --- Schlüssel, Zugangsdaten, Pakete ---
 *.keystore
-!launcher/signing/debug.keystore
+launcher/signing/
 *.jks
 *.apk
-# Versionierte Launcher-APKs gehören ins Repo (aktuelle + Archiv)
+# Versionierte Launcher-APKs gehören ins Repo (aktuelle + Archiv ab V1.9; ältere enthalten SF Pro und bleiben privat)
 !launcher/ausgabe/Jellydroid-V*.apk
 !launcher/ausgabe/archiv/Jellydroid-V*.apk
 *.aab

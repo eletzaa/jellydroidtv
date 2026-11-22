@@ -19,5 +19,5 @@ meldet sich der Fernseher bewusst nicht an.
 | OpenSSL 1.1.1 (aus Maven, `com.android.ndk.thirdparty:openssl`) | openssl.org | OpenSSL-Lizenz |
 | Oboe (aus Maven, `com.google.oboe:oboe`) | Google | Apache-2.0 |
 
-Wegen der GPL-3.0-Teile muss Jellydroid bei einer Weitergabe (GitHub, Paket) ebenfalls unter
-GPL-3.0 stehen und der Quellcode mitgegeben werden.
+Wegen der GPL-3.0-Teile steht Jellydroid insgesamt unter GPL-3.0 (`LICENSE` im Hauptordner).
+Bei einer Weitergabe der APK muss der Quellcode mitgegeben oder verlinkt werden.

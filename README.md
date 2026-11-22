@@ -98,19 +98,34 @@ Die Release-APK wird mit dem lokalen Debug-Schlüssel signiert, ein eigener Schl
 ## Arbeiten mit diesem Repo
 
 - Das Repo ist die einzige Quelle für Jellydroid. Änderungen am Launcher werden hier gemacht, gebaut und als neue Version veröffentlicht.
-- Die aktuelle APK liegt unter `launcher/ausgabe/Jellydroid-V<x.y>.apk`, ältere unter `launcher/ausgabe/archiv/` (nie löschen). Jede Version zählt `versionName`/`versionCode` in `launcher/app/build.gradle.kts` hoch (1.8 = 18).
+- Die aktuelle APK liegt unter `launcher/ausgabe/Jellydroid-V<x.y>.apk`, ältere unter `launcher/ausgabe/archiv/` (nie löschen; V1.0 bis V1.8 nur privat, wegen SF Pro). Jede Version zählt `versionName`/`versionCode` in `launcher/app/build.gradle.kts` hoch (1.8 = 18).
 - Vor Code-Arbeit `launcher/CODE-KARTE.md` lesen, für Abhängigkeiten `launcher/graphify-out/graph.json`.
 - Der Installer nimmt die höchste `Jellydroid-V*.apk` neben sich oder aus `launcher/ausgabe/`.
-- Keine Server-Adressen, Tokens oder persönlichen Daten committen.
+- Keine Server-Adressen, Tokens, Schlüssel oder persönlichen Daten committen. Das Repo ist öffentlich.
 
 ## Lizenz
 
-Noch nicht festgelegt. Der AirPlay-Teil (`launcher/airplay/`) basiert auf GPL-3.0-Code. Wird das Repo öffentlich
-oder die APK weitergegeben, muss Jellydroid unter GPL-3.0 stehen (siehe `launcher/airplay/LIESMICH.md`).
+Jellydroid steht unter der **GNU General Public License v3.0** (siehe [`LICENSE`](LICENSE)).
+
+Der AirPlay-Empfänger (`launcher/airplay/`) basiert auf
+[android-airplay-server](https://github.com/jqssun/android-airplay-server) von jqssun (GPL-3.0) und
+[UxPlay](https://github.com/FDH2/UxPlay) (GPL-3.0). Weitere fremde Teile und ihre Lizenzen:
+
+| Teil | Lizenz | Lizenztext |
+|---|---|---|
+| android-airplay-server, UxPlay | GPL-3.0 | `launcher/airplay/src/main/cpp/third_party/UxPlay/LICENSE` |
+| libplist | LGPL-2.1 | `launcher/airplay/src/main/cpp/third_party/libplist/COPYING.LESSER` |
+| llhttp | MIT | `launcher/airplay/src/main/cpp/third_party/UxPlay/lib/llhttp/LICENSE-MIT` |
+| Inter (Schrift) | SIL OFL 1.1 | `launcher/app/src/main/assets/lizenzen/inter-OFL.txt` |
+| Material Design Icons | Pictogrammers Free License / Apache-2.0 | `launcher/app/src/main/assets/mdi-LICENSE.txt` |
+| OpenSSL, Oboe (über Maven) | OpenSSL-Lizenz, Apache-2.0 | siehe `launcher/airplay/LIESMICH.md` |
+
+Details zur Herkunft des AirPlay-Codes: [`launcher/airplay/LIESMICH.md`](launcher/airplay/LIESMICH.md).
+Jellydroid ist ein privates Projekt und steht in keiner Verbindung zu Jellyfin, Apple, Philips oder Google.
 
 ## Schriften
 
 Ab V1.9 bringt der Launcher Inter mit (`launcher/app/src/main/res/font/inter_*`, SIL Open Font License 1.1,
 Lizenztext in `launcher/app/src/main/assets/lizenzen/inter-OFL.txt`). Eine eigene Schrift wie Aptos oder SF Pro
 lädt jeder selbst herunter und wählt sie im Installer aus (Seite „Schrift“); sie liegt nicht im Repo.
-Bis V1.8 enthielten die APKs und ältere Commits SF Pro von Apple.
+APKs vor V1.9 enthielten SF Pro und sind deshalb nicht veröffentlicht.

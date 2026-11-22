@@ -38,9 +38,17 @@ Für die TV-Installation erwartet das Skript ADB unter `platform-tools\adb.exe` 
 
 ## Signatur
 
-Liegt `launcher/signing/debug.keystore` vor, wird damit signiert, sonst mit dem lokalen Debug-Schlüssel.
-Der Schlüssel liegt im (privaten) Repo, damit jede Version gleich signiert ist. Er gehört nicht in Weitergabe-Pakete. Eine selbst gebaute APK lässt sich daher nicht per `adb install -r`
-über eine anders signierte installierte Version spielen: vorher deinstallieren.
+Der Signaturschlüssel liegt **nicht** im Repo. Jede Version muss mit demselben Schlüssel signiert sein,
+sonst lässt sie sich nicht per `adb install -r` über die installierte Version spielen. Der Build sucht ihn so:
+
+1. `JELLYDROID_KEYSTORE_B64`: der Keystore als Base64-Text (Cloud-Umgebung als Umgebungsvariable, GitHub-Secret)
+2. `JELLYDROID_KEYSTORE`: Pfad zur Keystore-Datei
+3. `launcher/signing/debug.keystore`: lokal abgelegt, per `.gitignore` ausgeschlossen
+
+Passwort und Alias sind die Android-Debug-Standardwerte (`android` / `androiddebugkey`) und lassen sich mit
+`JELLYDROID_KEYSTORE_PASSWORD`, `JELLYDROID_KEY_ALIAS` und `JELLYDROID_KEY_PASSWORD` überschreiben.
+Ohne Schlüssel signiert der Build mit dem lokalen Debug-Schlüssel; die installierte Version muss dann vorher
+deinstalliert werden. Wer das Projekt selbst baut, nimmt einen eigenen Schlüssel.
 
 ## Server-Adressen
 
