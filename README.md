@@ -1,22 +1,22 @@
 # Jellydroid
 
-Android TV ohne Werbung, ohne vorinstallierten Ballast und mit einem Startbildschirm, der sich um die eigene Mediathek dreht.
+Jellydroid macht aus einem Android-TV-Gerät einen Fernseher ohne Werbung, dessen Startbildschirm sich um die eigene Mediathek und das eigene Zuhause dreht. Es besteht aus einem eigenen Launcher und einem Installer, der das Gerät per ADB im Heimnetz einrichtet. Root ist nicht nötig.
 
-Entwickelt und getestet auf einem Philips Android TV 11. Root ist nicht nötig, alles läuft über ADB im Heimnetz.
+## Was anders ist als bei Android TV
 
-## Was anders ist als bei Android TV ab Werk
+Android TV zeigt ab Werk gesponserte Reihen, Empfehlungen von Streaminganbietern und vorinstallierte Apps des Herstellers. Jellydroid entfernt diese Apps, filtert Werbung über Privates DNS und ersetzt den Startbildschirm. Übrig bleiben die eigenen Favoriten, die eigene Mediathek und die Apps, die man wirklich nutzt.
 
-**Keine Werbung.** Der Google-TV-Startbildschirm zeigt gesponserte Reihen, Philips legt eigene Dienste und Telemetrie dazu. Jellydroid entfernt diese Apps und filtert Werbung über Privates DNS.
+Jellyfin ist fest in den Startbildschirm eingebaut. Weiterschauen, Beliebtes und Genres kommen direkt aus der eigenen Mediathek, mit Auflösung und Tonformat im Detail-Fenster. Abgespielt wird mit einem Klick in [Plezy](https://github.com/edde746/plezy). Serien lassen sich als gesehen markieren oder ausblenden.
 
-**Ein aufgeräumter Startbildschirm.** Drei Tabs: Startseite mit Favoriten, Entdecken und Apps. Keine Empfehlungen von Anbietern, keine Kacheln, die man nicht selbst angelegt hat. Die Home-Taste führt immer zu Jellydroid, auch auf Philips-Geräten, die eigene Launcher sonst ignorieren.
+Was noch fehlt, wird direkt im Launcher über Seerr angefragt. Trends und Neuerscheinungen stehen neben der Mediathek, ein Klick auf „Anfragen“ reicht. Eine zweite App oder der Umweg übers Handy entfallen.
 
-**Die eigene Mediathek im Mittelpunkt.** „Entdecken“ zeigt Weiterschauen und Beliebtes aus Jellyfin, dazu Trends und Genres aus Seerr. Fehlt ein Film, geht die Anfrage direkt an Seerr. Abgespielt wird in [Plezy](https://github.com/edde746/plezy). Im Detail-Fenster stehen Auflösung und Tonformat, Serien lassen sich als gesehen markieren oder ausblenden.
+Home Assistant steckt in einer Sidebar, die per Taste über jeder App aufgeht: Licht und Szenen pro Raum, Heizung, WLAN, Eingangsquelle und AirPlay. Die Anmeldung läuft per QR-Code vom Handy. Klingelt eine smarte Türklingel, erscheint am Fernseher ein Hinweis. Ist ein smarter Türsummer eingebunden, öffnet man die Tür direkt von dort mit der Fernbedienung.
 
-**Home Assistant auf der Fernbedienung.** Eine Taste öffnet die Sidebar: Licht und Szenen pro Raum, Heizung, Türklingel mit Popup, WLAN, Eingangsquelle und AirPlay. Die Anmeldung bei Home Assistant läuft per QR-Code vom Handy.
+Dazu kommt AirPlay: iPhone, iPad und Mac spiegeln ihren Bildschirm samt Ton auf den Fernseher, ohne Zusatzgerät.
 
-**AirPlay eingebaut.** iPhone, iPad und Mac spiegeln den Bildschirm samt Ton direkt auf den Fernseher. Kein Zusatzgerät, keine weitere App.
+Der Installer führt durch alles: Verbindung, Sicherung, Apps entfernen, Launcher, Jellyfin, Seerr und Home Assistant. Geändert wird erst nach Zustimmung, und alles lässt sich zurücknehmen.
 
-**Einrichtung in einem Durchgang.** Der Installer verbindet sich mit dem Fernseher, legt eine Sicherung an, entfernt die gewählten Apps und richtet Launcher, Jellyfin, Seerr und Home Assistant ein. Geändert wird erst nach Zustimmung in der Zusammenfassung. Alles lässt sich zurücknehmen.
+Entwickelt und getestet wurde Jellydroid auf einem Philips-Fernseher mit Android TV 11. Launcher und Installer sind nicht an einen Hersteller gebunden. Welche vorinstallierten Apps sich entfernen lassen, unterscheidet sich je nach Gerät.
 
 ## Inhalt
 
@@ -60,7 +60,7 @@ ADB wird unter `platform-tools/adb.exe` im Hauptordner erwartet. Der Installer l
 
 ## Launcher
 
-Philips ignoriert den Standard-Startbildschirm. Deshalb fängt eine Bedienungshilfe die Home-Taste ab und trägt sich nach jedem Neustart selbst wieder ein. Dafür braucht die App `WRITE_SECURE_SETTINGS`, das Installationsskript erteilt die Berechtigung per ADB.
+Viele Hersteller lassen den Startbildschirm nicht ohne Weiteres austauschen. Deshalb fängt eine Bedienungshilfe die Home-Taste ab und trägt sich nach jedem Neustart selbst wieder ein. Dafür braucht die App `WRITE_SECURE_SETTINGS`, das Installationsskript erteilt die Berechtigung per ADB.
 
 AirPlay läuft als eigenes Modul `launcher/airplay/` in einem separaten Prozess.
 
@@ -89,9 +89,9 @@ Alternativ in Android Studio den Ordner `launcher` öffnen, oder unter Windows `
 
 ## Gut zu wissen
 
-- Philips stellt bei jedem echten Neustart, also Strom weg oder Update, die vorinstallierten Apps wieder her. Ohne Root lässt sich das nicht verhindern. Danach im Installer „Auswahl nach Neustart erneut anwenden“ oder Stufe 2 ausführen.
-- `org.droidtv.nettvregistration` nicht entfernen. Sonst stürzt der Philips-Systemdienst in einer Schleife ab.
-- `com.google.android.tvlauncher` nicht deinstallieren. Er bleibt als Rückweg.
+- Manche Geräte stellen bei einem echten Neustart, also Strom weg oder Update, die vorinstallierten Apps wieder her. Ohne Root lässt sich das nicht verhindern. Danach im Installer „Auswahl nach Neustart erneut anwenden“ oder Stufe 2 ausführen.
+- Den Standard-Launcher von Google nicht deinstallieren. Er bleibt als Rückweg.
+- Systemdienste des Herstellers nur entfernen, wenn klar ist, wofür sie da sind. Der Installer bietet bekannte kritische Pakete gar nicht erst an, auf Philips-Geräten etwa `org.droidtv.nettvregistration`.
 - Alle Änderungen gelten nur für Benutzer 0 und lassen sich mit den Rückgängig-Skripten oder einem Werksreset aufheben. Nutzung auf eigene Gefahr.
 
 ## Mitarbeiten
@@ -122,4 +122,4 @@ Der AirPlay-Empfänger in `launcher/airplay/` basiert auf [android-airplay-serve
 
 Herkunft des AirPlay-Codes: [`launcher/airplay/LIESMICH.md`](launcher/airplay/LIESMICH.md).
 
-Jellydroid ist ein privates Projekt ohne Verbindung zu Jellyfin, Apple, Philips oder Google.
+Jellydroid ist ein privates Projekt ohne Verbindung zu Jellyfin, Seerr, Apple, Google oder einem TV-Hersteller.
