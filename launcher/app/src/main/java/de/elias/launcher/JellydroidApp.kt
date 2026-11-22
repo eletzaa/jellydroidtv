@@ -13,5 +13,6 @@ class JellydroidApp : Application() {
         // Der AirPlay-Empfänger läuft im eigenen Prozess (":airplay"), dort nichts importieren
         if (getProcessName() != packageName) return
         de.elias.launcher.data.SetupImport.run(this)
+        de.elias.launcher.ui.AppFonts.load(this)
     }
 }

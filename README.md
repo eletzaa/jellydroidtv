@@ -110,5 +110,7 @@ oder die APK weitergegeben, muss Jellydroid unter GPL-3.0 stehen (siehe `launche
 
 ## Schriften
 
-Der Launcher verwendet SF Pro von Apple (`launcher/app/src/main/res/font/`). Diese Schriften
-stehen unter Apples Lizenz und nicht unter der Lizenz dieses Projekts.
+Ab V1.9 bringt der Launcher Inter mit (`launcher/app/src/main/res/font/inter_*`, SIL Open Font License 1.1,
+Lizenztext in `launcher/app/src/main/assets/lizenzen/inter-OFL.txt`). Eine eigene Schrift wie Aptos oder SF Pro
+lädt jeder selbst herunter und wählt sie im Installer aus (Seite „Schrift“); sie liegt nicht im Repo.
+Bis V1.8 enthielten die APKs und ältere Commits SF Pro von Apple.

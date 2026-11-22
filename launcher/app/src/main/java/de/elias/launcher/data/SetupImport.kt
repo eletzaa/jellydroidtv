@@ -89,6 +89,10 @@ object SetupImport {
             o.optJSONObject("config")?.let { c ->
                 if (c.has("sidebar_key")) context.getSharedPreferences("config", Context.MODE_PRIVATE).edit().putInt("sidebar_key", c.optInt("sidebar_key", -1)).apply()
             }
+            // Schrift: "standard" = Inter, "eigene" = Dateien, die der Installer vorher nach files/schrift-neu/ geschoben hat
+            o.optJSONObject("config")?.optString("font")?.takeIf { it.isNotBlank() }?.let { font ->
+                importFont(context, dir, font)?.let { result = it }
+            }
             // Läuft schon etwas mit den alten Werten (Home Assistant, AirPlay), neu starten.
             if (o.has("homeassistant")) de.elias.launcher.home.HomeAssistant.restart(context)
             runCatching { de.elias.launcher.data.syncAirPlay(context) }
@@ -98,8 +102,35 @@ object SetupImport {
             result = "fehler: " + (e.message ?: e.javaClass.simpleName).replace('\n', ' ')
         } finally {
             file.delete()
+            File(dir, "schrift-neu").deleteRecursively()
             // Rückmeldung für den Installer (liest und löscht die Datei)
             runCatching { File(dir, "setup-ergebnis.txt").writeText(result + "\n") }
         }
+    }
+
+    /** Übernimmt die Schriftwahl. Gibt bei Problemen eine Fehlermeldung für setup-ergebnis.txt zurück. */
+    private fun importFont(context: Context, dir: File, font: String): String? {
+        val target = de.elias.launcher.ui.AppFonts.dir(context)
+        var error: String? = null
+        when (font) {
+            "standard" -> target.deleteRecursively()
+            "eigene" -> {
+                val files = File(dir, "schrift-neu").listFiles()
+                    ?.filter { de.elias.launcher.ui.AppFonts.isFontFile(it) && it.length() in 1..40_000_000 }
+                    ?.take(24).orEmpty()
+                if (files.isEmpty()) error = "fehler: keine Schriftdatei gefunden"
+                else {
+                    target.deleteRecursively(); target.mkdirs()
+                    files.forEach { it.copyTo(File(target, it.name.replace(Regex("[^A-Za-z0-9._-]"), "_")), overwrite = true) }
+                }
+            }
+            else -> return null
+        }
+        de.elias.launcher.ui.AppFonts.load(context)
+        if (error == null && font == "eigene" && !de.elias.launcher.ui.AppFonts.custom) {
+            target.deleteRecursively(); de.elias.launcher.ui.AppFonts.load(context)
+            error = "fehler: Schriftdatei nicht lesbar"
+        }
+        return error
     }
 }

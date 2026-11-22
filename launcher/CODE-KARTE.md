@@ -1,6 +1,6 @@
 # Code-Karte Jellydroid (launcher/)
 
-Paket `de.elias.launcher`, Kotlin + Compose for TV. Stand V1.8.
+Paket `de.elias.launcher`, Kotlin + Compose for TV. Stand V1.9.
 
 ## Start und Systemdienste (app/src/main/java/de/elias/launcher/)
 - `JellydroidApp.kt`: Application, führt SetupImport aus (nur im Hauptprozess), startet HA und AirPlay
@@ -13,7 +13,7 @@ Paket `de.elias.launcher`, Kotlin + Compose for TV. Stand V1.8.
 - `Screens.kt`: Startseite (Favoriten) und Apps. `Tiles.kt`: App-Kacheln. `AppMenu.kt`: Langdruck-Menü
 - `Discover.kt`: Entdecken, Hero-Banner, Medienreihen, **DetailDialog** (Technik-Etiketten, Markierungen), StartHero, ContinueWatchingRow, PillButton
 - `ConfigScreen.kt`: Launcher Konfiguration (Konten, Design, Dienste, Genres, AirPlay, HA, Menütaste)
-- `TopBar.kt`: obere Leiste/Systemkapsel. `Palette.kt`: Farben hell/dunkel. `Theme.kt`: Schriften, `appleSpring()`
+- `TopBar.kt`: obere Leiste/Systemkapsel. `Palette.kt`: Farben hell/dunkel. `Theme.kt`: Textstile (`DisplayFont`/`TextFont`), `appleSpring()`. `AppFonts.kt`: Inter oder eigene Schrift aus `filesDir/schrift/` (vom Installer, `config.font`)
 - `Icons.kt`: gezeichnete Symbole. `Avatar.kt`, `LongPress.kt` (`okKey`)
 
 ## Sidebar (sidebar/)

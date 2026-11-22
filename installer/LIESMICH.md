@@ -17,7 +17,7 @@ Wiederherstellung. Am Fernseher wird erst etwas geändert, wenn du in der Zusamm
 | Auswahl nach Neustart erneut anwenden | Entfernt die zuletzt gewählten Apps wieder (Philips stellt sie beim echten Neustart her) |
 | Nur Sicherung erstellen | Speichert App-Listen und Einstellungen unter `sicherungen\` |
 | Wiederherstellen | Apps zurückholen, Einstellungen und Startbildschirm zurücksetzen, Launcher entfernen |
-| Launcher installieren oder neu einrichten | Launcher, Profilbild, Design, Dienste, Jellyfin, Seerr und Home Assistant ohne Apps anzufassen |
+| Launcher installieren oder neu einrichten | Launcher, Profilbild, Design, Schrift, Dienste, Jellyfin, Seerr und Home Assistant ohne Apps anzufassen |
 | Tipps lesen | Plezy, Streamingdienste, Neustarts usw. |
 
 ## Dateien
@@ -30,6 +30,14 @@ Wiederherstellung. Am Fernseher wird erst etwas geändert, wenn du in der Zusamm
 
 ## Launcher-APK
 Die Launcher-APK heißt `Jellydroid-V<Version>.apk` (z. B. `Jellydroid-V1.3.apk`). Der Installer sucht sie neben sich und in `..\launcher\ausgabe\` und nimmt die höchste Version. Gibt es keine, nimmt er `launcher.apk` neben sich.
+
+## Schrift
+Der Launcher bringt Inter mit (frei, SIL Open Font License). Auf der Seite „Schrift“ lässt sich stattdessen eine
+eigene Schrift wählen, zum Beispiel Aptos (kostenlos bei Microsoft) oder SF Pro (bei Apple). Solche Schriften
+dürfen nicht im Launcher oder im Repo weitergegeben werden, deshalb lädt sie jeder selbst herunter. Ausgewählt werden
+die TTF- oder OTF-Dateien einer Familie (Windows: mehrere Dateien im Dialog, Linux: Datei oder Ordner). Mehrere
+Stärken (Regular, Medium, Semibold, Bold) sehen am besten aus; kursive Schnitte werden ignoriert. Der Installer
+überträgt sie mit `config.font` (siehe `launcher-schnittstelle/SCHNITTSTELLE.md`). Ab V1.9.
 
 ## Update und neue Funktionen
 „Launcher aktualisieren“ vergleicht drei Dinge:
