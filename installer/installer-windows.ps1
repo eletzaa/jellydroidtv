@@ -22,9 +22,12 @@ $DatenDir    = Join-Path $Root 'daten'
 $SicherDir   = Join-Path $Root 'sicherungen'
 $EinstDatei  = Join-Path $Root 'installer-einstellungen.json'
 $LogDatei    = Join-Path $Root 'installer-protokoll.txt'
-$LauncherPkg = 'de.elias.launcher'
-$A11yDienst  = 'de.elias.launcher/de.elias.launcher.HomeButtonService'
-$SetupPfad   = '/sdcard/Android/data/de.elias.launcher/files'
+$LauncherPkg = 'de.jellydroid.launcher'
+$A11yDienst  = 'de.jellydroid.launcher/de.jellydroid.launcher.HomeButtonService'
+$SetupPfad   = '/sdcard/Android/data/de.jellydroid.launcher/files'
+# Bis V1.9 hieß die App de.elias.launcher. Neue App-Kennung = neue App, die alte wird beim Einrichten ersetzt.
+$AltLauncherPkg = 'de.elias.launcher'
+$AltA11yDienst  = 'de.elias.launcher/de.elias.launcher.HomeButtonService'
 New-Item -ItemType Directory -Force -Path $SicherDir | Out-Null
 
 # ------------------------------------------------------------------ Daten
@@ -79,7 +82,7 @@ function Save-Merk { try { $Merk | ConvertTo-Json | Set-Content -Path $EinstDate
 # Zustand des Assistenten
 $S = @{
     Modus = ''; Geraet = ''; Verbunden = $false; Modell = ''; Pakete = @(); Deaktiviert = @()
-    LauncherDa = $false; SicherungOrdner = ''
+    LauncherDa = $false; AltLauncherDa = $false; SicherungOrdner = ''
     JfToken = ''; JfUser = ''; JfUserName = ''; JfDevice = ''; JfServerId = ''
     SeerrCookie = ''; SeerrUserId = -1; SeerrName = ''
     Ausgefuehrt = $false
@@ -409,8 +412,9 @@ $BtnVerbinden.Add_Click({
         $S.Pakete = Get-Liste '--user 0'
         $S.Deaktiviert = Get-Liste '-d'
         $S.LauncherDa = ($S.Pakete -contains $LauncherPkg)
+        $S.AltLauncherDa = ($S.Pakete -contains $AltLauncherPkg)
         $LblVerb.Text = 'Verbunden.'
-        $LblGeraet.Text = "$hersteller $($S.Modell), Android $android`n$($S.Pakete.Count) Apps installiert" + $(if ($S.LauncherDa) { ', eigener Launcher ist installiert' } else { '' })
+        $LblGeraet.Text = "$hersteller $($S.Modell), Android $android`n$($S.Pakete.Count) Apps installiert" + $(if ($S.LauncherDa) { ', eigener Launcher ist installiert' } elseif ($S.AltLauncherDa) { ', ältere Jellydroid-Version ist installiert (wird beim Einrichten ersetzt)' } else { '' })
         $Merk.ip = $ip; $Merk.port = $port; Save-Merk
     } finally { $BtnVerbinden.Enabled = $true }
 })
@@ -692,7 +696,7 @@ $Pages['schrift'] = @{ Panel = $p
 
 # ------------------------------------------------------------------ Seite: Sidebar-Taste
 
-# Der Launcher protokolliert jede Taste ("Taste code=<n> (KEYCODE_…) action=<0|1>", Tag EliasHome).
+# Der Launcher protokolliert jede Taste ("Taste code=<n> (KEYCODE_…) action=<0|1>", Tag JellydroidHome).
 # Der Installer liest das mit, während die Taste gedrückt wird, und schickt den Code als config.sidebar_key.
 $p = New-Page 'Sidebar-Taste' ''
 $p.Controls.Add((Lbl 'Taste:' 0 60 120 24 $FontB))
@@ -713,7 +717,7 @@ $BtnSbLernen.Add_Click({
         $ende = (Get-Date).AddSeconds(20); $gefunden = $false
         while ((Get-Date) -lt $ende -and -not $gefunden) {
             Pause-Ui 700
-            $log = TvShell 'logcat -d -s EliasHome:I'
+            $log = TvShell 'logcat -d -s JellydroidHome:I'
             foreach ($m in [regex]::Matches($log, 'Taste code=(\d+) \((\w+)\) action=1')) {
                 $c = [int]$m.Groups[1].Value
                 if ($NavKeys -notcontains $c) { $S.SbKey = $c; $S.SbName = $m.Groups[2].Value -replace '^KEYCODE_', ''; $gefunden = $true }
@@ -821,6 +825,7 @@ $Pages['update'] = @{ Panel = $p
         Fill-Update
     }
     Leave = {
+        if (-not $S.LauncherDa -and $S.AltLauncherDa) { Msg 'Ab V1.10 hat Jellydroid eine neue App-Kennung und lässt sich nicht über die alte Version aktualisieren. Bitte "Launcher installieren oder neu einrichten" wählen, die alte Version wird dabei ersetzt.' 'Warning'; return $false }
         if (-not $S.LauncherDa) { Msg 'Der Launcher ist noch nicht installiert. Bitte "Geführte Einrichtung" oder "Launcher installieren oder neu einrichten" wählen.' 'Warning'; return $false }
         if (-not $TxtUpdApk.Text -or -not (Test-Path $TxtUpdApk.Text)) { Msg 'Die APK-Datei wurde nicht gefunden. Bitte über "Durchsuchen" auswählen.' 'Warning'; return $false }
         $S.UpdWahl = @()
@@ -919,9 +924,9 @@ $BtnSeerr = Btn 'Anmelden und prüfen' 380 387 180; $p.Controls.Add($BtnSeerr)
 $LblSeerr = Lbl '' 120 424 620 24; $p.Controls.Add($LblSeerr)
 
 function Get-JfHeader {
-    if (-not $S.JfDevice) { $S.JfDevice = 'elias-launcher-' + ([guid]::NewGuid().ToString('N').Substring(0, 16)) }
+    if (-not $S.JfDevice) { $S.JfDevice = 'jellydroid-' + ([guid]::NewGuid().ToString('N').Substring(0, 16)) }
     $t = if ($S.JfToken) { ", Token=`"$($S.JfToken)`"" } else { '' }
-    $h = "MediaBrowser Client=`"Elias Launcher`", Device=`"$($S.Modell)`", DeviceId=`"$($S.JfDevice)`", Version=`"0.2`"$t"
+    $h = "MediaBrowser Client=`"Jellydroid`", Device=`"$($S.Modell)`", DeviceId=`"$($S.JfDevice)`", Version=`"0.2`"$t"
     return @{ 'Authorization' = $h; 'X-Emby-Authorization' = $h; 'Accept' = 'application/json' }
 }
 function Norm-Url([string]$u) { $u = $u.Trim().TrimEnd('/'); if ($u -and $u -notmatch '^https?://') { $u = "https://$u" }; return $u }
@@ -1206,7 +1211,7 @@ $Pages['wiederherstellen'] = @{ Panel = $p
         $LbSich.Items.Clear()
         foreach ($d in (Get-SicherListe)) { [void]$LbSich.Items.Add($d.Name) }
         if ($LbSich.Items.Count -gt 0) { $LbSich.SelectedIndex = 0 } else { $LblSichInfo.Text = "Keine Sicherung gefunden in`n$SicherDir" }
-        $ChkRHome.Enabled = $S.LauncherDa; $ChkRDeinst.Enabled = $S.LauncherDa
+        $ChkRHome.Enabled = ($S.LauncherDa -or $S.AltLauncherDa); $ChkRDeinst.Enabled = ($S.LauncherDa -or $S.AltLauncherDa)
     }
     Leave = {
         if ($LbSich.SelectedIndex -lt 0 -and ($ChkRApps.Checked -or $ChkREinst.Checked -or $ChkRApk.Checked)) { Msg 'Bitte eine Sicherung auswählen.' 'Warning'; return $false }
@@ -1363,6 +1368,20 @@ function Restart-HomeDienst {
     Log $(if ($jetzt) { '  Home-Taste aktiv' } else { '  Home-Taste: Bedienungshilfe bitte am Fernseher prüfen (Einstellungen > Bedienungshilfen)' })
 }
 
+# Ältere Version (de.elias.launcher) vollständig entfernen: Selbstheilung, Bedienungshilfe, Startbildschirm, App
+function Remove-AltLauncher {
+    if (-not $S.AltLauncherDa) { return }
+    Log 'Entferne ältere Jellydroid-Version (de.elias.launcher)'
+    [void](TvShell "pm revoke $AltLauncherPkg android.permission.WRITE_SECURE_SETTINGS")
+    [void](TvShell "am force-stop $AltLauncherPkg")
+    $akt = (TvShell 'settings get secure enabled_accessibility_services').Trim()
+    $rest = ($akt -split ':' | Where-Object { $_ -and $_ -ne $AltA11yDienst -and $_ -ne 'null' }) -join ':'
+    if ($rest) { [void](TvShell "settings put secure enabled_accessibility_services $rest") } else { [void](TvShell 'settings delete secure enabled_accessibility_services') }
+    [void](TvShell "cmd role remove-role-holder android.app.role.HOME $AltLauncherPkg")
+    Log "  Deinstallieren: $(Adb @('-s', $S.Geraet, 'uninstall', $AltLauncherPkg))"
+    $S.AltLauncherDa = $false
+}
+
 function Do-Launcher {
     if ($ChkLauncher.Checked) {
         Log "Installiere Launcher: $($TxtApk.Text)"
@@ -1374,6 +1393,7 @@ function Do-Launcher {
         }
         if ($r -notmatch 'Success') { Log '  Installation fehlgeschlagen.'; return }
         $S.LauncherDa = $true
+        Remove-AltLauncher
         # AirPlay: Vollbild darf sich öffnen, auch wenn gerade eine andere App läuft
         [void](TvShell "appops set $LauncherPkg SYSTEM_ALERT_WINDOW allow")
         # Sidebar: WLAN-Name lesen (Android gibt ihn nur mit Standortberechtigung heraus)
@@ -1519,6 +1539,7 @@ function Do-Update {
 function Do-Restore {
     $d = if ($LbSich.SelectedIndex -ge 0) { (Get-SicherListe)[$LbSich.SelectedIndex].FullName } else { $null }
     if ($ChkRHome.Checked -or $ChkRDeinst.Checked) {
+        if ($S.AltLauncherDa -and -not $S.LauncherDa) { $LauncherPkg = $AltLauncherPkg; $A11yDienst = $AltA11yDienst }
         Log 'Startbildschirm zurücksetzen'
         [void](TvShell "pm revoke $LauncherPkg android.permission.WRITE_SECURE_SETTINGS")
         [void](TvShell "am force-stop $LauncherPkg")
@@ -1529,7 +1550,7 @@ function Do-Restore {
         $vorher = 'com.google.android.tvlauncher/.MainActivity'
         if ($d -and (Test-Path (Join-Path $d 'startbildschirm.txt'))) {
             $v = (Get-Content (Join-Path $d 'startbildschirm.txt') -Raw).Trim()
-            if ($v -match '/' -and $v -notlike "$LauncherPkg*") { $vorher = $v }
+            if ($v -match '/' -and $v -notlike "$LauncherPkg*" -and $v -notlike "$AltLauncherPkg*") { $vorher = $v }
         }
         Log "  $(TvShell "cmd package set-home-activity $vorher")  ($vorher)"
         if ($ChkRDeinst.Checked) { Log "  Deinstallieren: $(Adb @('-s', $S.Geraet, 'uninstall', $LauncherPkg))" }

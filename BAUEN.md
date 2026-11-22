@@ -6,7 +6,7 @@
 - Android SDK mit Plattform 34 und Build-Tools 34.0.0
 - Gradle 8.9 (der Wrapper `launcher/gradlew` lädt es selbst)
 
-Projekt: Gradle 8.9, AGP 8.5.2, Kotlin 2.0.20, Jetpack Compose for TV, Paket `de.elias.launcher`, minSdk 28, targetSdk 34.
+Projekt: Gradle 8.9, AGP 8.5.2, Kotlin 2.0.20, Jetpack Compose for TV, Paket `de.jellydroid.launcher`, minSdk 28, targetSdk 34.
 
 ## Variante 1: Android Studio
 
@@ -21,11 +21,11 @@ echo "sdk.dir=/pfad/zum/android-sdk" > local.properties
 ```
 
 Die APK liegt danach unter `launcher/app/build/outputs/apk/release/`.
-Wenn die Umgebungsvariable `ELIAS_BUILD_DIR` gesetzt ist, landet die Build-Ausgabe stattdessen dort.
+Wenn die Umgebungsvariable `JELLYDROID_BUILD_DIR` gesetzt ist, landet die Build-Ausgabe stattdessen dort.
 
 ## Variante 3: `launcher/bauen.ps1` (Windows)
 
-Richtet JDK 17, Android SDK und Gradle 8.9 beim ersten Lauf selbst unter `%LOCALAPPDATA%\EliasBuild` ein
+Richtet JDK 17, Android SDK und Gradle 8.9 beim ersten Lauf selbst unter `%LOCALAPPDATA%\JellydroidBuild` ein
 (ca. 500 MB), baut und spielt die APK per ADB auf den Fernseher.
 
 ```powershell

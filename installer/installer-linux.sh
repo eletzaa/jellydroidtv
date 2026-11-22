@@ -14,9 +14,12 @@ DATEN="$ROOT/daten"
 SICHER="$ROOT/sicherungen"
 EINST="$ROOT/installer-einstellungen.conf"
 LOGF="$ROOT/installer-protokoll.txt"
-LAUNCHER_PKG=de.elias.launcher
-A11Y_DIENST=de.elias.launcher/de.elias.launcher.HomeButtonService
-SETUP_PFAD=/sdcard/Android/data/de.elias.launcher/files
+LAUNCHER_PKG=de.jellydroid.launcher
+A11Y_DIENST=de.jellydroid.launcher/de.jellydroid.launcher.HomeButtonService
+SETUP_PFAD=/sdcard/Android/data/de.jellydroid.launcher/files
+# Bis V1.9 hieß die App de.elias.launcher. Neue App-Kennung = neue App, die alte wird beim Einrichten ersetzt.
+ALT_LAUNCHER_PKG=de.elias.launcher
+ALT_A11Y_DIENST=de.elias.launcher/de.elias.launcher.HomeButtonService
 mkdir -p "$SICHER"
 
 # ------------------------------------------------------------------ Oberfläche
@@ -149,7 +152,7 @@ save_merk() {
 }
 
 # Zustand
-GERAET=""; VERBUNDEN=0; MODELL=""; PAKETE=" "; DEAKTIVIERT=" "; LAUNCHER_DA=0; SICHER_ORDNER=""
+GERAET=""; VERBUNDEN=0; MODELL=""; PAKETE=" "; DEAKTIVIERT=" "; LAUNCHER_DA=0; ALT_LAUNCHER_DA=0; SICHER_ORDNER=""
 OPT_APK=0; SEL_APPS=""; METHODE=uninstall; OPT_DNS=0; OPT_ANIM=0
 OPT_LAUNCHER=0; APK_DATEI=""; OPT_HOME=1; OPT_FAV=1; AVATAR=""
 JF_TOKEN=""; JF_USER=""; JF_USERNAME=""; JF_DEVICE=""; JF_SERVER=""
@@ -183,7 +186,8 @@ adbc() { "$ADB" "$@" 2>&1 | tr -d '\r'; }
 tvsh() { "$ADB" -s "$GERAET" shell "$1" 2>&1 | tr -d '\r'; }
 liste() { tvsh "pm list packages $1" | sed -n 's/^package://p' | sort; }
 hat_paket() { [[ "$PAKETE" == *" $1 "* ]]; }
-lade_pakete() { PAKETE=" $(liste '--user 0' | tr '\n' ' ')"; DEAKTIVIERT=" $(liste '-d' | tr '\n' ' ')"; hat_paket "$LAUNCHER_PKG" && LAUNCHER_DA=1 || LAUNCHER_DA=0; }
+lade_pakete() { PAKETE=" $(liste '--user 0' | tr '\n' ' ')"; DEAKTIVIERT=" $(liste '-d' | tr '\n' ' ')"; hat_paket "$LAUNCHER_PKG" && LAUNCHER_DA=1 || LAUNCHER_DA=0
+    hat_paket "$ALT_LAUNCHER_PKG" && ALT_LAUNCHER_DA=1 || ALT_LAUNCHER_DA=0; }
 
 # ------------------------------------------------------------------ Schritte
 
@@ -259,7 +263,7 @@ verbinde() {
     local android; android=$(tvsh 'getprop ro.build.version.release')
     lade_pakete
     save_merk
-    ui_msg "Verbunden" "$MODELL, Android $android\n$(echo "$PAKETE" | wc -w) Apps installiert$([ $LAUNCHER_DA = 1 ] && echo ', eigener Launcher ist installiert')."
+    ui_msg "Verbunden" "$MODELL, Android $android\n$(echo "$PAKETE" | wc -w) Apps installiert$([ $LAUNCHER_DA = 1 ] && echo ', eigener Launcher ist installiert')$([ $LAUNCHER_DA = 0 ] && [ $ALT_LAUNCHER_DA = 1 ] && echo ', ältere Jellydroid-Version ist installiert (wird beim Einrichten ersetzt)')."
 }
 
 step_sicherung() {
@@ -420,7 +424,7 @@ schrift_text() {
     if [ "$M_SCHRIFT" = eigene ]; then echo "eigene ($(schrift_dateien | xargs -d '\n' -n1 basename 2>/dev/null | paste -sd, - | sed 's/,/, /g'))"; else echo "Inter (Standard)"; fi
 }
 
-# Der Launcher protokolliert jede Taste ("Taste code=<n> (KEYCODE_…) action=<0|1>", Tag EliasHome).
+# Der Launcher protokolliert jede Taste ("Taste code=<n> (KEYCODE_…) action=<0|1>", Tag JellydroidHome).
 # Der Installer liest das mit, während die Taste gedrückt wird, und schickt den Code als config.sidebar_key.
 step_sidebar() {
     if [ $LAUNCHER_DA = 0 ]; then
@@ -439,7 +443,7 @@ step_sidebar() {
                 ende=$(( $(date +%s) + 20 )); c=""
                 while [ "$(date +%s)" -lt "$ende" ] && [ -z "$c" ]; do
                     sleep 0.7
-                    log=$(tvsh 'logcat -d -s EliasHome:I')
+                    log=$(tvsh 'logcat -d -s JellydroidHome:I')
                     c=$(grep -oE 'Taste code=[0-9]+ \([A-Z0-9_]+\) action=1' <<<"$log" | sed -E 's/Taste code=([0-9]+) \(([A-Z0-9_]+)\).*/\1 \2/' \
                         | awk '$1!=3 && $1!=4 && ($1<19 || $1>23) && $1!=66 && $1!=160' | tail -n1)
                 done
@@ -480,6 +484,9 @@ konfiguriert() {
 hat_seite() { [ -n "$1" ] && [ "$1" != - ] && declare -F "step_$1" >/dev/null; }
 
 step_update() {
+    if [ $LAUNCHER_DA = 0 ] && [ $ALT_LAUNCHER_DA = 1 ]; then
+        ui_msg "Update" "Ab V1.10 hat Jellydroid eine neue App-Kennung und lässt sich nicht über die alte Version aktualisieren. Bitte \"Launcher installieren oder neu einrichten\" wählen, die alte Version wird dabei ersetzt."; return 1
+    fi
     if [ $LAUNCHER_DA = 0 ]; then
         ui_msg "Update" "Der Launcher ist noch nicht installiert. Bitte \"Geführte Einrichtung\" oder \"Launcher installieren oder neu einrichten\" wählen."; return 1
     fi
@@ -553,9 +560,9 @@ step_dienste() {
 }
 
 jf_header() {
-    [ -z "$JF_DEVICE" ] && JF_DEVICE="elias-launcher-$(head -c 8 /dev/urandom | od -An -tx1 | tr -d ' \n')"
+    [ -z "$JF_DEVICE" ] && JF_DEVICE="jellydroid-$(head -c 8 /dev/urandom | od -An -tx1 | tr -d ' \n')"
     local t=""; [ -n "$JF_TOKEN" ] && t=", Token=\"$JF_TOKEN\""
-    echo "MediaBrowser Client=\"Elias Launcher\", Device=\"${MODELL:-TV}\", DeviceId=\"$JF_DEVICE\", Version=\"0.2\"$t"
+    echo "MediaBrowser Client=\"Jellydroid\", Device=\"${MODELL:-TV}\", DeviceId=\"$JF_DEVICE\", Version=\"0.2\"$t"
 }
 
 step_konten() {
@@ -734,7 +741,7 @@ step_restore() {
     local -a opt=()
     [ -n "$R_ORDNER" ] && opt+=(apps "Entfernte und deaktivierte Apps zurückholen" on einst "Einstellungen zurücksetzen (Privates DNS, Animationen)" on)
     [ -n "$R_ORDNER" ] && [ -d "$SICHER/$R_ORDNER/apks" ] && opt+=(apk "Fehlende Play-Store-Apps aus APK neu installieren" off)
-    [ $LAUNCHER_DA = 1 ] && opt+=(home "Startbildschirm zurück auf Android TV" off deinst "Eigenen Launcher deinstallieren" off)
+    { [ $LAUNCHER_DA = 1 ] || [ $ALT_LAUNCHER_DA = 1 ]; } && opt+=(home "Startbildschirm zurück auf Android TV" off deinst "Eigenen Launcher deinstallieren" off)
     [ ${#opt[@]} -eq 0 ] && return 1
     local sel; sel=$(ui_checklist "Wiederherstellen" "Was soll zurückgesetzt werden?" "${opt[@]}") || return 1
     R_APPS=0; R_EINST=0; R_APK=0; R_HOME=0; R_DEINST=0
@@ -804,6 +811,21 @@ restart_home_dienst() {
     else log "  Home-Taste: Bedienungshilfe bitte am Fernseher prüfen (Einstellungen > Bedienungshilfen)"; fi
 }
 
+# Ältere Version (de.elias.launcher) vollständig entfernen: Selbstheilung, Bedienungshilfe, Startbildschirm, App
+remove_alt_launcher() {
+    [ $ALT_LAUNCHER_DA = 1 ] || return 0
+    log "Entferne ältere Jellydroid-Version (de.elias.launcher)"
+    tvsh "pm revoke $ALT_LAUNCHER_PKG android.permission.WRITE_SECURE_SETTINGS" >/dev/null
+    tvsh "am force-stop $ALT_LAUNCHER_PKG" >/dev/null
+    local akt p rest=""; akt=$(trim "$(tvsh 'settings get secure enabled_accessibility_services')")
+    for p in ${akt//:/ }; do [ "$p" != "$ALT_A11Y_DIENST" ] && [ "$p" != null ] && rest+="${rest:+:}$p"; done
+    if [ -n "$rest" ]; then tvsh "settings put secure enabled_accessibility_services $rest" >/dev/null
+    else tvsh 'settings delete secure enabled_accessibility_services' >/dev/null; fi
+    tvsh "cmd role remove-role-holder android.app.role.HOME $ALT_LAUNCHER_PKG" >/dev/null
+    log "  Deinstallieren: $(adbc -s "$GERAET" uninstall "$ALT_LAUNCHER_PKG")"
+    ALT_LAUNCHER_DA=0
+}
+
 do_launcher() {
     local r
     if [ $OPT_LAUNCHER = 1 ]; then
@@ -814,6 +836,7 @@ do_launcher() {
         fi
         [[ "$r" == *Success* ]] || { log "  Installation fehlgeschlagen."; return; }
         LAUNCHER_DA=1
+        remove_alt_launcher
         # Erlaubt dem AirPlay-Empfänger, das Vollbild aus dem Hintergrund zu öffnen
         tvsh "appops set $LAUNCHER_PKG SYSTEM_ALERT_WINDOW allow" >/dev/null
         # Sidebar: WLAN-Name lesen (Android gibt ihn nur mit Standortberechtigung heraus)
@@ -949,6 +972,8 @@ do_update() {
 do_restore() {
     local d="" p
     [ -n "$R_ORDNER" ] && d="$SICHER/$R_ORDNER"
+    local LAUNCHER_PKG=$LAUNCHER_PKG A11Y_DIENST=$A11Y_DIENST
+    if [ $LAUNCHER_DA = 0 ] && [ $ALT_LAUNCHER_DA = 1 ]; then LAUNCHER_PKG=$ALT_LAUNCHER_PKG; A11Y_DIENST=$ALT_A11Y_DIENST; fi
     if [ $R_HOME = 1 ]; then
         log "Startbildschirm zurücksetzen"
         tvsh "pm revoke $LAUNCHER_PKG android.permission.WRITE_SECURE_SETTINGS" >/dev/null
@@ -960,7 +985,7 @@ do_restore() {
         tvsh "cmd role remove-role-holder android.app.role.HOME $LAUNCHER_PKG" >/dev/null
         local vorher=com.google.android.tvlauncher/.MainActivity v
         if [ -n "$d" ] && [ -f "$d/startbildschirm.txt" ]; then
-            v=$(trim "$(cat "$d/startbildschirm.txt")"); [[ "$v" == */* && "$v" != "$LAUNCHER_PKG"* ]] && vorher="$v"
+            v=$(trim "$(cat "$d/startbildschirm.txt")"); [[ "$v" == */* && "$v" != "$LAUNCHER_PKG"* && "$v" != "$ALT_LAUNCHER_PKG"* ]] && vorher="$v"
         fi
         log "  $(tvsh "cmd package set-home-activity $vorher")  ($vorher)"
         [ $R_DEINST = 1 ] && log "  Deinstallieren: $(adbc -s "$GERAET" uninstall "$LAUNCHER_PKG")"

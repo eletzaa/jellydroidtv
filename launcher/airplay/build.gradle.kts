@@ -5,13 +5,13 @@ plugins {
 }
 
 // Lokal (bauen.ps1): Build-Ausgabe außerhalb von OneDrive, sonst sperrt die Synchronisation Dateien.
-System.getenv("ELIAS_BUILD_DIR")?.let { layout.buildDirectory.set(file("$it/airplay")) }
+System.getenv("JELLYDROID_BUILD_DIR")?.let { layout.buildDirectory.set(file("$it/airplay")) }
 
 val nativeDeps: Configuration by configurations.creating { isTransitive = false }
 val nativeDepsDir = layout.buildDirectory.dir("nativeDeps")
 
 android {
-    namespace = "de.elias.launcher.airplay"
+    namespace = "de.jellydroid.launcher.airplay"
     compileSdk = 34
     ndkVersion = "27.0.12077973"
 
@@ -31,7 +31,7 @@ android {
             path = file("src/main/cpp/CMakeLists.txt")
             version = "3.22.1"
             // Zwischendateien des C-Builds ebenfalls außerhalb von OneDrive
-            System.getenv("ELIAS_BUILD_DIR")?.let { buildStagingDirectory = file("$it/airplay-cxx") }
+            System.getenv("JELLYDROID_BUILD_DIR")?.let { buildStagingDirectory = file("$it/airplay-cxx") }
         }
     }
     compileOptions {

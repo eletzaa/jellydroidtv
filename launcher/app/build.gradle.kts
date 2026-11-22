@@ -1,3 +1,5 @@
+import java.util.Base64
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -5,18 +7,18 @@ plugins {
 }
 
 // Lokal (bauen.ps1): Build-Ausgabe außerhalb von OneDrive, sonst sperrt die Synchronisation Dateien.
-System.getenv("ELIAS_BUILD_DIR")?.let { layout.buildDirectory.set(file("$it/app")) }
+System.getenv("JELLYDROID_BUILD_DIR")?.let { layout.buildDirectory.set(file("$it/app")) }
 
 android {
-    namespace = "de.elias.launcher"
+    namespace = "de.jellydroid.launcher"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "de.elias.launcher"
+        applicationId = "de.jellydroid.launcher"
         minSdk = 28
         targetSdk = 34
-        versionCode = 19
-        versionName = "1.9"
+        versionCode = 110
+        versionName = "1.10"
     }
 
     // Signaturschlüssel liegt NICHT im Repo (öffentlich). Reihenfolge:
@@ -31,7 +33,7 @@ android {
         when {
             !b64.isNullOrEmpty() -> layout.buildDirectory.file("signing/tv.keystore").get().asFile.also {
                 it.parentFile.mkdirs()
-                it.writeBytes(java.util.Base64.getMimeDecoder().decode(b64))
+                it.writeBytes(Base64.getMimeDecoder().decode(b64))
             }
             !path.isNullOrEmpty() -> file(path)
             else -> rootProject.file("signing/debug.keystore")

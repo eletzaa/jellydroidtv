@@ -1,8 +1,8 @@
 # Schnittstelle Installer → Launcher (setup.json, Version 1)
 
 Der Installer schreibt per adb eine JSON-Datei nach
-`/sdcard/Android/data/de.elias.launcher/files/setup.json`, beendet den Launcher
-(`am force-stop de.elias.launcher`) und startet ihn neu (`am start -n de.elias.launcher/.MainActivity`).
+`/sdcard/Android/data/de.jellydroid.launcher/files/setup.json`, beendet den Launcher
+(`am force-stop de.jellydroid.launcher`) und startet ihn neu (`am start -n de.jellydroid.launcher/.MainActivity`).
 Der Launcher liest die Datei einmal beim Start (`SetupImport.run(this)` in `MainActivity.onCreate`
 vor `setContent`), schreibt die Werte in seine SharedPreferences und löscht die Datei.
 
@@ -25,7 +25,7 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
     "font": "eigene"                      // ab V1.9: "standard" = Inter, "eigene" = Dateien aus files/schrift-neu/
   },
   "favorites": ["com.edde746.plezy", "com.netflix.ninja"],
-  "jellyfin": { "device_id": "elias-launcher-…", "token": "…", "user_id": "…", "server_id": "…" },
+  "jellyfin": { "device_id": "jellydroid-…", "token": "…", "user_id": "…", "server_id": "…" },
   "seerr":    { "cookie": "connect.sid=…", "user_id": 3 },
   "homeassistant": {                      // ab V1.3
     "url": "http://…:8123",
@@ -46,13 +46,13 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
   und übergibt nur das Sitzungs-Cookie. Das Passwort kommt nie auf den Fernseher.
 - Schlüssel für `services_*` entsprechen `Services.all[].key`.
 - AirPlay: Damit der Empfänger das Vollbild auch aus dem Hintergrund öffnen darf, setzt der Installer nach
-  der Installation `appops set de.elias.launcher SYSTEM_ALERT_WINDOW allow`.
+  der Installation `appops set de.jellydroid.launcher SYSTEM_ALERT_WINDOW allow`.
 
 - `homeassistant`: Windows meldet sich wie eine App an (Browser öffnet die HA-Anmeldung, Antwort an
   `http://localhost:<Port>/cb`), übergeben werden `client_id` und `refresh_token`; der Launcher holt sich damit
   selbst neue Zugriffstokens. Linux übergibt einen langlebigen Token. Ohne Anmeldung werden nur die Auswahlen
   übernommen, angemeldet wird dann am Fernseher per QR-Code. Die Adresse steht nur in dieser Datei, die der
-  Launcher nach dem Lesen löscht. Die Sidebar braucht für den WLAN-Namen `pm grant de.elias.launcher android.permission.ACCESS_FINE_LOCATION`.
+  Launcher nach dem Lesen löscht. Die Sidebar braucht für den WLAN-Namen `pm grant de.jellydroid.launcher android.permission.ACCESS_FINE_LOCATION`.
 
 - `installer-stand.txt` (gleicher Ordner, eine Zeile `funktionen=airplay sidebar homeassistant`): schreibt der
   Installer, damit er beim nächsten Update weiß, welche Funktionen schon eingerichtet sind. Der Launcher muss
@@ -62,7 +62,7 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
 - `setup-ergebnis.txt` (ab V1.4, gleicher Ordner): schreibt der Launcher nach dem Lesen von setup.json, Inhalt
   `ok` oder `fehler: <Meldung>`. Der Installer liest und löscht sie und meldet Fehler im Protokoll.
 - `config.sidebar_key`: Android-Tastencode der Sidebar-Taste (-1 = Standard: Menü/Einstellungen). Der Installer lernt
-  ihn an, indem er `logcat -s EliasHome` mitliest („Taste code=<n> (KEYCODE_…) action=1“ aus HomeButtonService).
+  ihn an, indem er `logcat -s JellydroidHome` mitliest („Taste code=<n> (KEYCODE_…) action=1“ aus HomeButtonService).
 - `config.font` (ab V1.9): Bei `"eigene"` schiebt der Installer vorher die TTF/OTF-Dateien einer Schriftfamilie
   nach `files/schrift-neu/` (Dateinamen nur `A-Za-z0-9._-`). Der Launcher kopiert sie nach `filesDir/schrift/`,
   liest die Stärke jeder Datei aus ihrer OS/2-Tabelle (kursive Schnitte werden übersprungen) und nutzt sie überall.
@@ -70,5 +70,5 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
   Schrift wieder. Der Launcher bringt nur Inter (SIL Open Font License) mit; Schriften wie Aptos oder SF Pro dürfen
   nicht weitergegeben werden, die lädt jeder selbst herunter.
 
-Einbau im Launcher: `SetupImport.kt` nach `app/src/main/java/de/elias/launcher/data/` kopieren und in
+Einbau im Launcher: `SetupImport.kt` nach `app/src/main/java/de/jellydroid/launcher/data/` kopieren und in
 `MainActivity.onCreate` direkt nach `super.onCreate(...)` `SetupImport.run(this)` aufrufen.

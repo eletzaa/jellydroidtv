@@ -44,7 +44,7 @@ Stärken (Regular, Medium, Semibold, Bold) sehen am besten aus; kursive Schnitte
 1. die Version der neuen APK (aus dem Dateinamen `Jellydroid-V<Version>.apk`),
 2. die Funktionen in `daten/funktionen.tsv` bis zu dieser Version,
 3. was am Fernseher schon eingerichtet ist: `installer-stand.txt` im Launcher-Ordner am TV
-   (`/sdcard/Android/data/de.elias.launcher/files/`). Die Datei schreibt der Installer nach jeder Einrichtung.
+   (`/sdcard/Android/data/de.jellydroid.launcher/files/`). Die Datei schreibt der Installer nach jeder Einrichtung.
    Sie bleibt bei Updates erhalten und gilt für jeden PC. Fehlt sie (ältere Einrichtung), gilt als eingerichtet,
    was die installierte Version schon konnte.
 
@@ -57,3 +57,9 @@ Installer-Seite (Windows: `$Pages['<seite>']`, Linux: `step_<seite>`) und ihre s
 `Add-FunktionSetup` bzw. `setup_cfg`/`setup_block`. Ohne Seite (`-`) wird sie nur als neu angezeigt.
 
 Alte APKs liegen in `launcher/ausgabe/archiv/` (öffentlich ab V1.9). Der Installer schaut dort nicht hinein und nimmt immer die höchste Version.
+
+## Umstieg auf V1.10 (neue App-Kennung)
+Bis V1.9 hieß die App `de.elias.launcher`, ab V1.10 `de.jellydroid.launcher`. Für Android ist das eine neue App,
+„Launcher aktualisieren“ geht deshalb einmalig nicht. Stattdessen „Launcher installieren oder neu einrichten“ wählen:
+Der Installer installiert die neue Version, entfernt die alte samt Bedienungshilfe und Startbildschirm-Eintrag und
+richtet Home-Taste und Einstellungen neu ein. Die Home-Assistant-Anmeldung muss danach einmal neu erfolgen.
