@@ -102,8 +102,8 @@ import de.elias.launcher.ui.GearIcon
 import de.elias.launcher.ui.HouseIcon
 import de.elias.launcher.ui.PlugIcon
 import de.elias.launcher.ui.SceneIcon
-import de.elias.launcher.ui.SfDisplay
-import de.elias.launcher.ui.SfText
+import de.elias.launcher.ui.DisplayFont
+import de.elias.launcher.ui.TextFont
 import de.elias.launcher.ui.SlidersIcon
 import de.elias.launcher.ui.SourceIcon
 import de.elias.launcher.ui.ThermoIcon
@@ -178,8 +178,8 @@ private fun FollowLauncherTheme() {
     }
 }
 
-private fun disp(size: Float, w: FontWeight = FontWeight.SemiBold) = TextStyle(fontFamily = SfDisplay, fontWeight = w, fontSize = size.sp)
-private fun txt(size: Float, w: FontWeight = FontWeight.Normal) = TextStyle(fontFamily = SfText, fontWeight = w, fontSize = size.sp)
+private fun disp(size: Float, w: FontWeight = FontWeight.SemiBold) = TextStyle(fontFamily = DisplayFont, fontWeight = w, fontSize = size.sp)
+private fun txt(size: Float, w: FontWeight = FontWeight.Normal) = TextStyle(fontFamily = TextFont, fontWeight = w, fontSize = size.sp)
 
 /**
  * Die Sidebar: Leiste von rechts mit Uhrzeit, Einstellungen und Kacheln.

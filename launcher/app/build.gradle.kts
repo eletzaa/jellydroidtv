@@ -15,8 +15,8 @@ android {
         applicationId = "de.elias.launcher"
         minSdk = 28
         targetSdk = 34
-        versionCode = 18
-        versionName = "1.8"
+        versionCode = 19
+        versionName = "1.9"
     }
 
     // Fester Schlüssel im Projekt (launcher/signing/debug.keystore, nur im privaten Repo), damit jedes

@@ -139,12 +139,12 @@ ORTE=("Deutschland" "Österreich" "Schweiz" "Niederlande" "Belgien" "Luxemburg" 
 # Gemerkte Eingaben (ohne Passwörter und Tokens)
 M_IP=""; M_PORT=5555; M_JF_URL=""; M_SEERR_URL=""; M_SEERR_USER=""; M_SEERR_ART=jellyfin
 M_DIENSTE=""; M_REIHEN=""; M_JF_APP=com.edde746.plezy; M_THEME=DARK; M_ORT=0; M_DNS=dns.adguard-dns.com
-M_AIRPLAY=1; M_AIRPLAY_NAME=Jellydroid
+M_AIRPLAY=1; M_AIRPLAY_NAME=Jellydroid; M_SCHRIFT=standard; M_SCHRIFT_PFAD=""
 M_HA=1; M_HA_POPUP=1; M_HA_TV=""; M_HA_BELL=""; M_HA_DOOR=""
 # shellcheck disable=SC1090
 [ -f "$EINST" ] && . "$EINST"
 save_merk() {
-    { for v in M_IP M_PORT M_JF_URL M_SEERR_URL M_SEERR_USER M_SEERR_ART M_DIENSTE M_REIHEN M_JF_APP M_THEME M_ORT M_DNS M_AIRPLAY M_AIRPLAY_NAME M_HA M_HA_POPUP M_HA_TV M_HA_BELL M_HA_DOOR; do
+    { for v in M_IP M_PORT M_JF_URL M_SEERR_URL M_SEERR_USER M_SEERR_ART M_DIENSTE M_REIHEN M_JF_APP M_THEME M_ORT M_DNS M_AIRPLAY M_AIRPLAY_NAME M_SCHRIFT M_SCHRIFT_PFAD M_HA M_HA_POPUP M_HA_TV M_HA_BELL M_HA_DOOR; do
         printf '%s=%q\n' "$v" "${!v}"; done; } > "$EINST"
 }
 
@@ -382,6 +382,42 @@ step_airplay() {
         n=$(trim "$n"); M_AIRPLAY_NAME="${n:-Jellydroid}"
     else M_AIRPLAY=0; fi
     save_merk
+}
+
+# Schrift: Standard ist Inter (steckt im Launcher). Eigene Schriften (z. B. Aptos oder SF Pro) lädt man selbst
+# herunter; angegeben wird eine Datei oder ein Ordner mit den TTF/OTF-Dateien einer Familie.
+schrift_dateien() { # -> eine Datei pro Zeile
+    local p="$M_SCHRIFT_PFAD"
+    if [ -d "$p" ]; then find "$p" -maxdepth 1 -type f \( -iname '*.ttf' -o -iname '*.otf' \) | sort | head -n 24
+    elif [ -f "$p" ]; then printf '%s\n' "$p"; fi
+}
+step_schrift() {
+    local w
+    w=$(ui_menu "Schrift" "Schrift des Launchers:" standard "Inter (Standard)" eigene "Eigene Schrift (TTF/OTF-Datei oder Ordner)") || return 1
+    if [ "$w" = eigene ]; then
+        local p
+        while :; do
+            p=$(ui_input "Schrift" "Pfad zur Schriftdatei oder zum Ordner mit den TTF/OTF-Dateien:" "$M_SCHRIFT_PFAD") || return 1
+            p=$(trim "$p"); p="${p/#\~/$HOME}"; M_SCHRIFT_PFAD="$p"
+            [ -n "$(schrift_dateien)" ] && break
+            ui_msg "Schrift" "Dort wurde keine TTF- oder OTF-Datei gefunden."
+        done
+        M_SCHRIFT=eigene
+    else M_SCHRIFT=standard; fi
+    save_merk
+}
+# Schiebt die eigenen Schriftdateien nach files/schrift-neu/ (vor send_setup, der Launcher übernimmt sie dann)
+push_schrift() {
+    [ "$M_SCHRIFT" = eigene ] || return 0
+    tvsh "rm -rf $SETUP_PFAD/schrift-neu; mkdir -p $SETUP_PFAD/schrift-neu" >/dev/null
+    local f n
+    while IFS= read -r f; do
+        n=$(basename "$f" | tr -c 'A-Za-z0-9._\n-' '_')
+        log "Schrift übertragen: $(adbc -s "$GERAET" push "$f" "$SETUP_PFAD/schrift-neu/$n")"
+    done < <(schrift_dateien)
+}
+schrift_text() {
+    if [ "$M_SCHRIFT" = eigene ]; then echo "eigene ($(schrift_dateien | xargs -d '\n' -n1 basename 2>/dev/null | paste -sd, - | sed 's/,/, /g'))"; else echo "Inter (Standard)"; fi
 }
 
 # Der Launcher protokolliert jede Taste ("Taste code=<n> (KEYCODE_…) action=<0|1>", Tag EliasHome).
@@ -805,7 +841,7 @@ do_launcher() {
         for i in "${!D_KEY[@]}"; do [[ " $M_DIENSTE " == *" ${D_KEY[$i]} "* ]] && { p=$(dienst_paket "$i"); [ -n "$p" ] && favs+=("$p"); }; done
     fi
     local cfg="\"theme\":$(json_esc "$M_THEME"),\"place\":${M_ORT:-0},\"jellyfin_app\":$(json_esc "$M_JF_APP"),\"services_used\":$(json_arr $M_DIENSTE),\"services_rows\":$(json_arr $M_REIHEN)"
-    cfg+=$(setup_cfg airplay)$(setup_cfg sidebartaste)
+    cfg+=$(setup_cfg airplay)$(setup_cfg sidebartaste)$(setup_cfg schrift)
     [ -n "$M_JF_URL" ] && cfg+=",\"jellyfin_url\":$(json_esc "$M_JF_URL")"
     [ -n "$M_SEERR_URL" ] && cfg+=",\"seerr_url\":$(json_esc "$M_SEERR_URL")"
     local json="{\"version\":1,\"config\":{$cfg}"
@@ -819,6 +855,7 @@ do_launcher() {
         tvsh "mkdir -p $SETUP_PFAD; rm -f $SETUP_PFAD/avatar.jpg $SETUP_PFAD/avatar.jpeg $SETUP_PFAD/avatar.png $SETUP_PFAD/avatar.webp" >/dev/null
         log "Profilbild übertragen: $(adbc -s "$GERAET" push "$AVATAR" "$SETUP_PFAD/avatar.$ext")"
     fi
+    push_schrift
     if send_setup "$json"; then
         # Eingerichtet: Funktionen dieser Version, deren Schritt in diesem Ablauf vorkam (oder die keinen brauchen)
         local -a ks=(); local i
@@ -833,6 +870,7 @@ do_launcher() {
 setup_cfg() { # Felder im "config"-Block, mit führendem Komma
     case "$1" in
         sidebartaste) [ -n "$SB_KEY" ] && printf ',"sidebar_key":%d' "$SB_KEY" ;;
+        schrift) printf ',"font":%s' "$(json_esc "${M_SCHRIFT:-standard}")" ;;
         airplay)
             if [ "${M_AIRPLAY:-1}" = 1 ]; then printf ',"airplay_enabled":true'; else printf ',"airplay_enabled":false'; fi
             printf ',"airplay_name":%s' "$(json_esc "${M_AIRPLAY_NAME:-Jellydroid}")" ;;
@@ -899,6 +937,7 @@ do_update() {
         tvsh "pm grant $LAUNCHER_PKG android.permission.WRITE_SECURE_SETTINGS" >/dev/null
     local cfg="" bl=""
     for k in $UPD_WAHL; do cfg+=$(setup_cfg "$k"); bl+=$(setup_block "$k"); done
+    [[ " $UPD_WAHL " == *" schrift "* ]] && push_schrift
     if send_setup "{\"version\":1,\"config\":{${cfg#,}}$bl}"; then
         # Bisher eingerichtet + jetzt eingerichtet + neue Funktionen, die keine Einrichtung brauchen
         local -a ks=($KONFIGURIERT $UPD_WAHL)
@@ -973,6 +1012,7 @@ zusammenfassung() {
             for k in $UPD_WAHL; do
                 case "$k" in
                     airplay) if [ "${M_AIRPLAY:-1}" = 1 ]; then z+="   AirPlay: an, als „${M_AIRPLAY_NAME:-Jellydroid}“\n"; else z+="   AirPlay: aus\n"; fi ;;
+                    schrift) z+="   Schrift: $(schrift_text)\n" ;;
                     sidebartaste) z+="   Sidebar-Taste: $( [ -z "$SB_KEY" ] && echo unverändert || { [ "$SB_KEY" -le 0 ] && echo Standard || echo "$SB_NAME"; } )\n" ;;
                     homeassistant) if [ "${M_HA:-1}" != 1 ]; then z+="   Home Assistant: aus\n"; elif [ -n "$HA_TOKEN" ]; then z+="   Home Assistant: angemeldet\n"; else z+="   Home Assistant: später am Fernseher anmelden\n"; fi ;;
                     *) for i in "${!F_KEY[@]}"; do [ "${F_KEY[$i]}" = "$k" ] && z+="   ${F_NAME[$i]}\n"; done ;;
@@ -991,6 +1031,7 @@ zusammenfassung() {
         if [ -n "$SEERR_COOKIE" ]; then se="Seerr angemeldet als $SEERR_NAME"; elif [ -n "$M_SEERR_URL" ]; then se="Seerr ohne Anmeldung"; else se="ohne Seerr"; fi
         z+="4. Launcher einrichten: $(echo $M_DIENSTE | wc -w) Dienste, $jf, $se$([ -n "$AVATAR" ] && echo ', neues Profilbild')\n"
         if [ "${M_AIRPLAY:-1}" = 1 ]; then z+="   AirPlay: an, als „${M_AIRPLAY_NAME:-Jellydroid}“\n"; else z+="   AirPlay: aus\n"; fi
+        z+="   Schrift: $(schrift_text)\n"
         if [ "${M_HA:-1}" != 1 ]; then z+="   Home Assistant: aus\n"; elif [ -n "$HA_TOKEN" ]; then z+="   Home Assistant: angemeldet\n"; else z+="   Home Assistant: später am Fernseher anmelden\n"; fi
         [ -n "$SB_KEY" ] && z+="   Sidebar-Taste: $( [ "$SB_KEY" -le 0 ] && echo Standard || echo "$SB_NAME")\n"
     fi
@@ -1027,13 +1068,13 @@ step_ausfuehren() {
 
 ablauf() {
     local modus="$1"
-    case "$modus" in voll) ABLAUF_SEITEN="airplay homeassistant" ;; launcher) ABLAUF_SEITEN="airplay sidebar homeassistant" ;; *) ABLAUF_SEITEN="" ;; esac
+    case "$modus" in voll) ABLAUF_SEITEN="airplay schrift homeassistant" ;; launcher) ABLAUF_SEITEN="airplay schrift sidebar homeassistant" ;; *) ABLAUF_SEITEN="" ;; esac
     case "$modus" in
-        voll)      step_vorbereitung && step_verbindung && step_sicherung && step_bloatware voll && step_launcher voll && step_airplay && step_dienste && step_konten && step_homeassistant && { step_tipps; true; } && step_ausfuehren voll ;;
+        voll)      step_vorbereitung && step_verbindung && step_sicherung && step_bloatware voll && step_launcher voll && step_airplay && step_schrift && step_dienste && step_konten && step_homeassistant && { step_tipps; true; } && step_ausfuehren voll ;;
         erneut)    step_verbindung && step_bloatware erneut && step_ausfuehren erneut ;;
         sicherung) step_verbindung && step_sicherung && step_ausfuehren sicherung ;;
         restore)   step_verbindung && step_restore && step_ausfuehren restore ;;
-        launcher)  step_verbindung && step_launcher launcher && step_airplay && step_sidebar && step_dienste && step_konten && step_homeassistant && step_ausfuehren launcher ;;
+        launcher)  step_verbindung && step_launcher launcher && step_airplay && step_schrift && step_sidebar && step_dienste && step_konten && step_homeassistant && step_ausfuehren launcher ;;
         update)    step_verbindung && step_update && step_ausfuehren update ;;
         tipps)     step_tipps ;;
     esac

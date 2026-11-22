@@ -66,7 +66,7 @@ $Gruppen = [ordered]@{
 
 # Gemerkte Eingaben vom letzten Mal (ohne Passwörter und Tokens)
 $Merk = [ordered]@{ ip = ''; port = '5555'; jellyfinUrl = ''; seerrUrl = ''; seerrUser = ''; seerrArt = 'jellyfin';
-    dienste = @(); reihen = @(); jellyfinApp = 'com.edde746.plezy'; theme = 'DARK'; ort = 0; dns = 'dns.adguard-dns.com'; airplay = $true; airplayName = 'Jellydroid'
+    dienste = @(); reihen = @(); jellyfinApp = 'com.edde746.plezy'; theme = 'DARK'; ort = 0; dns = 'dns.adguard-dns.com'; airplay = $true; airplayName = 'Jellydroid'; schrift = 'standard'; schriftDateien = @()
     ha = $true; haPopup = $true; haTv = ''; haBell = ''; haDoor = '' }
 if (Test-Path $EinstDatei) {
     try {
@@ -219,17 +219,17 @@ $Ablauf = @()
 $script:Pos = -1
 $Schritte = [ordered]@{
     vorbereitung = 'Fernseher vorbereiten'; verbindung = 'Verbinden'; sicherung = 'Sicherung'
-    bloatware = 'Apps entfernen'; launcher = 'Launcher'; airplay = 'AirPlay'; dienste = 'Streamingdienste'; konten = 'Jellyfin und Seerr'; homeassistant = 'Home Assistant'
+    bloatware = 'Apps entfernen'; launcher = 'Launcher'; airplay = 'AirPlay'; schrift = 'Schrift'; dienste = 'Streamingdienste'; konten = 'Jellyfin und Seerr'; homeassistant = 'Home Assistant'
     update = 'Update'; sidebar = 'Sidebar-Taste'
     tipps = 'Tipps'; wiederherstellen = 'Wiederherstellen'; ausfuehren = 'Ausführen'
 }
 $Modi = @{
-    voll       = @('vorbereitung','verbindung','sicherung','bloatware','launcher','airplay','dienste','konten','homeassistant','tipps','ausfuehren')
+    voll       = @('vorbereitung','verbindung','sicherung','bloatware','launcher','airplay','schrift','dienste','konten','homeassistant','tipps','ausfuehren')
     update     = @('verbindung','update','ausfuehren')   # wird auf der Update-Seite um die Seiten der neuen Funktionen ergänzt
     erneut     = @('verbindung','bloatware','ausfuehren')
     sicherung  = @('verbindung','sicherung','ausfuehren')
     restore    = @('verbindung','wiederherstellen','ausfuehren')
-    launcher   = @('verbindung','launcher','airplay','sidebar','dienste','konten','homeassistant','ausfuehren')
+    launcher   = @('verbindung','launcher','airplay','schrift','sidebar','dienste','konten','homeassistant','ausfuehren')
     tipps      = @('tipps')
 }
 
@@ -646,6 +646,47 @@ $Pages['airplay'] = @{ Panel = $p
     }
     Leave = {
         $Merk.airplay = $ChkAirPlay.Checked; $Merk.airplayName = $(if ($TxtAirPlay.Text.Trim()) { $TxtAirPlay.Text.Trim() } else { 'Jellydroid' }); Save-Merk
+        return $true
+    } }
+
+# ------------------------------------------------------------------ Seite: Schrift
+
+# Standard ist Inter (steckt im Launcher). Eigene Schriften (z. B. Aptos oder SF Pro) darf der Launcher nicht
+# mitbringen; man lädt sie selbst herunter und wählt hier die Dateien einer Familie (mehrere Stärken möglich).
+$p = New-Page 'Schrift' ''
+$RbSchriftStd = New-Object System.Windows.Forms.RadioButton
+$RbSchriftStd.Text = 'Inter (Standard)'; $RbSchriftStd.Left = 0; $RbSchriftStd.Top = 56; $RbSchriftStd.Width = 400
+$RbSchriftEigen = New-Object System.Windows.Forms.RadioButton
+$RbSchriftEigen.Text = 'Eigene Schrift (TTF oder OTF, auch mehrere Stärken einer Familie)'; $RbSchriftEigen.Left = 0; $RbSchriftEigen.Top = 86; $RbSchriftEigen.Width = 600
+foreach ($ctl in @($RbSchriftStd, $RbSchriftEigen)) { $p.Controls.Add($ctl) }
+$LbSchrift = New-Object System.Windows.Forms.ListBox
+$LbSchrift.Left = 20; $LbSchrift.Top = 120; $LbSchrift.Width = 560; $LbSchrift.Height = 160
+$p.Controls.Add($LbSchrift)
+$BtnSchrift = Btn 'Dateien wählen ...' 590 120 150; $p.Controls.Add($BtnSchrift)
+$BtnSchriftWeg = Btn 'Leeren' 590 156 150; $p.Controls.Add($BtnSchriftWeg)
+function Set-SchriftUi { $LbSchrift.Enabled = $RbSchriftEigen.Checked; $BtnSchrift.Enabled = $RbSchriftEigen.Checked; $BtnSchriftWeg.Enabled = $RbSchriftEigen.Checked }
+$RbSchriftEigen.Add_CheckedChanged({ Set-SchriftUi })
+$BtnSchrift.Add_Click({
+    $d = New-Object System.Windows.Forms.OpenFileDialog
+    $d.Filter = 'Schriften (*.ttf;*.otf)|*.ttf;*.otf'; $d.Multiselect = $true
+    if ($d.ShowDialog($Form) -eq 'OK') { $LbSchrift.Items.Clear(); foreach ($f in $d.FileNames) { [void]$LbSchrift.Items.Add($f) } }
+})
+$BtnSchriftWeg.Add_Click({ $LbSchrift.Items.Clear() })
+$Pages['schrift'] = @{ Panel = $p
+    Enter = {
+        $BtnWeiter.Enabled = $true
+        $LbSchrift.Items.Clear(); foreach ($f in @($Merk.schriftDateien)) { if ($f) { [void]$LbSchrift.Items.Add([string]$f) } }
+        if ($Merk.schrift -eq 'eigene') { $RbSchriftEigen.Checked = $true } else { $RbSchriftStd.Checked = $true }
+        Set-SchriftUi
+    }
+    Leave = {
+        $dateien = @($LbSchrift.Items | ForEach-Object { [string]$_ })
+        if ($RbSchriftEigen.Checked) {
+            if ($dateien.Count -eq 0) { Msg 'Bitte mindestens eine Schriftdatei auswählen oder Inter nehmen.' 'Warning'; return $false }
+            $fehlt = @($dateien | Where-Object { -not (Test-Path $_) })
+            if ($fehlt.Count -gt 0) { Msg "Nicht gefunden: $($fehlt -join ', ')" 'Warning'; return $false }
+        }
+        $Merk.schrift = $(if ($RbSchriftEigen.Checked) { 'eigene' } else { 'standard' }); $Merk.schriftDateien = $dateien; Save-Merk
         return $true
     } }
 
@@ -1192,6 +1233,10 @@ function Log([string]$t) {
     Add-Content -Path $LogDatei -Value ("{0:yyyy-MM-dd HH:mm:ss}  {1}" -f (Get-Date), $t) -Encoding UTF8
     [System.Windows.Forms.Application]::DoEvents()
 }
+function Get-SchriftText {
+    if ($Merk.schrift -ne 'eigene') { return 'Inter (Standard)' }
+    return "eigene ($((@($Merk.schriftDateien) | ForEach-Object { Split-Path $_ -Leaf }) -join ', '))"
+}
 function Plan-Text {
     $z = @()
     switch ($S.Modus) {
@@ -1208,8 +1253,9 @@ function Plan-Text {
             $z += '3. Einrichten:'
             if ($S.UpdWahl -contains 'airplay') { $z += '    AirPlay: ' + $(if ($Merk.airplay) { ('an, als „' + $Merk.airplayName + '“') } else { 'aus' }) }
             if ($S.UpdWahl -contains 'homeassistant') { $z += '    Home Assistant: ' + $(if (-not $Merk.ha) { 'aus' } elseif ($S.HaUrl) { 'angemeldet' + $(if ($Merk.haPopup -and $Merk.haBell) { ', mit Türklingel' } else { '' }) } else { 'später am Fernseher anmelden' }) }
+            if ($S.UpdWahl -contains 'schrift') { $z += '    Schrift: ' + (Get-SchriftText) }
             if ($S.UpdWahl -contains 'sidebartaste') { $z += '    Sidebar-Taste: ' + $(if ($null -eq $S.SbKey) { 'unverändert' } elseif ($S.SbKey -le 0) { 'Standard' } else { $S.SbName }) }
-            foreach ($k in $S.UpdWahl) { if ($k -notin @('airplay','homeassistant','sidebartaste')) { $z += "    $(($Funktionen | Where-Object { $_.key -eq $k } | Select-Object -First 1).name)" } }
+            foreach ($k in $S.UpdWahl) { if ($k -notin @('airplay','homeassistant','sidebartaste','schrift')) { $z += "    $(($Funktionen | Where-Object { $_.key -eq $k } | Select-Object -First 1).name)" } }
         }
     }
     if ($S.Modus -in @('voll','erneut')) {
@@ -1225,6 +1271,7 @@ function Plan-Text {
         $se = if ($S.SeerrCookie) { "Seerr angemeldet als $($S.SeerrName)" } elseif ($TxtSeerr.Text) { 'Seerr-Adresse ohne Anmeldung' } else { 'ohne Seerr' }
         $z += "4. Launcher einrichten: $(@($Merk.dienste).Count) Dienste, $jf, $se" + $(if ($TxtAvatar.Text) { ', neues Profilbild' } else { '' })
         $z += '    AirPlay: ' + $(if ($Merk.airplay) { ('an, als „' + $Merk.airplayName + '“') } else { 'aus' })
+        $z += '    Schrift: ' + (Get-SchriftText)
         $z += '    Home Assistant: ' + $(if (-not $Merk.ha) { 'aus' } elseif ($S.HaUrl) { 'angemeldet' + $(if ($Merk.haPopup -and $Merk.haBell) { ', mit Türklingel' } else { '' }) } else { 'später am Fernseher anmelden' })
         if ($null -ne $S.SbKey) { $z += '    Sidebar-Taste: ' + $(if ($S.SbKey -le 0) { 'Standard' } else { $S.SbName }) }
     }
@@ -1384,6 +1431,18 @@ function Add-FunktionSetup($setup, [string]$key) {
         }
         'sidebartaste' {
             if ($null -ne $S.SbKey) { $setup.config.sidebar_key = [int]$S.SbKey }
+        }
+        'schrift' {
+            # Dateien nach files/schrift-neu/, der Launcher übernimmt sie beim Lesen von setup.json
+            $setup.config.font = [string]$Merk.schrift
+            if ($Merk.schrift -eq 'eigene') {
+                [void](TvShell "rm -rf $SetupPfad/schrift-neu")
+                [void](TvShell "mkdir -p $SetupPfad/schrift-neu")
+                foreach ($f in @($Merk.schriftDateien)) {
+                    $name = ([IO.Path]::GetFileName($f)) -replace '[^A-Za-z0-9._-]', '_'
+                    Log "Schrift übertragen: $(Adb @('-s', $S.Geraet, 'push', $f, "$SetupPfad/schrift-neu/$name"))"
+                }
+            }
         }
         'homeassistant' {
             if (-not $Merk.ha) { return }

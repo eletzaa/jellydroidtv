@@ -21,7 +21,8 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
     "services_rows": ["netflix"],
     "airplay_enabled": true,              // AirPlay-Bildschirmsynchronisierung an/aus (ab V1.2)
     "airplay_name": "Jellydroid",         // Name, unter dem der Fernseher auf dem iPhone erscheint
-    "sidebar_key": 176                    // Tastencode, der die Sidebar öffnet (ab V1.3, sonst Menu/Settings)
+    "sidebar_key": 176,                   // Tastencode, der die Sidebar öffnet (ab V1.3, sonst Menu/Settings)
+    "font": "eigene"                      // ab V1.9: "standard" = Inter, "eigene" = Dateien aus files/schrift-neu/
   },
   "favorites": ["com.edde746.plezy", "com.netflix.ninja"],
   "jellyfin": { "device_id": "elias-launcher-…", "token": "…", "user_id": "…", "server_id": "…" },
@@ -62,6 +63,12 @@ Alle Felder sind optional. Fehlt ein Feld, bleibt der bisherige Wert.
   `ok` oder `fehler: <Meldung>`. Der Installer liest und löscht sie und meldet Fehler im Protokoll.
 - `config.sidebar_key`: Android-Tastencode der Sidebar-Taste (-1 = Standard: Menü/Einstellungen). Der Installer lernt
   ihn an, indem er `logcat -s EliasHome` mitliest („Taste code=<n> (KEYCODE_…) action=1“ aus HomeButtonService).
+- `config.font` (ab V1.9): Bei `"eigene"` schiebt der Installer vorher die TTF/OTF-Dateien einer Schriftfamilie
+  nach `files/schrift-neu/` (Dateinamen nur `A-Za-z0-9._-`). Der Launcher kopiert sie nach `filesDir/schrift/`,
+  liest die Stärke jeder Datei aus ihrer OS/2-Tabelle (kursive Schnitte werden übersprungen) und nutzt sie überall.
+  Ist keine Datei lesbar, bleibt Inter und `setup-ergebnis.txt` meldet einen Fehler. `"standard"` löscht eine eigene
+  Schrift wieder. Der Launcher bringt nur Inter (SIL Open Font License) mit; Schriften wie Aptos oder SF Pro dürfen
+  nicht weitergegeben werden, die lädt jeder selbst herunter.
 
 Einbau im Launcher: `SetupImport.kt` nach `app/src/main/java/de/elias/launcher/data/` kopieren und in
 `MainActivity.onCreate` direkt nach `super.onCreate(...)` `SetupImport.run(this)` aufrufen.

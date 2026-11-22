@@ -47,8 +47,8 @@ import de.elias.launcher.data.SystemActions
 import de.elias.launcher.home.HaPrefs
 import de.elias.launcher.home.HomeAssistant
 import de.elias.launcher.ui.BellIcon
-import de.elias.launcher.ui.SfDisplay
-import de.elias.launcher.ui.SfText
+import de.elias.launcher.ui.DisplayFont
+import de.elias.launcher.ui.TextFont
 import android.view.KeyEvent as AKey
 
 /** Karte oben rechts, wenn es klingelt. Schließt sich nach 30 Sekunden. */
@@ -89,8 +89,8 @@ fun DoorbellCard(name: String, onClose: () -> Unit) {
                 BellIcon(Color(0xFFFFD08A), Modifier.size(19.dp).rotate(wiggle.value))
             }
             Column {
-                Text("Es klingelt", style = TextStyle(fontFamily = SfDisplay, fontWeight = FontWeight.Bold, fontSize = 15.sp), color = Color(0xFFF4F6FB))
-                Text(name, style = TextStyle(fontFamily = SfText, fontSize = 11.sp), color = Color(0x9EFFFFFF))
+                Text("Es klingelt", style = TextStyle(fontFamily = DisplayFont, fontWeight = FontWeight.Bold, fontSize = 15.sp), color = Color(0xFFF4F6FB))
+                Text(name, style = TextStyle(fontFamily = TextFont, fontSize = 11.sp), color = Color(0x9EFFFFFF))
             }
         }
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -118,7 +118,7 @@ private fun BellButton(label: String, primary: Boolean, modifier: Modifier, onCl
             .padding(vertical = 9.dp),
         contentAlignment = Alignment.Center,
     ) {
-        Text(label, style = TextStyle(fontFamily = SfDisplay, fontWeight = FontWeight.SemiBold, fontSize = 12.sp), color = if (focused) Color(0xFF0D1220) else Color(0xFFF4F6FB))
+        Text(label, style = TextStyle(fontFamily = DisplayFont, fontWeight = FontWeight.SemiBold, fontSize = 12.sp), color = if (focused) Color(0xFF0D1220) else Color(0xFFF4F6FB))
     }
 }
 
