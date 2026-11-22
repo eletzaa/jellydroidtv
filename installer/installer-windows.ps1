@@ -25,7 +25,6 @@ $LogDatei    = Join-Path $Root 'installer-protokoll.txt'
 $LauncherPkg = 'de.jellydroid.launcher'
 $A11yDienst  = 'de.jellydroid.launcher/de.jellydroid.launcher.HomeButtonService'
 $SetupPfad   = '/sdcard/Android/data/de.jellydroid.launcher/files'
-# Bis V1.9 hieß die App de.elias.launcher. Neue App-Kennung = neue App, die alte wird beim Einrichten ersetzt.
 $AltLauncherPkg = 'de.elias.launcher'
 $AltA11yDienst  = 'de.elias.launcher/de.elias.launcher.HomeButtonService'
 New-Item -ItemType Directory -Force -Path $SicherDir | Out-Null
@@ -1368,7 +1367,6 @@ function Restart-HomeDienst {
     Log $(if ($jetzt) { '  Home-Taste aktiv' } else { '  Home-Taste: Bedienungshilfe bitte am Fernseher prüfen (Einstellungen > Bedienungshilfen)' })
 }
 
-# Ältere Version (de.elias.launcher) vollständig entfernen: Selbstheilung, Bedienungshilfe, Startbildschirm, App
 function Remove-AltLauncher {
     if (-not $S.AltLauncherDa) { return }
     Log 'Entferne ältere Jellydroid-Version (de.elias.launcher)'

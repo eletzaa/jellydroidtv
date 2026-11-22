@@ -17,7 +17,6 @@ LOGF="$ROOT/installer-protokoll.txt"
 LAUNCHER_PKG=de.jellydroid.launcher
 A11Y_DIENST=de.jellydroid.launcher/de.jellydroid.launcher.HomeButtonService
 SETUP_PFAD=/sdcard/Android/data/de.jellydroid.launcher/files
-# Bis V1.9 hieß die App de.elias.launcher. Neue App-Kennung = neue App, die alte wird beim Einrichten ersetzt.
 ALT_LAUNCHER_PKG=de.elias.launcher
 ALT_A11Y_DIENST=de.elias.launcher/de.elias.launcher.HomeButtonService
 mkdir -p "$SICHER"
@@ -811,7 +810,6 @@ restart_home_dienst() {
     else log "  Home-Taste: Bedienungshilfe bitte am Fernseher prüfen (Einstellungen > Bedienungshilfen)"; fi
 }
 
-# Ältere Version (de.elias.launcher) vollständig entfernen: Selbstheilung, Bedienungshilfe, Startbildschirm, App
 remove_alt_launcher() {
     [ $ALT_LAUNCHER_DA = 1 ] || return 0
     log "Entferne ältere Jellydroid-Version (de.elias.launcher)"

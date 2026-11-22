@@ -8,7 +8,6 @@
 # Die fertige APK liegt danach unter %LOCALAPPDATA%\JellydroidBuild\out\app\outputs\apk\release\app-release.apk
 param([switch]$NurBauen, [string]$Ip)
 $b = "$env:LOCALAPPDATA\JellydroidBuild"
-# Früherer Ordnername: einmalig umbenennen, damit JDK und SDK nicht neu geladen werden
 $alt = "$env:LOCALAPPDATA\EliasBuild"
 if (-not (Test-Path $b) -and (Test-Path $alt)) { Rename-Item $alt $b }
 $env:JAVA_HOME = "$b\jdk17"
