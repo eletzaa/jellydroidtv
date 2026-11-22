@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Jellydroid</string>
+    <string name="home_service_label">Jellydroid: Home-Taste</string>
+    <string name="home_service_description">Öffnet bei der Home-Taste Jellydroid statt des Google-Startbildschirms.</string>
+</resources>

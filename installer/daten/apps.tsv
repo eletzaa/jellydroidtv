@@ -1,0 +1,67 @@
+# paket	name	gruppe	empfohlen	beschreibung
+# gruppe: werbung | philips | google | freeview | geschuetzt
+# empfohlen: ja = beim Klick auf "Empfohlene auswählen" angehakt
+# geschuetzt = wird NIE entfernt und im Installer gesperrt angezeigt
+org.droidtv.usagelogger	Philips Nutzungsdaten	werbung	ja	Sendet Nutzungsstatistik an Philips/TP Vision.
+org.droidtv.nettvrecommender	Top-Auswahl (Empfehlungen)	werbung	ja	Philips-Empfehlungen und Werbeflächen.
+com.google.android.feedback	Google Feedback	werbung	ja	Diagnose- und Feedback-Upload an Google.
+com.zeasn.whalelive	Whale Live-Kanäle	werbung	ja	Werbefinanzierte Live-Kanäle (Zeasn).
+org.droidtv.demome	Demo-Modus	werbung	ja	Laden-Demomodus, im Wohnzimmer nutzlos.
+org.droidtv.nettv.market	Smart TV Sammlung	philips	ja	Philips App-Galerie mit beworbenen Apps.
+org.droidtv.amazonalexa	Alexa-Integration	philips	nein	Sprachsteuerung über Amazon Alexa.
+io.mimi.tvapp	Mimi Klangpersonalisierung	philips	nein	Hörprofil-App von Mimi.
+io.mimi.sdk.service	Mimi Hintergrunddienst	philips	nein	Gehört zu Mimi, nur zusammen entfernen.
+com.phorus.playfi.tv	DTS Play-Fi	philips	nein	Multiroom-Audio (Play-Fi-Lautsprecher).
+com.phorus.playfi.softap	DTS Play-Fi Hotspot	philips	nein	Gehört zu Play-Fi.
+com.vewd.core.browserui	Webbrowser (Vewd)	philips	nein	Vorinstallierter Browser.
+org.droidtv.astrahdplus	HD+ Info	philips	nein	Werbe-/Info-App für HD+ (Satellit).
+org.droidtv.android.fitness	Philips Fitness	philips	ja	Fitness-App.
+org.droidtv.nettvapp1814	Vorinstallierter App-Link 1814	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp3093	Vorinstallierter App-Link 3093	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp3463	Vorinstallierter App-Link 3463	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp4546	Vorinstallierter App-Link 4546	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp5245	Vorinstallierter App-Link 5245	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp5326	Vorinstallierter App-Link 5326	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.nettvapp5512	Vorinstallierter App-Link 5512	philips	nein	Verknüpfung aus der Philips-App-Galerie.
+org.droidtv.dropboxprovider	Dropbox-Anbindung	philips	nein	Dropbox im Medienbrowser.
+com.google.android.youtube.tvmusic	YouTube Music	google	nein	Musik-App von YouTube.
+com.google.android.videos	Google Play Filme	google	ja	Eingestellter Dienst.
+com.google.android.play.games	Google Play Spiele	google	ja	Spiele-Hub von Google.
+com.google.android.apps.tachyon	Google Duo / Meet	google	nein	Videotelefonie.
+com.google.android.youtube.tv	YouTube	google	nein	Offizielle YouTube-App (mit Werbung). Tipp: SmartTube als Ersatz.
+com.google.android.marvin.talkback	TalkBack	google	nein	Bildschirmleser für Sehbehinderte.
+com.google.android.katniss	Google Assistant / Suche	google	nein	RISKANT: Sprachsuche und Suche im Startbildschirm fallen weg.
+com.google.android.apps.mediashell	Chromecast built-in	google	nein	RISKANT: Vom Handy auf den TV streamen geht danach nicht mehr.
+uk.co.freeview.amc_catchup	Freeview AMC Catchup	freeview	ja	Britisches Freeview-Angebot, in DE ohne Nutzen.
+uk.co.freeview.amc_horror	Freeview AMC Horror	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.bbc	Freeview BBC	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.bbc_sounds	Freeview BBC Sounds	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.ch4_vod	Freeview Channel 4	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.ch5	Freeview Channel 5	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.explore	Freeview Explore	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.itv	Freeview ITV	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.onnow	Freeview On Now	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.sony_kids_vod	Freeview Sony Kids	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.stv	Freeview STV	freeview	ja	Britisches Freeview-Angebot.
+uk.co.freeview.uktv	Freeview UKTV	freeview	ja	Britisches Freeview-Angebot.
+org.droidtv.nettvregistration	Philips-Registrierung	geschuetzt	nein	NICHT entfernen: ohne sie stürzt das TV-System in einer Schleife ab.
+org.droidtv.channels	TV-Guide / Sender	geschuetzt	nein	Senderliste und TV-Guide.
+com.google.android.tvlauncher	Android-TV-Startbildschirm	geschuetzt	nein	Bleibt als Rückfall-Startbildschirm.
+com.google.android.tvrecommendations	Startbildschirm-Reihen	geschuetzt	nein	Daran hängen die Reihen auf dem Startbildschirm.
+com.google.android.gms	Google Play-Dienste	geschuetzt	nein	Grundlage für fast alle Apps.
+com.google.android.gsf	Google Services Framework	geschuetzt	nein	Grundlage für Google-Konto und Play Store.
+com.android.vending	Google Play Store	geschuetzt	nein	App-Installation.
+com.google.android.tungsten.setupwraith	Einrichtungsassistent	geschuetzt	nein	Ersteinrichtung.
+com.google.android.tv.remote.service	Fernbedienungsdienst	geschuetzt	nein	Fernbedienung und Handy-Fernbedienung.
+com.google.android.webview	Android System WebView	geschuetzt	nein	Viele Apps zeigen Inhalte damit an.
+com.android.tv.settings	Einstellungen	geschuetzt	nein	Android-Einstellungen.
+org.droidtv.settings	Philips-Einstellungen	geschuetzt	nein	Bild, Ton, Ambilight.
+org.droidtv.playtv	TV-Wiedergabe	geschuetzt	nein	Antenne/Kabel/Satellit.
+org.droidtv.xtv	TV-System	geschuetzt	nein	Kernbestandteil der Philips-Firmware.
+org.droidtv.xtvsystem	TV-System-Dienst	geschuetzt	nein	Kernbestandteil der Philips-Firmware.
+org.droidtv.tvsystemui	TV-Systemoberfläche	geschuetzt	nein	Kernbestandteil der Philips-Firmware.
+org.droidtv.hdmiservice	HDMI-Dienst	geschuetzt	nein	HDMI-Eingänge und CEC.
+org.droidtv.homeintentresolver	Startbildschirm-Weiche	geschuetzt	nein	Steuert, welcher Startbildschirm kommt.
+org.droidtv.GlobalKey	Tasten-Dienst	geschuetzt	nein	Sondertasten der Fernbedienung.
+de.elias.launcher	Eigener Launcher	geschuetzt	nein	Wird vom Installer verwaltet.
+com.edde746.plezy	Plezy	geschuetzt	nein	Jellyfin-Wiedergabe.

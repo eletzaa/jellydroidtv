@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home Assistant läuft im Heimnetz meist ohne https. Die Adresse steht nirgends im Code,
+     deshalb ist Klartext allgemein erlaubt (wie bei den meisten Heimnetz-Apps). -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

@@ -1,0 +1,23 @@
+Plezy für Jellyfin verwenden
+Nur Plezy kann einen Film oder eine Serie direkt beim Titel öffnen, wenn du ihn im Launcher auswählst. Die Jellyfin-App, Reefin, Findroid und Wholphin starten nur die App, dort musst du den Titel noch einmal suchen. Plezy hat außerdem Seerr eingebaut.
+
+Streamingdienste öffnen unterschiedlich tief
+Netflix und Disney+ öffnen den Titel direkt. Prime Video, WOW, Joyn, RTL+ und die anderen Dienste starten nur die App.
+
+Nach einem echten Neustart kommen Apps zurück
+Die Philips-Firmware stellt vorinstallierte Apps beim Hochfahren wieder her. Standby ist kein Problem, aber nach Stromausfall oder Update im Installer "Auswahl erneut anwenden" wählen. Das dauert etwa eine Minute.
+
+Diese Pakete bleiben immer
+Philips-Registrierung (sonst Absturzschleife), TV-Guide, Android-TV-Startbildschirm und Play-Dienste sind im Installer gesperrt.
+
+YouTube ohne Werbung
+SmartTube ersetzt die YouTube-App ohne Werbung. Trailer aus dem Launcher öffnen sich dann dort.
+
+Werbefilter per Privatem DNS
+AdGuard-DNS blockt Werbung und Tracker in vielen Apps. Lädt eine App nicht mehr richtig, im Installer unter Wiederherstellen die Einstellungen zurücksetzen.
+
+Jellyfin-Anmeldung per Quick Connect
+Der Installer zeigt einen Code. Gib ihn in Jellyfin am Handy oder PC ein (Profil > Quick Connect), dann ist der Fernseher angemeldet, ohne dass du ein Passwort tippst.
+
+Einstellungen später ändern
+Im Launcher oben rechts Zahnrad > Konfiguration: Streamingdienste, Jellyfin, Seerr und Design lassen sich jederzeit anpassen.

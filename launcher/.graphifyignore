@@ -1,0 +1,7 @@
+# Graphify: fremder C-Code (UxPlay, libplist, llhttp) bringt für die Launcher-Arbeit nichts
+airplay/src/main/cpp/third_party/
+**/build/
+.gradle/
+.kotlin/
+ausgabe/
+signing/

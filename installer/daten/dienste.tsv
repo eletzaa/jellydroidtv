@@ -1,0 +1,13 @@
+# schluessel	name	pakete (Komma)	oeffnet_titel_direkt
+# schluessel muss zu Services.kt im Launcher passen
+netflix	Netflix	com.netflix.ninja,com.netflix.mediaclient	ja
+disney	Disney+	com.disney.disneyplus	ja
+prime	Prime Video	com.amazon.amazonvideo.livingroom,com.amazon.avod.thirdpartyclient	nein
+wow	WOW	de.sky.online	nein
+joyn	Joyn	de.prosiebensat1digital.seventv	nein
+rtl	RTL+	de.rtli.tvnow	nein
+appletv	Apple TV+	com.apple.atve.androidtv.appletv	nein
+magenta	MagentaTV	de.telekom.magentatv.tv	nein
+paramount	Paramount+	com.cbs.ott	nein
+crunchyroll	Crunchyroll	com.crunchyroll.crunchyroid	nein
+mubi	MUBI	com.mubi	nein

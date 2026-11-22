@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 320x180-Banner für die App-Liste -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="320dp" android:height="180dp"
+    android:viewportWidth="320" android:viewportHeight="180">
+    <path android:pathData="M0,0h320v180h-320z">
+        <aapt:attr xmlns:aapt="http://schemas.android.com/aapt" name="android:fillColor">
+            <gradient android:type="linear" android:startX="0" android:startY="0" android:endX="320" android:endY="180"
+                android:startColor="#FF1C2440" android:endColor="#FFC47A3C" />
+        </aapt:attr>
+    </path>
+    <path android:fillColor="#FFFFD9A0" android:pathData="M236,72m-34,0a34,34 0,1 1,68 0a34,34 0,1 1,-68 0" />
+    <path android:fillColor="#FF4A2812" android:pathData="M0,130 C80,105 160,150 320,120 L320,180 L0,180 Z" />
+    <path android:fillColor="#40FFFFFF" android:pathData="M24,24h132a18,18 0,0 1,18 18v0a18,18 0,0 1,-18 18h-132a18,18 0,0 1,-18 -18v0a18,18 0,0 1,18 -18z" />
+</vector>

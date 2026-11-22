@@ -1,0 +1,13 @@
+# schluessel	ab_version	name	seite
+# Liste der Launcher-Funktionen. Der Installer vergleicht sie beim Update mit dem, was am Fernseher schon
+# eingerichtet ist (installer-stand.txt im Launcher-Ordner am TV), und bietet nur Neues zur Einrichtung an.
+# seite = Installer-Seite zum Einrichten (Windows-Seite bzw. Linux-Schritt step_<seite>), "-" = keine Einrichtung nötig.
+# Neue Funktion im Launcher: hier eine Zeile ergänzen, bei Bedarf eine Installer-Seite dazu bauen.
+airplay	1.2	AirPlay (Bildschirm vom iPhone, iPad oder Mac)	airplay
+sidebar	1.3	Sidebar mit Schnellmenü	-
+homeassistant	1.3	Home Assistant in der Sidebar (Licht, Heizung, Türklingel)	homeassistant
+sidebartaste	1.4	Taste für die Sidebar	sidebar
+raumwahl	1.6	Raumauswahl und Szenen-Symbole in der Sidebar	-
+detailinfos	1.6	Auflösung und Ton im Detail-Fenster	-
+markierungen	1.6	Serie gesehen, Serie ausblenden, Interessiert mich nicht	-
+standardraum	1.8	Standardraum für Home Assistant in der Sidebar	-
