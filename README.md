@@ -1,131 +1,143 @@
 # Jellydroid
 
-Android TV ohne Werbung, mit eigenem Startbildschirm für Jellyfin.
+Jellydroid macht aus einem Android-TV-Gerät einen Fernseher ohne Werbung, dessen Startbildschirm sich um die eigene Mediathek und das eigene Zuhause dreht. Es besteht aus einem eigenen Launcher und einem Installer, der das Gerät per ADB im Heimnetz einrichtet. Root ist nicht nötig.
 
-Jellydroid bündelt Werkzeuge, um einen Android-TV-Fernseher (entwickelt und getestet mit einem Philips Android TV 11)
-aufzuräumen: Werbe- und Telemetrie-Apps entfernen, Werbung per Privatem DNS filtern und den
-Startbildschirm durch einen eigenen Launcher mit Jellyfin- und Seerr-Anbindung ersetzen.
-Alles läuft über ADB im Heimnetz, Root ist nicht nötig.
+![Entdecken](docs/bilder/entdecken.jpg)
+
+## Was anders ist als bei Android TV
+
+Android TV zeigt ab Werk gesponserte Reihen, Empfehlungen von Streaminganbietern und vorinstallierte Apps des Herstellers. Jellydroid entfernt diese Apps, filtert Werbung über Privates DNS und ersetzt den Startbildschirm. Übrig bleiben die eigenen Favoriten, die eigene Mediathek und die Apps, die man wirklich nutzt.
+
+Jellyfin ist fest in den Startbildschirm eingebaut. Weiterschauen, Beliebtes und Genres kommen direkt aus der eigenen Mediathek, mit Auflösung und Tonformat im Detail-Fenster. Abgespielt wird mit einem Klick in [Plezy](https://github.com/edde746/plezy). Serien lassen sich als gesehen markieren oder ausblenden.
+
+![Startseite mit Weiterschauen und Favoriten](docs/bilder/startseite.jpg)
+
+Was noch fehlt, wird direkt im Launcher über Seerr angefragt. Trends und Neuerscheinungen stehen neben der Mediathek, ein Klick auf „Anfragen“ reicht. Eine zweite App oder der Umweg übers Handy entfallen.
+
+![Anfrage über Seerr](docs/bilder/anfragen.jpg)
+
+Eine Taste auf der Fernbedienung öffnet die Sidebar, ein Schnellmenü, das über jeder App aufgeht. Dort liegen Uhrzeit, WLAN, Eingangsquelle, AirPlay, die Launcher-Einstellungen und Home Assistant. Man muss also nicht erst zurück zum Startbildschirm, um das Licht zu dimmen oder die Quelle zu wechseln.
+
+![Sidebar](docs/bilder/sidebar.jpg)
+
+Home Assistant ist tief eingebunden. Licht, Schalter und Szenen werden pro Raum angezeigt, die Heizung lässt sich direkt mit den Pfeiltasten regeln. Die Anmeldung läuft per QR-Code vom Handy. Klingelt eine smarte Türklingel, erscheint am Fernseher ein Hinweis, egal welche App gerade läuft. Ist ein smarter Türsummer eingebunden, öffnet man die Tür von dort aus mit der Fernbedienung.
+
+<p>
+  <img src="docs/bilder/homeassistant.jpg" width="49%" alt="Home Assistant in der Sidebar">
+  <img src="docs/bilder/klingel.jpg" width="49%" alt="Hinweis der Türklingel">
+</p>
+
+Dazu kommt AirPlay: iPhone, iPad und Mac spiegeln ihren Bildschirm samt Ton auf den Fernseher, ohne Zusatzgerät.
+
+Der Installer führt durch alles: Verbindung, Sicherung, Apps entfernen, Launcher, Jellyfin, Seerr und Home Assistant. Geändert wird erst nach Zustimmung, und alles lässt sich zurücknehmen.
+
+Entwickelt und getestet wurde Jellydroid auf einem Philips-Fernseher mit Android TV 11. Launcher und Installer sind nicht an einen Hersteller gebunden. Welche vorinstallierten Apps sich entfernen lassen, unterscheidet sich je nach Gerät.
+
+Die Bilder sind ein Nachbau der Oberfläche aus dem Launcher-Code mit Platzhaltern statt echter Filme. Quelle und Skripte liegen in [`docs/vorschau/`](docs/vorschau/).
 
 ## Inhalt
 
-| Ordner | Was drin ist |
+| Ordner | Inhalt |
 |---|---|
-| `installer/` | Geführter Installer für Windows (Fenster) und Linux (Terminal). Der einfachste Einstieg. |
-| `launcher/` | Quellcode des eigenen Launchers (Kotlin, Jetpack Compose for TV). |
-| `skripte/` | Einzelne PowerShell-Skripte für ADB: Apps entfernen und zurückholen, DNS und Animationen. |
+| `installer/` | Geführter Installer für Windows und Linux. Der einfachste Einstieg. |
+| `launcher/` | Quellcode des Launchers, Kotlin mit Jetpack Compose for TV. |
+| `docs/` | Screenshots und der HTML-Nachbau der Oberfläche, aus dem sie entstehen. |
+| `skripte/` | Einzelne PowerShell-Skripte für ADB: Apps entfernen und zurückholen, DNS, Animationen. |
 
 ## Vorbereitung am Fernseher
 
-1. Entwickleroptionen einschalten: Einstellungen > Geräteeinstellungen > Info > 7-mal auf „Build“ drücken.
-2. In den Entwickleroptionen USB-Debugging (und, falls vorhanden, Netzwerk-Debugging) einschalten.
-3. IP-Adresse des Fernsehers notieren: Einstellungen > Netzwerk und Internet > dein Netzwerk.
-4. Beim ersten Verbinden am Fernseher „Immer von diesem Computer zulassen“ bestätigen.
-
-## Weitergeben als Paket
-
-`.\paket-erstellen.ps1` im Hauptordner baut den Launcher und legt den Ordner `Jellydroid`
-sowie `Jellydroid.zip` an: Installer und Launcher-App zusammen, ohne persönliche Einstellungen,
-Sicherungen oder Protokolle. Nur diese ZIP-Datei weitergeben. Mit `-OhneBauen` wird die zuletzt
-gebaute APK verwendet.
+1. Einstellungen > Geräteeinstellungen > Info: 7-mal auf „Build“ drücken, um die Entwickleroptionen freizuschalten.
+2. In den Entwickleroptionen USB-Debugging und, falls vorhanden, Netzwerk-Debugging einschalten.
+3. IP-Adresse notieren: Einstellungen > Netzwerk und Internet > eigenes Netzwerk.
+4. Beim ersten Verbinden „Immer von diesem Computer zulassen“ bestätigen.
 
 ## Installer
 
-- **Windows:** Doppelklick auf `installer/Installer starten (Windows).cmd`
+- **Windows:** `installer/Installer starten (Windows).cmd` doppelklicken
 - **Linux:** `bash installer/installer-linux.sh`
 
-Der Installer fragt die IP-Adresse des Fernsehers ab, lädt bei Bedarf ADB von Google, legt eine
-Sicherung an und ändert erst etwas, wenn du in der Zusammenfassung zustimmst. Details stehen in
-[`installer/LIESMICH.md`](installer/LIESMICH.md).
+Der Installer lädt ADB bei Bedarf von Google. Über „Launcher aktualisieren“ kommt eine neue Version auf den Fernseher, die Einstellungen bleiben, neue Funktionen werden zur Einrichtung angeboten. Server-Adressen werden dort eingetragen, im Code und im Repo stehen keine.
 
-## Einzelne Skripte (`skripte/`)
+Mehr dazu in [`installer/LIESMICH.md`](installer/LIESMICH.md).
+
+## Einzelne Skripte
 
 | Skript | Wirkung | Rückgängig |
 |---|---|---|
 | `stufe1.ps1` | Werbe- und Telemetrie-Apps deaktivieren | `stufe1-rueckgaengig.ps1` |
-| `stufe1-uninstall.ps1` | dieselben Apps für Benutzer 0 entfernen | `stufe1-uninstall-rueckgaengig.ps1` |
-| `stufe2-entfernen.ps1` | weitere vorinstallierte Apps entfernen | `stufe2-wiederherstellen.ps1` |
-| `dns-animationen.ps1` | Privates DNS (AdGuard) und kürzere Animationen | `dns-animationen-rueckgaengig.ps1` |
+| `stufe1-uninstall.ps1` | Dieselben Apps für Benutzer 0 entfernen | `stufe1-uninstall-rueckgaengig.ps1` |
+| `stufe2-entfernen.ps1` | Weitere vorinstallierte Apps entfernen | `stufe2-wiederherstellen.ps1` |
+| `dns-animationen.ps1` | Privates DNS über AdGuard, kürzere Animationen | `dns-animationen-rueckgaengig.ps1` |
 
-Die Skripte erwarten ADB unter `platform-tools/adb.exe` im Hauptordner (legt der Installer an,
-oder die [Platform-Tools von Google](https://developer.android.com/tools/releases/platform-tools)
-dort entpacken). Die Adresse des Fernsehers holen sie sich über `skripte/fernseher.ps1`:
-zuerst aus dem Parameter `-Ip`, sonst aus der letzten Verbindung im Installer, sonst fragen sie nach.
+ADB wird unter `platform-tools/adb.exe` im Hauptordner erwartet. Der Installer legt es dort an, alternativ die [Platform-Tools von Google](https://developer.android.com/tools/releases/platform-tools) entpacken. Die Adresse des Fernsehers kommt aus `-Ip`, sonst aus der letzten Installer-Verbindung, sonst fragt das Skript.
 
 ```powershell
 .\skripte\stufe2-entfernen.ps1 -Ip 192.168.1.50
+.\skripte\stufe2-entfernen.ps1 -Nur paket1,paket2
 ```
 
-Mit `-Nur paket1,paket2` wirken die Entfernen- und Wiederherstellen-Skripte nur auf diese Pakete.
+## Launcher
 
-## Launcher (`launcher/`)
+Viele Hersteller lassen den Startbildschirm nicht ohne Weiteres austauschen. Deshalb fängt eine Bedienungshilfe die Home-Taste ab und trägt sich nach jedem Neustart selbst wieder ein. Dafür braucht die App `WRITE_SECURE_SETTINGS`, das Installationsskript erteilt die Berechtigung per ADB.
 
-Der Jellydroid-Launcher ist ein eigener Startbildschirm mit Tabs für Startseite, Entdecken und Apps. „Entdecken“ zeigt
-Weiterschauen und Beliebtes aus Jellyfin und Seerr, Anfragen gehen direkt an Seerr,
-abgespielt wird in [Plezy](https://github.com/edde746/plezy). Die Server-Adressen trägst du
-im Installer oder in den Einstellungen des Launchers ein, im Code stehen keine.
+AirPlay läuft als eigenes Modul `launcher/airplay/` in einem separaten Prozess.
 
-Weil die Philips-Firmware den Standard-Startbildschirm ignoriert, fängt eine Bedienungshilfe
-die Home-Taste ab. Sie trägt sich nach einem Neustart selbst wieder ein (dafür braucht die App
-`WRITE_SECURE_SETTINGS`, das Installationsskript erteilt es per ADB).
+### Bauen
 
-**Bauen**
-- Mit Android Studio: Ordner `launcher` öffnen, Build > Build APK(s).
-- Oder mit `launcher/bauen.ps1`: erwartet JDK 17, Android SDK und Gradle 8.9 unter
-  `%LOCALAPPDATA%\EliasBuild` und legt die Build-Ausgabe dort ab (außerhalb von OneDrive).
-  `.\bauen.ps1` baut und spielt die APK auf den Fernseher, `.\bauen.ps1 -NurBauen` baut nur.
+Voraussetzungen: JDK 17, Android SDK 34, Gradle 8.9 über den Wrapper.
 
-Die Release-APK wird mit dem lokalen Debug-Schlüssel signiert, ein eigener Schlüssel ist nicht nötig.
+```bash
+cd launcher
+./gradlew assembleRelease
+```
 
-**Installieren und zurück**
+Alternativ in Android Studio den Ordner `launcher` öffnen, oder unter Windows `launcher/bauen.ps1` nutzen, das die Werkzeuge beim ersten Lauf selbst einrichtet. Der Signaturschlüssel liegt nicht im Repo. Varianten, Signatur und Umgebungsvariablen stehen in [`BAUEN.md`](BAUEN.md).
+
+### Installieren und zurück
 
 ```powershell
 .\launcher\launcher-installieren.ps1 -Apk <pfad-zur-apk>
 .\launcher\launcher-rueckgaengig.ps1                  # alter Startbildschirm, Launcher bleibt
-.\launcher\launcher-rueckgaengig.ps1 -Deinstallieren  # zusätzlich entfernen
+.\launcher\launcher-rueckgaengig.ps1 -Deinstallieren  # Launcher zusätzlich entfernen
 ```
+
+### Weitergeben
+
+`.\paket-erstellen.ps1` baut den Launcher und packt Installer und APK nach `Jellydroid.zip`, ohne persönliche Einstellungen, Sicherungen oder Protokolle. `-OhneBauen` nimmt die zuletzt gebaute APK.
 
 ## Gut zu wissen
 
-- Philips stellt bei jedem echten Neustart (Strom weg, Update) alle vorinstallierten Apps wieder her.
-  Ohne Root geht das nicht dauerhaft. Danach einfach Stufe 2 bzw. im Installer
-  „Auswahl nach Neustart erneut anwenden“ ausführen.
-- `org.droidtv.nettvregistration` **nicht** entfernen, sonst stürzt der Philips-Systemdienst in einer Schleife ab.
-- Den Google-TV-Launcher (`com.google.android.tvlauncher`) nicht deinstallieren, er bleibt als Rückweg.
-- Alle Änderungen erfolgen nur für Benutzer 0 und lassen sich mit den Rückgängig-Skripten
-  oder einem Zurücksetzen auf Werkseinstellungen aufheben. Nutzung auf eigene Gefahr.
+- Manche Geräte stellen bei einem echten Neustart, also Strom weg oder Update, die vorinstallierten Apps wieder her. Ohne Root lässt sich das nicht verhindern. Danach im Installer „Auswahl nach Neustart erneut anwenden“ oder Stufe 2 ausführen.
+- Den Standard-Launcher von Google nicht deinstallieren. Er bleibt als Rückweg.
+- Systemdienste des Herstellers nur entfernen, wenn klar ist, wofür sie da sind. Der Installer bietet bekannte kritische Pakete gar nicht erst an, auf Philips-Geräten etwa `org.droidtv.nettvregistration`.
+- Alle Änderungen gelten nur für Benutzer 0 und lassen sich mit den Rückgängig-Skripten oder einem Werksreset aufheben. Nutzung auf eigene Gefahr.
 
-## Arbeiten mit diesem Repo
+## Mitarbeiten
 
-- Das Repo ist die einzige Quelle für Jellydroid. Änderungen am Launcher werden hier gemacht, gebaut und als neue Version veröffentlicht.
-- Die aktuelle APK liegt unter `launcher/ausgabe/Jellydroid-V<x.y>.apk`, ältere unter `launcher/ausgabe/archiv/` (nie löschen; V1.0 bis V1.8 nur privat, wegen SF Pro). Jede Version zählt `versionName`/`versionCode` in `launcher/app/build.gradle.kts` hoch (1.8 = 18).
-- Vor Code-Arbeit `launcher/CODE-KARTE.md` lesen, für Abhängigkeiten `launcher/graphify-out/graph.json`.
+- Aktuelle APK: `launcher/ausgabe/Jellydroid-V<x.y>.apk`, ältere Versionen in `launcher/ausgabe/archiv/`. Jede Version erhöht `versionName` und `versionCode` in `launcher/app/build.gradle.kts`.
+- Vor Änderungen am Code `launcher/CODE-KARTE.md` lesen. Abhängigkeiten stehen in `launcher/graphify-out/graph.json`.
 - Der Installer nimmt die höchste `Jellydroid-V*.apk` neben sich oder aus `launcher/ausgabe/`.
 - Keine Server-Adressen, Tokens, Schlüssel oder persönlichen Daten committen. Das Repo ist öffentlich.
 
+## Schriften
+
+Der Launcher bringt Inter mit. Eine andere Schrift lädt jeder selbst herunter und wählt sie im Installer auf der Seite „Schrift“ aus. Sie wird nicht mit ausgeliefert. Versionen vor V1.9 enthielten eine nicht weitergebbare Schrift und sind deshalb nicht veröffentlicht.
+
 ## Lizenz
 
-Jellydroid steht unter der **GNU General Public License v3.0** (siehe [`LICENSE`](LICENSE)).
+Jellydroid steht unter der **GNU General Public License v3.0**, siehe [`LICENSE`](LICENSE).
 
-Der AirPlay-Empfänger (`launcher/airplay/`) basiert auf
-[android-airplay-server](https://github.com/jqssun/android-airplay-server) von jqssun (GPL-3.0) und
-[UxPlay](https://github.com/FDH2/UxPlay) (GPL-3.0). Weitere fremde Teile und ihre Lizenzen:
+Der AirPlay-Empfänger in `launcher/airplay/` basiert auf [android-airplay-server](https://github.com/jqssun/android-airplay-server) von jqssun und [UxPlay](https://github.com/FDH2/UxPlay), beide GPL-3.0.
 
-| Teil | Lizenz | Lizenztext |
+| Fremder Teil | Lizenz | Lizenztext |
 |---|---|---|
 | android-airplay-server, UxPlay | GPL-3.0 | `launcher/airplay/src/main/cpp/third_party/UxPlay/LICENSE` |
 | libplist | LGPL-2.1 | `launcher/airplay/src/main/cpp/third_party/libplist/COPYING.LESSER` |
 | llhttp | MIT | `launcher/airplay/src/main/cpp/third_party/UxPlay/lib/llhttp/LICENSE-MIT` |
-| Inter (Schrift) | SIL OFL 1.1 | `launcher/app/src/main/assets/lizenzen/inter-OFL.txt` |
+| Inter | SIL OFL 1.1 | `launcher/app/src/main/assets/lizenzen/inter-OFL.txt` |
 | Material Design Icons | Pictogrammers Free License / Apache-2.0 | `launcher/app/src/main/assets/mdi-LICENSE.txt` |
-| OpenSSL, Oboe (über Maven) | OpenSSL-Lizenz, Apache-2.0 | siehe `launcher/airplay/LIESMICH.md` |
+| OpenSSL, Oboe über Maven | OpenSSL-Lizenz, Apache-2.0 | `launcher/airplay/LIESMICH.md` |
 
-Details zur Herkunft des AirPlay-Codes: [`launcher/airplay/LIESMICH.md`](launcher/airplay/LIESMICH.md).
-Jellydroid ist ein privates Projekt und steht in keiner Verbindung zu Jellyfin, Apple, Philips oder Google.
+Herkunft des AirPlay-Codes: [`launcher/airplay/LIESMICH.md`](launcher/airplay/LIESMICH.md).
 
-## Schriften
-
-Ab V1.9 bringt der Launcher Inter mit (`launcher/app/src/main/res/font/inter_*`, SIL Open Font License 1.1,
-Lizenztext in `launcher/app/src/main/assets/lizenzen/inter-OFL.txt`). Eine eigene Schrift wie Aptos oder SF Pro
-lädt jeder selbst herunter und wählt sie im Installer aus (Seite „Schrift“); sie liegt nicht im Repo.
-APKs vor V1.9 enthielten SF Pro und sind deshalb nicht veröffentlicht.
+Jellydroid ist ein privates Projekt ohne Verbindung zu Jellyfin, Seerr, Apple, Google oder einem TV-Hersteller.
