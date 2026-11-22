@@ -98,9 +98,9 @@ Die Release-APK wird mit dem lokalen Debug-Schlüssel signiert, ein eigener Schl
 ## Arbeiten mit diesem Repo
 
 - Das Repo ist die einzige Quelle für Jellydroid. Änderungen am Launcher werden hier gemacht, gebaut und als neue Version veröffentlicht.
-- Fertige APKs liegen unter **Releases** (`v1.8` usw.), nicht im Repo. Jede Version zählt `versionName`/`versionCode` in `launcher/app/build.gradle.kts` hoch (1.8 = 18).
+- Die aktuelle APK liegt unter `launcher/ausgabe/Jellydroid-V<x.y>.apk`, ältere unter `launcher/ausgabe/archiv/` (nie löschen). Jede Version zählt `versionName`/`versionCode` in `launcher/app/build.gradle.kts` hoch (1.8 = 18).
 - Vor Code-Arbeit `launcher/CODE-KARTE.md` lesen, für Abhängigkeiten `launcher/graphify-out/graph.json`.
-- Der Installer nimmt die höchste `Jellydroid-V*.apk` neben sich oder aus `launcher/ausgabe/`. Für ein Weitergabe-Paket die APK aus dem Release dorthin legen.
+- Der Installer nimmt die höchste `Jellydroid-V*.apk` neben sich oder aus `launcher/ausgabe/`.
 - Keine Server-Adressen, Tokens oder persönlichen Daten committen.
 
 ## Lizenz

@@ -14,9 +14,6 @@ installer/launcher.apk
 setup.json
 avatar.*
 
-# --- Fertige APKs liegen in den GitHub-Releases, nicht im Repo ---
-launcher/ausgabe/
-
 # --- Transferpakete ---
 _*.tgz
 
@@ -29,6 +26,9 @@ Jellydroid.zip
 !launcher/signing/debug.keystore
 *.jks
 *.apk
+# Versionierte Launcher-APKs gehören ins Repo (aktuelle + Archiv)
+!launcher/ausgabe/Jellydroid-V*.apk
+!launcher/ausgabe/archiv/Jellydroid-V*.apk
 *.aab
 .env
 local.properties
