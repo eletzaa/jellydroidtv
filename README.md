@@ -10,7 +10,9 @@ Jellyfin ist fest in den Startbildschirm eingebaut. Weiterschauen, Beliebtes und
 
 Was noch fehlt, wird direkt im Launcher über Seerr angefragt. Trends und Neuerscheinungen stehen neben der Mediathek, ein Klick auf „Anfragen“ reicht. Eine zweite App oder der Umweg übers Handy entfallen.
 
-Home Assistant steckt in einer Sidebar, die per Taste über jeder App aufgeht: Licht und Szenen pro Raum, Heizung, WLAN, Eingangsquelle und AirPlay. Die Anmeldung läuft per QR-Code vom Handy. Klingelt eine smarte Türklingel, erscheint am Fernseher ein Hinweis. Ist ein smarter Türsummer eingebunden, öffnet man die Tür direkt von dort mit der Fernbedienung.
+Eine Taste auf der Fernbedienung öffnet die Sidebar, ein Schnellmenü, das über jeder App aufgeht. Dort liegen Uhrzeit, WLAN, Eingangsquelle, AirPlay, die Launcher-Einstellungen und Home Assistant. Man muss also nicht erst zurück zum Startbildschirm, um das Licht zu dimmen oder die Quelle zu wechseln.
+
+Home Assistant ist tief eingebunden. Licht, Schalter und Szenen werden pro Raum angezeigt, die Heizung lässt sich direkt mit den Pfeiltasten regeln. Die Anmeldung läuft per QR-Code vom Handy. Klingelt eine smarte Türklingel, erscheint am Fernseher ein Hinweis, egal welche App gerade läuft. Ist ein smarter Türsummer eingebunden, öffnet man die Tür von dort aus mit der Fernbedienung.
 
 Dazu kommt AirPlay: iPhone, iPad und Mac spiegeln ihren Bildschirm samt Ton auf den Fernseher, ohne Zusatzgerät.
 
