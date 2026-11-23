@@ -1,7 +1,7 @@
-# Graph Report - launcher  (2026-11-22)
+# Graph Report - launcher  (2026-11-23)
 
 ## Corpus Check
-- 79 files · ~66,206 words
+- 79 files · ~66,193 words
 - Verdict: corpus is large enough that graph structure adds value.
 - Unclassified: 23 file(s) not represented in the graph (top: .ttf 9, .xml 8, .properties 2)
 - WARNING: 23 of 106 files seen (22%) have no supported extractor and are missing from this graph entirely. It may look complete while representing only part of the codebase.
@@ -12,7 +12,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `727a849b`
+- Built from commit: `aadf82f3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -260,9 +260,9 @@ _Questions this graph is uniquely positioned to answer:_
   _163 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `OboeCallbacks` be split into smaller, more focused modules?**
   _Cohesion score 0.12105263157894737 - nodes in this community are weakly interconnected._
-- **Why does `TimelineBuffer` connect `TimelineBuffer` to `OboeCallbacks`, `TimelineMetrics`, `SpscRing`, `audio_decoder.h`, `MediaCodecDecoder`, `DelayTracker`, `CreatedDecoder`, `LatencyReporter`, `AudioEngine`, `AudioOutput`, `.debugInfo`?**
-  _High betweenness centrality (0.048) - this node is a cross-community bridge._
+- **Why does `VideoRenderer` connect `VideoRenderer` to `AirPlayService.kt`, `DecoderSelector`, `VideoPipeline`?**
+  _High betweenness centrality (0.036) - this node is a cross-community bridge._
 - **Should `android_raop_callbacks.c` be split into smaller, more focused modules?**
   _Cohesion score 0.0653061224489796 - nodes in this community are weakly interconnected._
-- **Why does `LauncherApp()` connect `LauncherApp.kt` to `ConfigScreen.kt`, `AppEntry`, `LocalMarks`, `Backdrop.kt`, `Sidebar.kt`, `SystemActions`, `Discover.kt`, `JellyfinClient.kt`, `HomeButtonService`, `Screens.kt`?**
+- **Why does `TimelineBuffer` connect `TimelineBuffer` to `OboeCallbacks`, `TimelineMetrics`, `SpscRing`, `audio_decoder.h`, `MediaCodecDecoder`, `DelayTracker`, `CreatedDecoder`, `LatencyReporter`, `AudioEngine`, `AudioOutput`, `.debugInfo`?**
   _High betweenness centrality (0.034) - this node is a cross-community bridge._
