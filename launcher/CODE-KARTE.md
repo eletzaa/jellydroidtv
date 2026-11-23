@@ -1,8 +1,8 @@
 # Code-Karte Jellydroid (launcher/)
 
-Paket `de.elias.launcher`, Kotlin + Compose for TV. Stand V1.9.
+Paket `de.jellydroid.launcher`, Kotlin + Compose for TV. Stand V1.10.
 
-## Start und Systemdienste (app/src/main/java/de/elias/launcher/)
+## Start und Systemdienste (app/src/main/java/de/jellydroid/launcher/)
 - `JellydroidApp.kt`: Application, führt SetupImport aus (nur im Hauptprozess), startet HA und AirPlay
 - `MainActivity.kt`: Home-Activity, ruft `LauncherApp()` auf, Extra `open=config`
 - `HomeButtonService.kt`: Bedienungshilfe für Home-Taste, Sidebar-Taste und Sidebar-Overlay

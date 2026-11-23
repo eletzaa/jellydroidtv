@@ -1,500 +1,500 @@
 {
   "airplay/build.gradle.kts": {
-    "mtime": 1795363943.4861467,
-    "seen": 1795364087.8765187,
-    "ast_hash": "0f499844839673adcea228c56e52d67e",
+    "mtime": 1795388363.909963,
+    "seen": 1795388491.5518146,
+    "ast_hash": "4ab8fd4fae612edcf03335f3abe4a404",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_dnssd_shim.c": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.876528,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.551824,
     "ast_hash": "f32cb43bc7f65282bab843f4505f9816",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_dnssd_shim.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765323,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518284,
     "ast_hash": "2304efd776c052d1a536b6a94f213373",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_raop_callbacks.c": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765337,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518305,
     "ast_hash": "55ddc771a61654db7936dc5174d916d1",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/android_raop_callbacks.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.876536,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.551832,
     "ast_hash": "019b97fc1653d5db4063e68051d0282e",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_decoder.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765373,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518339,
     "ast_hash": "170dd3526eaf3c9c10d551c70b8d3765",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_engine.cpp": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.876539,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.551835,
     "ast_hash": "81452fabccb8f1cd2e8ef4f93395462d",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_engine.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765402,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.551837,
     "ast_hash": "68409b92e7da0f98be33d8a8dc4746f1",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_output.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765414,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518382,
     "ast_hash": "f84c0a6b8641379206b0b459ac701470",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/audio_time.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765428,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518396,
     "ast_hash": "90b4e9cff9aafcb9f98af1c282cdce9d",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/log_sink.h": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765442,
+    "mtime": 1795383725.9380596,
+    "seen": 1795388491.5518405,
     "ast_hash": "d6453576e6ab2b73a12251f68ab95cca",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/native_bridge.cpp": {
-    "mtime": 1795363943.4863238,
-    "seen": 1795364087.8765452,
-    "ast_hash": "b387c72a612e0ede0055b9e866f7ec04",
+    "mtime": 1795388363.9131684,
+    "seen": 1795388491.5518415,
+    "ast_hash": "724d03a16c277cabe75ea84b7fdf6cf3",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/timeline_buffer.h": {
-    "mtime": 1795363943.4938848,
-    "seen": 1795364087.8765469,
+    "mtime": 1795383725.9490929,
+    "seen": 1795388491.5518434,
     "ast_hash": "2770ac9cc81d42e83b70c53e0b5b5d57",
     "semantic_hash": ""
   },
-  "airplay/src/main/java/de/elias/launcher/airplay/AirPlay.kt": {
-    "mtime": 1795363943.494961,
-    "seen": 1795364087.876548,
-    "ast_hash": "539cf6f86a465dfe06cbec6a42a15393",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/AirPlayActivity.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765495,
-    "ast_hash": "1ad4d666a5d87ea564c66589e62b6e12",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/AirPlayService.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765507,
-    "ast_hash": "eaa67c951792ff0349f78a03fd6c7aec",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/AirPlayState.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765519,
-    "ast_hash": "228273feddf8533f3bb0e596c49fc115",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/AudioConfig.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765533,
-    "ast_hash": "123f06afbe89b68ec78b22d772d5a408",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/AudioRenderer.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765545,
-    "ast_hash": "d49db95b46abc619ecd6f055be80c9aa",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/DecoderSelector.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765557,
-    "ast_hash": "91f4c20280328de5ff704b1e976a36b5",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/EglCore.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.876557,
-    "ast_hash": "84598c68d9c7c02465cc0a0d736b9fba",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/NativeBridge.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.876558,
-    "ast_hash": "24df843d839d2ba90ae7c68df59a7bd4",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/NsdServiceManager.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765597,
-    "ast_hash": "354dfdc57c10eb5dafbc11dc251d5cf5",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/RaopCallbackHandler.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765612,
-    "ast_hash": "9b0b541ff27f0b59a19edaf11a8ff809",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/VideoPipeline.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765626,
-    "ast_hash": "d0d8e2baf0be2ffdb8c55b3c8e283c62",
-    "semantic_hash": ""
-  },
-  "airplay/src/main/java/de/elias/launcher/airplay/VideoRenderer.kt": {
-    "mtime": 1795363943.4949982,
-    "seen": 1795364087.8765643,
-    "ast_hash": "32dc6606d7b23c1cfe22654e29236fe6",
-    "semantic_hash": ""
-  },
   "app/build.gradle.kts": {
-    "mtime": 1795364073.2163603,
-    "seen": 1795364087.8765657,
-    "ast_hash": "7f78f9bc6d74c67c14499b5c1d5b5361",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/BootReceiver.kt": {
-    "mtime": 1795363943.496152,
-    "seen": 1795364087.876567,
-    "ast_hash": "e8b2176ba37981ece7859782348b3da2",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/HomeButtonService.kt": {
-    "mtime": 1795363943.496181,
-    "seen": 1795364087.876568,
-    "ast_hash": "af0c049b9dd37b6e856f1123ae1f7da4",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/MainActivity.kt": {
-    "mtime": 1795363943.496181,
-    "seen": 1795364087.8765707,
-    "ast_hash": "49a9e94a8ada095e2223149546ee07bb",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ServiceKeeper.kt": {
-    "mtime": 1795363943.496181,
-    "seen": 1795364087.8765717,
-    "ast_hash": "5afba3cd3d220c8ab5ba0ee8ca8c6245",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/AppRepository.kt": {
-    "mtime": 1795363943.496181,
-    "seen": 1795364087.8765726,
-    "ast_hash": "d99fff24c2194678a30139d865a122a4",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/LauncherConfig.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.876574,
-    "ast_hash": "292471182929e2772360f9bb692d5ff9",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/Services.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765752,
-    "ast_hash": "8b6f0443b11851ada0d97b9fcd6ebfa1",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/SetupImport.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765764,
-    "ast_hash": "35e7b1c08dd80d537be16ea8c8b3d34c",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/Sun.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765779,
-    "ast_hash": "c181f9483af48557021c41a45abca4f8",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/data/SystemActions.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765793,
-    "ast_hash": "3d87f08fb8d5f506ea673ada4e9fe994",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/glass/Backdrop.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765829,
-    "ast_hash": "d037a126a6098f8f14c76cdfce3f608c",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/glass/GlassModifier.kt": {
-    "mtime": 1795363943.4965363,
-    "seen": 1795364087.8765845,
-    "ast_hash": "91668280955e490a08f97a0227f26320",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/glass/GlassRenderer.kt": {
-    "mtime": 1795363943.4965363,
-    "seen": 1795364087.876586,
-    "ast_hash": "1df959ceced5b4fb2592ec5a778ac018",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/glass/GlassState.kt": {
-    "mtime": 1795363943.4965363,
-    "seen": 1795364087.8765876,
-    "ast_hash": "41ddaeab0b8a91a04a0860912c7a4f27",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/JellyfinClient.kt": {
-    "mtime": 1795363943.4966555,
-    "seen": 1795364087.8765962,
-    "ast_hash": "44c1214f969a277f1242dfbee15d253c",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/JellyfinState.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8765972,
-    "ast_hash": "bdfd33c056056d1cae6c31412a62d616",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/MediaActions.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8765998,
-    "ast_hash": "8a140132f3af571fe94c72064a828301",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/RemoteImage.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8766007,
-    "ast_hash": "77dd177a350c19f86bf233815b23e96b",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/SeerrClient.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8766026,
-    "ast_hash": "d79a1de0dfa29349be9a1c50b30da66e",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/SeerrState.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8766036,
-    "ast_hash": "041fe2ae7acb9d3d64e6f37415ec4a14",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/AppMenu.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766108,
-    "ast_hash": "f679ad725e6fd6c13c72a3f37ec03e9a",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Avatar.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.876612,
-    "ast_hash": "81ced799ab2957c7bbfa39cddad3e010",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/ConfigScreen.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.876613,
-    "ast_hash": "2a57823e382740d7e42df7d3bd6b57a3",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Discover.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.876614,
-    "ast_hash": "2164dc5413fcf119b8322fcb1b3d4a87",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Icons.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766155,
-    "ast_hash": "a83f9f664ff114cb1a9ccb1a7a0c1c20",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/LauncherApp.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766167,
-    "ast_hash": "f36381d2c399712854b37449481bcf67",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/LongPress.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.876618,
-    "ast_hash": "1ad2f1a1628a2925e6d728a1fc7be7bc",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Palette.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766196,
-    "ast_hash": "8b97a529f16f72ccd0d1016405fda859",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Screens.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766205,
-    "ast_hash": "a3f05ff62609272377cda5e6d04d3208",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Theme.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766215,
-    "ast_hash": "c0d70382a769d53320b050a4d39311bb",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/Tiles.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766227,
-    "ast_hash": "83a8bdafb288017f28e29f9b97972340",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/ui/TopBar.kt": {
-    "mtime": 1795363943.4973397,
-    "seen": 1795364087.8766239,
-    "ast_hash": "39c2c6670db11ae4de6ce00a7dcd9afd",
+    "mtime": 1795388656.301972,
+    "seen": 1795388810.5172398,
+    "ast_hash": "476d72ff6865fe628d3a8f2bccc65a68",
     "semantic_hash": ""
   },
   "bauen.ps1": {
-    "mtime": 1795364073.2173014,
-    "seen": 1795364087.876625,
-    "ast_hash": "81e847172469fafca41ea8a561cf4be4",
+    "mtime": 1795388914.7308257,
+    "seen": 1795423084.740976,
+    "ast_hash": "cf16038b1d5ccecb1c339b8c76f4f89f",
     "semantic_hash": ""
   },
   "build.gradle.kts": {
-    "mtime": 1795363943.9418848,
-    "seen": 1795364087.8766267,
+    "mtime": 1795383726.1138134,
+    "seen": 1795388491.5519056,
     "ast_hash": "3ea1aef6d73b8c2a437cfbee497edb2a",
     "semantic_hash": ""
   },
   "gradlew": {
-    "mtime": 1795363943.945063,
-    "seen": 1795364087.876628,
+    "mtime": 1795383726.1203976,
+    "seen": 1795388491.5519066,
     "ast_hash": "794669d78aef1dd5c7d889ef618b311a",
     "semantic_hash": ""
   },
   "launcher-installieren.ps1": {
-    "mtime": 1795363943.9498847,
-    "seen": 1795364087.8766294,
-    "ast_hash": "221e42d6cfb638f420e00d766ea30743",
+    "mtime": 1795388363.9092658,
+    "seen": 1795388491.5519075,
+    "ast_hash": "fa5dcac6736b5821a8152638fc67ddf4",
     "semantic_hash": ""
   },
   "launcher-rueckgaengig.ps1": {
-    "mtime": 1795363943.9498847,
-    "seen": 1795364087.87663,
-    "ast_hash": "363f49cee85bac42998679078c0fb079",
+    "mtime": 1795388363.9137206,
+    "seen": 1795388491.5519085,
+    "ast_hash": "4fc8a6715376526f5a463bd482d6000f",
     "semantic_hash": ""
   },
   "settings.gradle.kts": {
-    "mtime": 1795363943.9498847,
-    "seen": 1795364087.876631,
+    "mtime": 1795383726.1258135,
+    "seen": 1795388491.5519094,
     "ast_hash": "d6e8fb2c14c835bf6aa201a9ec50c2fe",
     "semantic_hash": ""
   },
   "airplay/LIESMICH.md": {
-    "mtime": 1795364081.0411992,
-    "seen": 1795364087.8766336,
+    "mtime": 1795383725.937792,
+    "seen": 1795388491.5519114,
     "ast_hash": "6ed89eb50198d2b471da701c95be4236",
     "semantic_hash": ""
   },
   "airplay/src/main/cpp/CMakeLists.txt": {
-    "mtime": 1795363943.4862947,
-    "seen": 1795364087.8766348,
+    "mtime": 1795383725.938019,
+    "seen": 1795388491.5519128,
     "ast_hash": "6684ac07eb0fae768811c6ee3a572ac9",
     "semantic_hash": ""
   },
-  "app/src/main/java/de/elias/launcher/data/WifiInfo.kt": {
-    "mtime": 1795363943.496337,
-    "seen": 1795364087.8765817,
-    "ast_hash": "71f4a0fac6edb15c15891e1a777b12e5",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/home/HaPrefs.kt": {
-    "mtime": 1795363943.4965363,
-    "seen": 1795364087.8765893,
-    "ast_hash": "13e0771201084d0d937d7ec98dec2556",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/home/HaSetupServer.kt": {
-    "mtime": 1795363943.4966555,
-    "seen": 1795364087.8765905,
-    "ast_hash": "3318fd7cfb32a18920bc5e66b052e4fc",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/home/HomeAssistant.kt": {
-    "mtime": 1795363943.4966555,
-    "seen": 1795364087.8765922,
-    "ast_hash": "51248e105900bf21d3593b6509881957",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/home/Qr.kt": {
-    "mtime": 1795363943.4966555,
-    "seen": 1795364087.8765948,
-    "ast_hash": "7191e059a9b8250e41ec0a12c3c7ba60",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/sidebar/Doorbell.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.876605,
-    "ast_hash": "eb3dc12a9f054a896eecd753b7c29cf4",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/sidebar/Overlay.kt": {
-    "mtime": 1795363943.4972553,
-    "seen": 1795364087.8766062,
-    "ast_hash": "47061e64a488c32da219af151b29b2d9",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/sidebar/Sidebar.kt": {
-    "mtime": 1795363943.4972553,
-    "seen": 1795364087.8766077,
-    "ast_hash": "e2a3d9eeb3cbc09098dae04fe90bd6e0",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/JellydroidApp.kt": {
-    "mtime": 1795363943.496181,
-    "seen": 1795364087.8765695,
-    "ast_hash": "36984be1c36abbb96a5d630dd9f39a52",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/home/MdiIcons.kt": {
-    "mtime": 1795363943.4966555,
-    "seen": 1795364087.8765934,
-    "ast_hash": "085a26c166156d16b7d3e1b298129601",
-    "semantic_hash": ""
-  },
-  "app/src/main/java/de/elias/launcher/jellyfin/LocalMarks.kt": {
-    "mtime": 1795363943.4969044,
-    "seen": 1795364087.8765986,
-    "ast_hash": "0b0263f6bd665565fc31aad504097fd6",
-    "semantic_hash": ""
-  },
   "CODE-KARTE.md": {
-    "mtime": 1795364073.2174993,
-    "seen": 1795364087.8766322,
-    "ast_hash": "cfa956baa303b84b89ebd026edcce2a2",
+    "mtime": 1795388458.5342557,
+    "seen": 1795388491.5519104,
+    "ast_hash": "c0c7e7817b85f2c597e1cb4051b33914",
     "semantic_hash": ""
   },
   "app/src/main/assets/mdi-LICENSE.txt": {
-    "mtime": 1795363943.495412,
-    "seen": 1795364087.8766377,
+    "mtime": 1795383725.9524496,
+    "seen": 1795388491.551915,
     "ast_hash": "7f104afa30591ec383c5140124c88aef",
     "semantic_hash": ""
   },
   "app/src/main/assets/mdi.txt": {
-    "mtime": 1795363943.495412,
-    "seen": 1795364087.8766387,
+    "mtime": 1795383725.9524496,
+    "seen": 1795388491.5519161,
     "ast_hash": "a051ddb9ec3750fd3ca74a03f40913b9",
     "semantic_hash": ""
   },
-  "app/src/main/java/de/elias/launcher/ui/AppFonts.kt": {
-    "mtime": 1795363943.4972553,
-    "seen": 1795364087.8766098,
-    "ast_hash": "a34f248739386b6de737faabb37b3042",
+  "app/src/main/assets/lizenzen/inter-OFL.txt": {
+    "mtime": 1795383725.9524496,
+    "seen": 1795388491.551914,
+    "ast_hash": "082d8cc7db39783f598b7eda8c911f9d",
     "semantic_hash": ""
   },
-  "app/src/main/assets/lizenzen/inter-OFL.txt": {
-    "mtime": 1795363943.495412,
-    "seen": 1795364087.8766365,
-    "ast_hash": "082d8cc7db39783f598b7eda8c911f9d",
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AirPlay.kt": {
+    "mtime": 1795388363.9121253,
+    "seen": 1795388491.551845,
+    "ast_hash": "f632d0a62fe69d9eb11d52ce85eb502b",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AirPlayActivity.kt": {
+    "mtime": 1795388363.9126344,
+    "seen": 1795388491.5518465,
+    "ast_hash": "a532b677b22297ad386c7c14d6efc786",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AirPlayService.kt": {
+    "mtime": 1795388363.9118736,
+    "seen": 1795388491.5518475,
+    "ast_hash": "53d8e3bcaa1f753f9c284e936f3ae5ed",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AirPlayState.kt": {
+    "mtime": 1795388363.9122477,
+    "seen": 1795388491.551849,
+    "ast_hash": "916375be990dbd7fa19645505cccac1e",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AudioConfig.kt": {
+    "mtime": 1795388363.911428,
+    "seen": 1795388491.55185,
+    "ast_hash": "7604e78336becad0a5b407fb08bb2fa3",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/AudioRenderer.kt": {
+    "mtime": 1795388363.9117117,
+    "seen": 1795388491.551851,
+    "ast_hash": "689f1f8df0686a0b162ee5ce74cc71f6",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/DecoderSelector.kt": {
+    "mtime": 1795388363.9124107,
+    "seen": 1795388491.551852,
+    "ast_hash": "fbd5d8bad34a3fa18c252e9af8717bc0",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/EglCore.kt": {
+    "mtime": 1795388363.9106846,
+    "seen": 1795388491.5518527,
+    "ast_hash": "44a53cc29d48f504e5159275cba7de85",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/NativeBridge.kt": {
+    "mtime": 1795388363.9110343,
+    "seen": 1795388491.551854,
+    "ast_hash": "989288d0133616fbc9832e927c3445af",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/NsdServiceManager.kt": {
+    "mtime": 1795388363.9115672,
+    "seen": 1795388491.5518548,
+    "ast_hash": "9262aa4402f4a271e6cfb35c0775a9f1",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/RaopCallbackHandler.kt": {
+    "mtime": 1795388363.9108796,
+    "seen": 1795388491.5518556,
+    "ast_hash": "39cf001805253e836e3a5efd812f9143",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/VideoPipeline.kt": {
+    "mtime": 1795388363.911224,
+    "seen": 1795388491.5518568,
+    "ast_hash": "4ff326650482c67dc6d20760c0ab6406",
+    "semantic_hash": ""
+  },
+  "airplay/src/main/java/de/jellydroid/launcher/airplay/VideoRenderer.kt": {
+    "mtime": 1795388363.9102702,
+    "seen": 1795388491.5518575,
+    "ast_hash": "cde699ce1112366d7d0248434065d0f9",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/BootReceiver.kt": {
+    "mtime": 1795388363.8909824,
+    "seen": 1795388491.5518603,
+    "ast_hash": "fbf30fecbb33043333765d912fd673d1",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/HomeButtonService.kt": {
+    "mtime": 1795388363.898908,
+    "seen": 1795388491.5518613,
+    "ast_hash": "1d1ef40d33ea9e3726060b23a071281a",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/JellydroidApp.kt": {
+    "mtime": 1795388363.9073822,
+    "seen": 1795388491.5518622,
+    "ast_hash": "5b6ef596c4a67ebb3a8aa88ac1cd78be",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/MainActivity.kt": {
+    "mtime": 1795388363.8985147,
+    "seen": 1795388491.5518632,
+    "ast_hash": "0867c33d1278e00685456f93fc238e3b",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ServiceKeeper.kt": {
+    "mtime": 1795388363.9053137,
+    "seen": 1795388491.5518672,
+    "ast_hash": "baeab692cd1ad7e88558dcc2d3b8c50c",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/AppRepository.kt": {
+    "mtime": 1795388363.903203,
+    "seen": 1795388491.551868,
+    "ast_hash": "2c64f8128250d757603c1b3b5d0cebf6",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/LauncherConfig.kt": {
+    "mtime": 1795388363.901807,
+    "seen": 1795388491.551869,
+    "ast_hash": "8e54cda858fce818c8ed79b5cc33cfa3",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/Services.kt": {
+    "mtime": 1795388363.9021385,
+    "seen": 1795388491.5518699,
+    "ast_hash": "62219a05a8481334b4f78a57a957df97",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/SetupImport.kt": {
+    "mtime": 1795388363.9023812,
+    "seen": 1795388491.5518708,
+    "ast_hash": "4c6c7193c256a3aa79f420bdaf7a740b",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/Sun.kt": {
+    "mtime": 1795388363.9028978,
+    "seen": 1795388491.5518715,
+    "ast_hash": "1bd36a0e2cd59c7801fbfcd926aeeafc",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/SystemActions.kt": {
+    "mtime": 1795388363.903445,
+    "seen": 1795388491.551873,
+    "ast_hash": "5cc8da88e41eda60b786c78d4fd73bd0",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/data/WifiInfo.kt": {
+    "mtime": 1795388363.903616,
+    "seen": 1795388491.5518742,
+    "ast_hash": "9a8de4c4313f90bed2c6bd7b745cba3e",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/glass/Backdrop.kt": {
+    "mtime": 1795388363.9071264,
+    "seen": 1795388491.551875,
+    "ast_hash": "18bd51b0cd8941b33d50340f0763a700",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/glass/GlassModifier.kt": {
+    "mtime": 1795388363.9066892,
+    "seen": 1795388491.5518758,
+    "ast_hash": "ddb79fb03ebf4e2a84ab0f13101319f2",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/glass/GlassRenderer.kt": {
+    "mtime": 1795388363.9058497,
+    "seen": 1795388491.5518765,
+    "ast_hash": "35787d012b6262c75326a38857b1060f",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/glass/GlassState.kt": {
+    "mtime": 1795388363.9063408,
+    "seen": 1795388491.5518773,
+    "ast_hash": "5b269caeaba0718d8863f02591d065ed",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/home/HaPrefs.kt": {
+    "mtime": 1795388363.9046333,
+    "seen": 1795388491.5518782,
+    "ast_hash": "cde2f5213078c1c02aca0f884c0e9a28",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/home/HaSetupServer.kt": {
+    "mtime": 1795388363.9048476,
+    "seen": 1795388491.5518792,
+    "ast_hash": "1cb9011248aa7304c738534c74f6aa1c",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/home/HomeAssistant.kt": {
+    "mtime": 1795388363.903852,
+    "seen": 1795388491.55188,
+    "ast_hash": "7ed174a0b1dd663e4ed06b783b743c37",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/home/MdiIcons.kt": {
+    "mtime": 1795388363.9042723,
+    "seen": 1795388491.551881,
+    "ast_hash": "94c7076d5871de16c29f54f8a695e10e",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/home/Qr.kt": {
+    "mtime": 1795388363.9044378,
+    "seen": 1795388491.5518818,
+    "ast_hash": "64a0cf6793ebc18497c1c3c70ede150a",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/JellyfinClient.kt": {
+    "mtime": 1795388363.8995802,
+    "seen": 1795388491.5518825,
+    "ast_hash": "15221b1d2b7ea868854b3f9404c4937b",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/JellyfinState.kt": {
+    "mtime": 1795388363.9002743,
+    "seen": 1795388491.5518835,
+    "ast_hash": "7f6c3b459074a7360cd6e7b3e175b491",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/LocalMarks.kt": {
+    "mtime": 1795388363.9010847,
+    "seen": 1795388491.5518847,
+    "ast_hash": "bfb67b9018c31935ee9fd42de1f81276",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/MediaActions.kt": {
+    "mtime": 1795388363.9000297,
+    "seen": 1795388491.5518856,
+    "ast_hash": "e8bb14055d91dc79556ce473e4714752",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/RemoteImage.kt": {
+    "mtime": 1795388363.9007564,
+    "seen": 1795388491.5518863,
+    "ast_hash": "e8ad0105aad06fe7db8720ed27d8ca36",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/SeerrClient.kt": {
+    "mtime": 1795388363.9013376,
+    "seen": 1795388491.5518873,
+    "ast_hash": "6644b5b81dd0327531d5efef4c042b9e",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/jellyfin/SeerrState.kt": {
+    "mtime": 1795388363.899297,
+    "seen": 1795388491.5518882,
+    "ast_hash": "7d855b81e0861564b6a8980a8107793e",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/sidebar/Doorbell.kt": {
+    "mtime": 1795388363.9076407,
+    "seen": 1795388491.5518892,
+    "ast_hash": "78dfc042eee2c454c4df0731fa6ae045",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/sidebar/Overlay.kt": {
+    "mtime": 1795388363.908744,
+    "seen": 1795388491.5518901,
+    "ast_hash": "4c916fa8b8a802dae92f31f8b2c80f8c",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/sidebar/Sidebar.kt": {
+    "mtime": 1795388363.907926,
+    "seen": 1795388491.551891,
+    "ast_hash": "985d1775a583c7b48e82e80d5c137907",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/AppFonts.kt": {
+    "mtime": 1795388363.8978038,
+    "seen": 1795388491.5518923,
+    "ast_hash": "c2314dd1516eece193070fcfe5eb7c58",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/AppMenu.kt": {
+    "mtime": 1795388363.8972042,
+    "seen": 1795388491.551893,
+    "ast_hash": "009656d5ccc725f1f30446e63bbcef3e",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Avatar.kt": {
+    "mtime": 1795388363.892181,
+    "seen": 1795388491.551894,
+    "ast_hash": "8f1dba410ff1f7dafb1da4d4b04050e6",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/ConfigScreen.kt": {
+    "mtime": 1795388363.8964033,
+    "seen": 1795388491.551895,
+    "ast_hash": "f340332180bf86433a4c1ec657be0d8d",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Discover.kt": {
+    "mtime": 1795388363.894281,
+    "seen": 1795388491.5518956,
+    "ast_hash": "4b1fb9733cc182f1b353322f34420311",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Icons.kt": {
+    "mtime": 1795388363.8936834,
+    "seen": 1795388491.5518966,
+    "ast_hash": "37c8a4f19911f7f6afe6d953c73fa225",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/LauncherApp.kt": {
+    "mtime": 1795388363.8914075,
+    "seen": 1795388491.5518973,
+    "ast_hash": "13f6495a686a51381eb94f417a49950d",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/LongPress.kt": {
+    "mtime": 1795388363.895937,
+    "seen": 1795388491.5518985,
+    "ast_hash": "fa205c5fdd7008316667d4334a3792ee",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Palette.kt": {
+    "mtime": 1795388363.8981442,
+    "seen": 1795388491.5518992,
+    "ast_hash": "91d9b20735ab6914af324e235df638fd",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Screens.kt": {
+    "mtime": 1795388363.8926134,
+    "seen": 1795388491.5519001,
+    "ast_hash": "febfb8f0ee886c7411bd55b8ad7e7d0d",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Theme.kt": {
+    "mtime": 1795388363.8975384,
+    "seen": 1795388491.551901,
+    "ast_hash": "dcdf87c4a791280760779cc78d48a501",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/Tiles.kt": {
+    "mtime": 1795388363.893239,
+    "seen": 1795388491.551902,
+    "ast_hash": "0fef9597e1dd9d8d2c1516747ef48241",
+    "semantic_hash": ""
+  },
+  "app/src/main/java/de/jellydroid/launcher/ui/TopBar.kt": {
+    "mtime": 1795388363.8954268,
+    "seen": 1795388491.551903,
+    "ast_hash": "3a187ac07a458f2fcd6423f87e477f1d",
     "semantic_hash": ""
   }
 }

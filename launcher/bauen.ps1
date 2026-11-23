@@ -1,16 +1,18 @@
 # Baut die Release-APK lokal und spielt sie auf den Fernseher.
-# Werkzeuge liegen außerhalb von OneDrive unter %LOCALAPPDATA%\EliasBuild (JDK 17, Android SDK, Gradle 8.9).
+# Werkzeuge liegen außerhalb von OneDrive unter %LOCALAPPDATA%\JellydroidBuild (JDK 17, Android SDK, Gradle 8.9).
 # Fehlen sie, richtet das Skript sie beim ersten Lauf selbst ein (ca. 500 MB Download, einmalig;
 # für AirPlay kommen NDK und CMake dazu, noch einmal rund 1 GB).
 # Aufruf im Ordner launcher:  .\bauen.ps1            (bauen + installieren)
 #                             .\bauen.ps1 -NurBauen  (nur bauen)
 #                             .\bauen.ps1 -Ip 192.168.1.50  (andere TV-Adresse; sonst die aus dem Installer)
-# Die fertige APK liegt danach unter %LOCALAPPDATA%\EliasBuild\out\app\outputs\apk\release\app-release.apk
+# Die fertige APK liegt danach unter %LOCALAPPDATA%\JellydroidBuild\out\app\outputs\apk\release\app-release.apk
 param([switch]$NurBauen, [string]$Ip)
-$b = "$env:LOCALAPPDATA\EliasBuild"
+$b = "$env:LOCALAPPDATA\JellydroidBuild"
+$alt = "$env:LOCALAPPDATA\EliasBuild"
+if (-not (Test-Path $b) -and (Test-Path $alt)) { Rename-Item $alt $b }
 $env:JAVA_HOME = "$b\jdk17"
 $env:ANDROID_HOME = "$b\sdk"
-$env:ELIAS_BUILD_DIR = "$b\out"   # Build-Ausgabe außerhalb von OneDrive
+$env:JELLYDROID_BUILD_DIR = "$b\out"   # Build-Ausgabe außerhalb von OneDrive
 $apk = "$b\out\app\outputs\apk\release\app-release.apk"
 # Windows-Zertifikatsspeicher (Firmen-Proxy) und Selector-Einstellung, ohne die Java hier keine Loopback-Verbindung aufbaut
 $o = "-Djavax.net.ssl.trustStoreType=Windows-ROOT -Djava.nio.channels.spi.SelectorProvider=sun.nio.ch.WindowsSelectorProvider -Djdk.net.unixdomain.tmpdir=C:\Windows\Temp"
@@ -97,4 +99,4 @@ $adb = "$PSScriptRoot\..\platform-tools\adb.exe"
 $device = Get-Fernseher $Ip
 & $adb connect $device | Out-Null
 & $adb -s $device install -r $apk
-& $adb -s $device shell am start -n de.elias.launcher/.MainActivity | Out-Null
+& $adb -s $device shell am start -n de.jellydroid.launcher/.MainActivity | Out-Null

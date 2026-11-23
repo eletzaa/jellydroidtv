@@ -23,7 +23,7 @@
             android:name=".AirPlayActivity"
             android:process=":airplay"
             android:exported="false"
-            android:taskAffinity="de.elias.launcher.airplay"
+            android:taskAffinity="de.jellydroid.launcher.airplay"
             android:launchMode="singleTask"
             android:excludeFromRecents="true"
             android:screenOrientation="landscape"

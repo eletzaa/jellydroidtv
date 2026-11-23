@@ -1,6 +1,6 @@
 # Installiert den eigenen Launcher auf dem Fernseher und macht ihn zum Startbildschirm.
 # Weil die Philips-Firmware den Standard-Startbildschirm ignoriert, wird zusaetzlich die
-# Bedienungshilfe "Elias Launcher: Home-Taste" eingeschaltet, die die Home-Taste abfaengt.
+# Bedienungshilfe "Jellydroid: Home-Taste" eingeschaltet, die die Home-Taste abfaengt.
 # Vorher wird der bisherige Zustand in ..\sicherung\ gesichert. Rueckgaengig: launcher-rueckgaengig.ps1
 param([string]$Apk = (Join-Path $PSScriptRoot 'app\build\outputs\apk\debug\app-debug.apk'), [string]$Ip)
 $adb    = Join-Path $PSScriptRoot '..\platform-tools\adb.exe'
@@ -8,7 +8,7 @@ $adb    = Join-Path $PSScriptRoot '..\platform-tools\adb.exe'
 $device = Get-Fernseher $Ip
 $sicherungHome = Join-Path $PSScriptRoot '..\sicherung\startbildschirm-vorher.txt'
 $sicherungA11y = Join-Path $PSScriptRoot '..\sicherung\bedienungshilfen-vorher.txt'
-$dienst = 'de.elias.launcher/de.elias.launcher.HomeButtonService'
+$dienst = 'de.jellydroid.launcher/de.jellydroid.launcher.HomeButtonService'
 New-Item -ItemType Directory -Force -Path (Split-Path $sicherungHome) | Out-Null
 
 & $adb connect $device | Out-Null
@@ -21,7 +21,7 @@ if (-not (Test-Path $sicherungHome)) {
 }
 
 Write-Output (& $adb -s $device install -r $Apk 2>&1)
-Write-Output (& $adb -s $device shell cmd package set-home-activity de.elias.launcher/.MainActivity 2>&1)
+Write-Output (& $adb -s $device shell cmd package set-home-activity de.jellydroid.launcher/.MainActivity 2>&1)
 
 # Bedienungshilfe einschalten, vorhandene Eintraege behalten
 $aktuell = ((& $adb -s $device shell settings get secure enabled_accessibility_services 2>&1) -join '').Trim()

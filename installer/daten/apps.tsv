@@ -63,5 +63,6 @@ org.droidtv.tvsystemui	TV-Systemoberfläche	geschuetzt	nein	Kernbestandteil der 
 org.droidtv.hdmiservice	HDMI-Dienst	geschuetzt	nein	HDMI-Eingänge und CEC.
 org.droidtv.homeintentresolver	Startbildschirm-Weiche	geschuetzt	nein	Steuert, welcher Startbildschirm kommt.
 org.droidtv.GlobalKey	Tasten-Dienst	geschuetzt	nein	Sondertasten der Fernbedienung.
-de.elias.launcher	Eigener Launcher	geschuetzt	nein	Wird vom Installer verwaltet.
+de.jellydroid.launcher	Eigener Launcher	geschuetzt	nein	Wird vom Installer verwaltet.
+de.elias.launcher	Jellydroid bis V1.9	geschuetzt	nein	Wird beim Einrichten durch die neue Version ersetzt.
 com.edde746.plezy	Plezy	geschuetzt	nein	Jellyfin-Wiedergabe.

@@ -1,4 +1,4 @@
-package de.elias.launcher.data
+package de.jellydroid.launcher.data
 
 import android.content.Context
 import android.util.Log
@@ -9,7 +9,7 @@ import java.io.File
  * Übernimmt die Vorkonfiguration aus dem TV-Installer.
  *
  * Der Installer legt per adb die Datei
- *   /sdcard/Android/data/de.elias.launcher/files/setup.json
+ *   /sdcard/Android/data/de.jellydroid.launcher/files/setup.json
  * ab (für andere Apps nicht lesbar), beendet den Launcher und startet ihn neu.
  * Hier werden die Werte in die vorhandenen SharedPreferences geschrieben und die Datei gelöscht.
  *

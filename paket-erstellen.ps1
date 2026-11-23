@@ -19,7 +19,7 @@ if (-not $OhneBauen -and -not $Apk) { & (Join-Path $root 'launcher\bauen.ps1') -
 $fertig = Get-ChildItem (Join-Path $root 'launcher\ausgabe') -Filter 'Jellydroid*.apk' -File -ErrorAction SilentlyContinue |
     Sort-Object LastWriteTime -Descending | Select-Object -First 1 -ExpandProperty FullName   # hierhin kopiert bauen.ps1 die fertige APK
 if ($Apk) { $apk = $Apk } elseif ($fertig) { $apk = $fertig } else {
-    $orte = @((Join-Path $env:LOCALAPPDATA 'EliasBuild\out'), (Join-Path $root 'launcher\app\build\outputs'),
+    $orte = @((Join-Path $env:LOCALAPPDATA 'JellydroidBuild\out'), (Join-Path $root 'launcher\app\build\outputs'),
               (Join-Path $root 'launcher\build'))
     $apk = $orte | Where-Object { Test-Path $_ } |
         ForEach-Object { Get-ChildItem $_ -Recurse -Filter '*.apk' -File -ErrorAction SilentlyContinue } |
